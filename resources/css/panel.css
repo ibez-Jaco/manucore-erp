@@ -1,0 +1,19 @@
+@import './theme.css';
+
+/* System/Admin Panel Specific Styles */
+.panel-sidebar {
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+}
+
+.panel-header {
+    background-color: white;
+    border-bottom: 2px solid var(--primary-medium);
+}
+
+.panel-content {
+    background-color: #f9fafb;
+}
+
+.settings-card {
+    border-left: 4px solid var(--primary-dark);
+}

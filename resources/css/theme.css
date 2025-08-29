@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* Tell Tailwind v4 where templates live */
+@source "../views/**/*.blade.php";
+@source "../js/**/*.js";
+
+/* Load plugins in v4 */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+/* Theme CSS Custom Properties */
+:root {
+    /* Blue Theme (Default) */
+    --primary-dark: #2171B5;
+    --primary-medium: #6BAED6;
+    --primary-light: #BDD7E7;
+    --primary-lightest: #EFF3FF;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #ea580c;
+}
+
+[data-theme="blue"] {
+    --primary-dark: #2171B5;
+    --primary-medium: #6BAED6;
+    --primary-light: #BDD7E7;
+    --primary-lightest: #EFF3FF;
+}
+
+[data-theme="purple"] {
+    --primary-dark: #7C3AED;
+    --primary-medium: #A855F7;
+    --primary-light: #C4B5FD;
+    --primary-lightest: #F3F4F6;
+}
+
+[data-theme="green"] {
+    --primary-dark: #059669;
+    --primary-medium: #10B981;
+    --primary-light: #6EE7B7;
+    --primary-lightest: #ECFDF5;
+}
+
+[data-theme="red"] {
+    --primary-dark: #DC2626;
+    --primary-medium: #EF4444;
+    --primary-light: #FCA5A5;
+    --primary-lightest: #FEF2F2;
+}
+
+[data-theme="mixed"] {
+    --primary-dark: #2171B5;
+    --primary-medium: #A855F7;
+    --primary-light: #6EE7B7;
+    --primary-lightest: #FEF2F2;
+}
+
+/* ERP Utility Classes - Using regular CSS instead of @apply */
+.erp-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.erp-btn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(33, 113, 181, 0.5);
+}
+
+.erp-btn-primary {
+    background-color: var(--primary-dark);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.erp-btn-primary:hover {
+    background-color: var(--primary-medium);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.erp-btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.erp-btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+.erp-btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+.erp-btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.erp-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border: 1px solid var(--primary-light);
+}
+
+.erp-input {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 0.75rem;
+}
+
+.erp-input:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px var(--primary-medium);
+}
+
+.erp-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.erp-table {
+    min-width: 100%;
+    border-collapse: collapse;
+}
+
+.erp-table th,
+.erp-table td {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.erp-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: var(--primary-lightest);
+    color: var(--primary-dark);
+}
+
+.erp-gradient {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+}
+
+.erp-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
