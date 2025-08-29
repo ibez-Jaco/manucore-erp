@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'ManuCore ERP - Dashboard')</title>
     <link rel="icon" type="image/svg+xml" href="/brand/app/favicon.svg">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/theme.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100">
     <div class="flex h-screen">
@@ -29,10 +29,10 @@
                     <span class="text-sm text-gray-600">Theme:</span>
                     <select id="theme-selector" class="erp-input w-32 py-1">
                         <option value="blue">Blue</option>
+                        <option value="teal">Teal</option>
                         <option value="purple">Purple</option>
-                        <option value="green">Green</option>
-                        <option value="red">Red</option>
-                        <option value="mixed">Mixed</option>
+                        <option value="coral">Coral</option>
+                        <option value="slate">Slate</option>
                     </select>
                 </div>
             </header>
