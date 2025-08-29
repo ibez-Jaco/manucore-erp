@@ -1,15 +1,4 @@
-@import './theme.css';
-
-/* Front Surface Specific Styles */
-.front-hero {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-}
-
-.front-nav {
-    background-color: var(--primary-dark);
-}
-
-.front-footer {
-    background-color: var(--primary-lightest);
-    border-top: 2px solid var(--primary-light);
+/* Front Surface Specific Styles - No imports here */
+.front-custom {
+    /* Any front-specific styles that don't belong in theme.css */
 }

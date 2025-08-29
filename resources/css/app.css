@@ -1,19 +1,4 @@
-@import './theme.css';
-
-/* App Surface Specific Styles */
-.app-sidebar {
-    background-color: var(--primary-dark);
-}
-
-.app-topbar {
-    background-color: white;
-    border-bottom: 1px solid var(--primary-light);
-}
-
-.app-content {
-    background-color: var(--primary-lightest);
-}
-
-.dashboard-stat {
-    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
+/* App Surface Specific Styles - No imports here */
+.app-custom {
+    /* Any app-specific styles that don't belong in theme.css */
 }

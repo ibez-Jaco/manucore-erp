@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'ManuCore - Modern ERP Solutions')</title>
     <link rel="icon" type="image/svg+xml" href="/brand/front/favicon.svg">
-    @vite(['resources/css/front.css', 'resources/js/app.js'])
+    @vite(['resources/css/theme.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50">
     <nav class="front-nav text-white">

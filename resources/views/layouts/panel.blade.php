@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'ManuCore System Panel')</title>
     <link rel="icon" type="image/svg+xml" href="/brand/system/favicon.svg">
-    @vite(['resources/css/panel.css', 'resources/js/app.js'])
+    @vite(['resources/css/theme.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50">
     <div class="flex h-screen">
