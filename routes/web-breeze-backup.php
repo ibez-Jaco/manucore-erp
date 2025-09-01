@@ -8,7 +8,7 @@ require __DIR__.'/app.php';
 require __DIR__.'/settings.php';
 require __DIR__.'/admin.php';
 
-// 404 fallback for undefined routes
+// Fallback route
 Route::fallback(function () {
     return view('errors.404');
 });
