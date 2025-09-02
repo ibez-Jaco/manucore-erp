@@ -1,4 +1,56 @@
-/* Panel Surface Specific Styles - No imports here */
-.panel-custom {
-    /* Any panel-specific styles that don't belong in theme.css */
+/* Panel Surface Specific Styles */
+.panel-sidebar {
+    background: linear-gradient(180deg, var(--primary-1), var(--gradient-end));
+}
+.panel-header {
+    background: var(--primary-4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.panel-content {
+    background: #f8fafc;
+}
+
+/* Active links and hover */
+.panel-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    opacity: 0.95;
+}
+.panel-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+.panel-link-active {
+    background: rgba(255, 255, 255, 0.18);
+    font-weight: 600;
+}
+
+/* Cards / tables */
+.erp-card {
+    background: #fff;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+}
+.erp-header {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+}
+.settings-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.settings-card:hover {
+    transform: translateY(-1px);
+}
+
+/* Small utilities if needed */
+.erp-badge {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    background: var(--primary-3);
+    color: #0f172a;
+    font-size: 0.75rem;
+    font-weight: 600;
 }

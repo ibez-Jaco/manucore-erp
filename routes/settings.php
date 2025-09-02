@@ -4,14 +4,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Settings\CompanyController;
 use App\Http\Controllers\Settings\BrandingController;
 
-Route::middleware(['auth','verified','role:Admin|SettingsManager'])->group(function () {
+Route::middleware(['auth','verified','role:Admin|SettingsManager'])
+    ->prefix('system/settings')
+    ->as('settings.')
+    ->group(function () {
 
-    // Existing system routes (keep these)
-    Route::get('/system/settings', [CompanyController::class, 'index'])->name('settings.index');
-    Route::get('/system/settings/company', [CompanyController::class, 'company'])->name('settings.company');
-    Route::get('/system/settings/branches', [CompanyController::class, 'branches'])->name('settings.branches');
+        // Overview
+        Route::get('/', [CompanyController::class, 'index'])->name('index');
 
-    // New Branding routes (this 4.2 task)
-    Route::get('/system/settings/branding', [BrandingController::class, 'edit'])->name('settings.branding.edit');
-    Route::post('/system/settings/branding', [BrandingController::class, 'update'])->name('settings.branding.update');
-});
+        // Company + Branches (views only for now)
+        Route::get('/company',  [CompanyController::class, 'company'])->name('company');
+        Route::get('/branches', [CompanyController::class, 'branches'])->name('branches');
+
+        // Branding (theme + uploads)
+        Route::get('/branding',  [BrandingController::class, 'edit'])->name('branding.edit');
+        Route::post('/branding', [BrandingController::class, 'update'])->name('branding.update');
+
+        // Logo uploads/removals
+        Route::post('/branding/logo/upload',  [BrandingController::class, 'uploadLogo'])->name('branding.logo.upload');
+        Route::delete('/branding/logo/remove', [BrandingController::class, 'removeLogo'])->name('branding.logo.remove');
+    });
