@@ -1,56 +1,429 @@
-/* Panel Surface Specific Styles */
+/* Panel Surface Specific Styles
+   - RELIES on theme.css variables: --primary-1, --primary-2, --primary-3
+   - Optional presets below using body[data-theme="..."] in case theme.css is not present.
+   - Safe defaults are provided; production should prefer ApplyTheme -> theme.css variables.
+*/
+
+/* ------------------------------ */
+/* OPTIONAL PRESETS (safe fallback)
+   Remove if your theme.css sets these variables globally.
+*/
+:root {
+    --primary-1: #2171b5; /* main */
+    --primary-2: #3b82f6; /* focus/hover ring */
+    --primary-3: #6baed6; /* subtle backgrounds */
+    --danger-1: #dc2626;
+    --success-1: #16a34a;
+    --warning-1: #ea580c;
+}
+
+body[data-theme="blue"] {
+    --primary-1: #2171b5;
+    --primary-2: #3b82f6;
+    --primary-3: #6baed6;
+}
+body[data-theme="green"] {
+    --primary-1: #16a34a;
+    --primary-2: #22c55e;
+    --primary-3: #a7f3d0;
+}
+body[data-theme="purple"] {
+    --primary-1: #7c3aed;
+    --primary-2: #8b5cf6;
+    --primary-3: #ddd6fe;
+}
+body[data-theme="orange"] {
+    --primary-1: #ea580c;
+    --primary-2: #fb923c;
+    --primary-3: #fed7aa;
+}
+/* CUSTOM: set inline (ApplyTheme) e.g.
+   <body data-theme="custom" style="--primary-1:#123456;--primary-2:#234567;--primary-3:#aabbcc">
+*/
+body[data-theme="custom"] {
+}
+
+/* ------------------------------ */
+/* LAYOUT CHROME */
 .panel-sidebar {
-    background: linear-gradient(180deg, var(--primary-1), var(--gradient-end));
+    background: linear-gradient(
+        180deg,
+        var(--primary-1),
+        color-mix(in srgb, var(--primary-1), #000 12%)
+    );
+    color: #fff;
 }
 .panel-header {
-    background: var(--primary-4);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
 }
 .panel-content {
     background: #f8fafc;
-}
-
-/* Active links and hover */
-.panel-link {
-    display: block;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    opacity: 0.95;
-}
-.panel-link:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-.panel-link-active {
-    background: rgba(255, 255, 255, 0.18);
-    font-weight: 600;
-}
-
-/* Cards / tables */
-.erp-card {
-    background: #fff;
-    border-radius: 1rem;
-    border: 1px solid #e5e7eb;
+    min-height: calc(100vh - 56px);
     padding: 1rem;
 }
-.erp-header {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
+
+/* NAV / SIDEBAR LINKS */
+.panel-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.6rem;
+    color: #e5e7eb;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
 }
-.settings-card {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+.panel-nav a:hover {
+    background: color-mix(in srgb, #ffffff, transparent 90%);
+    color: #fff;
 }
-.settings-card:hover {
-    transform: translateY(-1px);
+.panel-nav a.active {
+    background: #ffffff;
+    color: var(--primary-1);
 }
 
-/* Small utilities if needed */
-.erp-badge {
-    display: inline-block;
-    padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    background: var(--primary-3);
+/* HEADER BREADCRUMB */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+.breadcrumb a {
+    color: var(--primary-1);
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------ */
+/* CARDS */
+.erp-card,
+.form-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+.erp-header,
+.form-card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
     color: #0f172a;
-    font-size: 0.75rem;
+}
+.form-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+/* ------------------------------ */
+/* BUTTONS */
+.erp-btn-primary,
+.erp-btn-secondary,
+.btn,
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.65rem;
     font-weight: 600;
+    font-size: 0.925rem;
+    border: 1px solid transparent;
+    transition: transform 0.08s ease, box-shadow 0.18s ease,
+        background 0.18s ease, filter 0.18s ease;
+}
+
+.erp-btn-primary,
+.btn-primary {
+    background: var(--primary-1);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.erp-btn-primary:hover,
+.btn-primary:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+.erp-btn-primary:focus-visible,
+.btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-2), #fff 70%);
+}
+
+.erp-btn-secondary,
+.btn-secondary {
+    background: #fff;
+    color: #111827;
+    border-color: #e5e7eb;
+}
+.erp-btn-secondary:hover,
+.btn-secondary:hover {
+    background: #f9fafb;
+}
+
+/* Tertiary / subtle */
+.btn-tertiary,
+.erp-btn-muted {
+    background: #f9fafb;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+}
+.btn-tertiary:hover,
+.erp-btn-muted:hover {
+    background: #f3f4f6;
+}
+
+/* Danger */
+.btn-danger {
+    background: var(--danger-1);
+    color: #fff;
+}
+.btn-danger:hover {
+    filter: brightness(1.05);
+}
+
+/* ------------------------------ */
+/* INPUTS & FORMS */
+.erp-label,
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #374151;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+.erp-input,
+.form-input,
+.erp-select,
+.form-select,
+.erp-textarea,
+.form-textarea,
+select.form-input,
+textarea.form-input {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #111827;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.6rem;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.erp-input:focus,
+.form-input:focus,
+.erp-select:focus,
+.form-select:focus,
+.erp-textarea:focus,
+.form-textarea:focus,
+select.form-input:focus,
+textarea.form-input:focus {
+    border-color: var(--primary-2);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-2), #fff 70%);
+}
+.form-checkbox {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+}
+
+/* Grid helpers */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Inline help */
+.form-help {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+/* ------------------------------ */
+/* ALERTS (inline + SweetAlert2 brand alignment) */
+.alert {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    border-radius: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid;
+}
+.alert-error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+.alert-success {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+}
+.alert-warning {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #92400e;
+}
+.alert-info {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e40af;
+}
+.alert-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+}
+
+/* SweetAlert2 buttons theme */
+.swal2-styled.swal2-confirm {
+    background: var(--primary-1) !important;
+}
+.swal2-styled.swal2-cancel {
+    background: #fff !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+/* ------------------------------ */
+/* TABLE */
+.erp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.erp-table thead th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+}
+.erp-table tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eef2f7;
+    color: #0f172a;
+}
+.erp-table tbody tr:hover {
+    background: #fafafa;
+}
+.erp-table .actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+/* ------------------------------ */
+/* BADGES */
+.erp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    background: color-mix(in srgb, var(--primary-3), #fff 35%);
+    color: var(--primary-1);
+}
+
+/* ------------------------------ */
+/* TABS (link-styled) */
+.tabs,
+.erp-tabs,
+.link-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.link-tab {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #111827;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+.link-tab:hover {
+    background: #f9fafb;
+}
+.link-tab.active {
+    background: var(--primary-1);
+    color: #fff;
+    border-color: var(--primary-1);
+}
+
+/* ------------------------------ */
+/* PAGINATION */
+.pagination {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+.pagination a,
+.pagination span {
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #111827;
+    text-decoration: none;
+}
+.pagination .active {
+    background: var(--primary-1);
+    color: #fff;
+    border-color: var(--primary-1);
+}
+
+/* ------------------------------ */
+/* UTILITIES */
+.text-muted {
+    color: #6b7280;
+}
+.badge-danger {
+    background: color-mix(in srgb, var(--danger-1), #fff 75%);
+    color: var(--danger-1);
+}
+.badge-success {
+    background: color-mix(in srgb, var(--success-1), #fff 75%);
+    color: var(--success-1);
+}
+.badge-warning {
+    background: color-mix(in srgb, var(--warning-1), #fff 75%);
+    color: var(--warning-1);
+}
+
+/* Transitions */
+.erp-fade-in {
+    animation: fadein 0.18s ease;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
