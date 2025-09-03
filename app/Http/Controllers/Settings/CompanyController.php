@@ -194,4 +194,5 @@ class CompanyController extends Controller
 
         return redirect()->route('settings.company.infrastructure')->with('success', 'Infrastructure settings saved.');
     }
+    
 }

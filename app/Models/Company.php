@@ -216,4 +216,8 @@ class Company extends Model implements HasMedia
             'engine'    => null,
         ], fn($v) => !is_null($v) && $v !== '');
     }
+    public function templates()
+    {
+        return $this->hasMany(\App\Models\Template::class);
+    }
 }

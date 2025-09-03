@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Settings\CompanyController;
 use App\Http\Controllers\Settings\BrandingController;
 use App\Http\Controllers\Settings\BranchController;
+use App\Http\Controllers\Settings\TemplatesController;
 
 Route::middleware(['auth','verified','role:Admin|SettingsManager'])
     ->prefix('system/settings')
@@ -30,19 +31,26 @@ Route::middleware(['auth','verified','role:Admin|SettingsManager'])
         Route::get('/company/financial',   [CompanyController::class, 'financial'])->name('company.financial');
         Route::post('/company/financial',  [CompanyController::class, 'financialUpdate'])->name('company.financial.update');
 
-        Route::get('/company/system',      [CompanyController::class, 'system'])->name('company.system');
-        Route::post('/company/system',     [CompanyController::class, 'systemUpdate'])->name('company.system.update');
-
-        // Phase 4.5 - Banking & VAT
+        // Phase 4.5 - Banking & VAT (kept)
         Route::get('/company/finance',     [CompanyController::class, 'finance'])->name('company.finance');
         Route::post('/company/finance',    [CompanyController::class, 'financeUpdate'])->name('company.finance.update');
 
-        // NEW tabs
+        // NEW tabs (kept for future)
         Route::get('/company/email',       [CompanyController::class, 'email'])->name('company.email');
         Route::post('/company/email',      [CompanyController::class, 'emailUpdate'])->name('company.email.update');
 
         Route::get('/company/infrastructure',  [CompanyController::class, 'infrastructure'])->name('company.infrastructure');
         Route::post('/company/infrastructure', [CompanyController::class, 'infrastructureUpdate'])->name('company.infrastructure.update');
+
+        // ✅ ADD THESE TWO so your views stop 500ing
+        Route::get('/company/system',     [CompanyController::class, 'system'])->name('company.system');
+        Route::post('/company/system',    [CompanyController::class, 'systemUpdate'])->name('company.system.update');
+
+        // Phase 4.6 — Templates (Email/Document templates ONLY)
+        Route::get('/templates', [TemplatesController::class, 'edit'])->name('templates.edit');
+        Route::post('/templates', [TemplatesController::class, 'update'])->name('templates.update');
+        Route::post('/templates/preview', [TemplatesController::class, 'preview'])->name('templates.preview');
+        Route::post('/templates/{slug}/reset', [TemplatesController::class, 'reset'])->name('templates.reset');
 
         // Branches
         Route::controller(BranchController::class)

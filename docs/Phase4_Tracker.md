@@ -26,14 +26,27 @@ PHASE 4 — Settings, Branding & Admin Surfaces
 • JSON “operating_hours” editor
 • Sidebar highlights routes; SweetAlert2 confirms delete
 
-4.5 Company: Banking & VAT (+ Address polish) — ⏭ NEXT
-Deliver: - Migration (if fields missing on companies) - FormRequest: UpdateCompanyFinanceRequest - Controller: CompanyController@finance (GET), @financeUpdate (POST) - Views: settings/company/finance.blade.php (+ tabs between Overview & Finance) - Routes: GET/POST /system/settings/company/finance - SweetAlert2 flash on success/error
+4.5 Company: Banking & VAT (+ Address polish) — ✅
+Deliver:
 
-4.6 Email/Document Templates & Legal Pages — 🔜
-Deliver: - DB store (templates table or JSON on companies/settings) - Blade editor with preview/reset and variable helper (e.g., {{company.name}}, {{branch.name}}) - Terms/Privacy/Help editors (Markdown), front pages already wired - Controller + FormRequests + routes under settings.\*
+-   Migration present for finance fields; Company::$fillable updated
+-   FormRequest: UpdateCompanyFinanceRequest
+-   Controller: CompanyController@finance (GET), financeUpdate (POST)
+-   View: resources/views/settings/company/finance.blade.php with tabs
+-   Routes: GET/POST /system/settings/company/finance
+-   SweetAlert2 flash on success/error
 
-4.7 Polish & QA — 🔜
-Deliver: - Global SweetAlert2 flash component (success/error/warning) - Empty states, loading states, consistent buttons - Accessibility sweep; focus states; keyboard nav - Final acceptance checklist & smoke tests
+Acceptance:
+
+-   routes/settings.php exposes settings.company.finance & settings.company.finance.update
+-   Finance view renders, saves and flashes success
+-   Tinker returns saved values (Company::getMain() ?? Company::first())
+
+    4.6 Email/Document Templates & Legal Pages — 🔜
+    Deliver: - DB store (templates table or JSON on companies/settings) - Blade editor with preview/reset and variable helper (e.g., {{company.name}}, {{branch.name}}) - Terms/Privacy/Help editors (Markdown), front pages already wired - Controller + FormRequests + routes under settings.\*
+
+    4.7 Polish & QA — 🔜
+    Deliver: - Global SweetAlert2 flash component (success/error/warning) - Empty states, loading states, consistent buttons - Accessibility sweep; focus states; keyboard nav - Final acceptance checklist & smoke tests
 
 PHASE 5 — Admin & Users (high level outline)
 5.1 Users & Roles UI — 🔜

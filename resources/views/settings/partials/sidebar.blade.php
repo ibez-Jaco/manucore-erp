@@ -52,6 +52,13 @@
                @click="sidebarOpen=false">
                 Branding & Theme
             </a>
+
+            {{-- NEW: Email Templates --}}
+            <a href="{{ route('settings.templates.edit') }}"
+               class="block px-4 py-2 rounded-md transition {{ $navActive('settings.templates.*') }}"
+               @click="sidebarOpen=false">
+                Email Templates
+            </a>
         </div>
 
         {{-- Administration (only if routes exist) --}}

@@ -37,7 +37,10 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('settings.company.system.update') }}" class="space-y-6">
+        @php use Illuminate\Support\Facades\Route as _Route; @endphp
+        <form method="POST"
+            action="{{ _Route::has('settings.company.system.update') ? route('settings.company.system.update') : route('settings.company.update') }}"
+            class="space-y-6">
             @csrf
             <div class="form-grid">
                 <div class="form-group">

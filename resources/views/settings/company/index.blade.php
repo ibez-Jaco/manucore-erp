@@ -88,7 +88,12 @@
                     <div><span class="font-semibold">Time:</span> {{ $company->time_format }}</div>
                 </div>
                 <div class="mt-3">
-                    <a class="btn btn-primary" href="{{ route('settings.company.system') }}">Edit System</a>
+                    @php use Illuminate\Support\Facades\Route as _Route; @endphp
+                    <a class="btn btn-primary"
+                    href="{{ _Route::has('settings.company.system') ? route('settings.company.system') : route('settings.company') }}">
+                        Edit System
+                    </a>
+
                 </div>
             </div>
 
