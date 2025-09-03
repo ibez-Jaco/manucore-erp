@@ -1,3 +1,4 @@
+{{-- resources/views/settings/index.blade.php --}}
 @extends('layouts.panel')
 
 @section('title', 'Settings - ManuCore ERP')
@@ -13,7 +14,8 @@
             <p class="text-sm text-gray-600">Manage company details</p>
         </a>
 
-        <a href="{{ route('settings.branches') }}" class="settings-card erp-card hover:shadow-xl">
+        {{-- FIXED: use settings.branches.index --}}
+        <a href="{{ route('settings.branches.index') }}" class="settings-card erp-card hover:shadow-xl">
             <h3 class="mb-2 text-lg font-semibold">Branches</h3>
             <p class="text-sm text-gray-600">Configure branches</p>
         </a>
