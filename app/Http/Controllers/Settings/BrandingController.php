@@ -25,23 +25,35 @@ class BrandingController extends Controller
     }
 
     public function update(Request $request)
-    {
-        $company = Company::getMain() ?? Company::first();
-        abort_if(!$company, 404, 'No company found.');
+{
+    $company = Company::getMain() ?? Company::first();
+    abort_if(!$company, 404, 'No company found.');
 
-        $validated = $request->validate([
-            'theme'           => ['required', Rule::in(['blue','teal','purple','coral','slate','custom'])],
-            'primary_color'   => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
-            'secondary_color' => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
-            'accent_color'    => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
-            'gradient_start'  => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
-            'gradient_end'    => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
-        ]);
-
-        $company->update($validated);
-
-        return back()->with('success', 'Branding updated.');
+    // Normalize legacy theme names to new professional accents
+    $themeNormalization = [
+        'teal'  => 'green',
+        'coral' => 'orange', 
+        'slate' => 'blue',
+    ];
+    
+    if ($request->has('theme')) {
+        $theme = strtolower((string) $request->input('theme'));
+        $request->merge(['theme' => $themeNormalization[$theme] ?? $theme]);
     }
+
+    $validated = $request->validate([
+        'theme'           => ['required', Rule::in(['blue','green','purple','orange','custom'])],
+        'primary_color'   => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
+        'secondary_color' => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
+        'accent_color'    => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
+        'gradient_start'  => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
+        'gradient_end'    => 'nullable|required_if:theme,custom|regex:/^#[0-9A-Fa-f]{6}$/',
+    ]);
+
+    $company->update($validated);
+
+    return back()->with('success', 'Branding updated successfully.');
+}
 
     public function uploadLogo(Request $request)
     {

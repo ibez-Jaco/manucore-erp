@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      data-theme="{{ $activeTheme ?? 'blue' }}"
-      @if(!empty($activeThemeVars)) style="{{ $activeThemeVars }}" @endif>
+<html lang="en" data-theme="light" data-accent="{{ $activeAccent ?? 'blue' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,53 +7,131 @@
 
     <title>@yield('title', 'ManuCore — System Panel')</title>
 
-    {{-- Favicons / icons --}}
+    {{-- Favicons --}}
     <link rel="icon" type="image/x-icon" href="{{ asset('brand/system/favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('brand/system/ManucoreIcon.png') }}" sizes="64x64">
     <link rel="apple-touch-icon" href="{{ asset('brand/system/ManucoreIcon.png') }}">
 
-    {{-- Styles & App (theme first, then panel custom, then JS) --}}
+    {{-- Custom theme variables (company accent overrides) --}}
+    @if(!empty($activeThemeVars))
+        <style id="company-custom-vars">:root { {!! $activeThemeVars !!} }</style>
+    @endif
+
+    {{-- ManuCore ERP CSS/JS Stack --}}
     @vite([
         'resources/css/theme.css',
         'resources/css/panel.css',
-        'resources/js/app.js'
+        'resources/css/dark-mode.css',
+        'resources/js/app.js',
+        'resources/js/manucore.js',
     ])
 
     @stack('head')
 </head>
-<body class="antialiased text-gray-900 bg-gray-50"
-      x-data="{ sidebarOpen: false }"
-      data-theme="{{ $activeTheme ?? 'blue' }}"
-      @if(($activeTheme ?? 'blue') === 'custom' && !empty($activeThemeVars))
-          style="{{ $activeThemeVars }}"
-      @endif
->
-<div class="flex min-h-screen">
-    {{-- Sidebar --}}
-    @include('settings.partials.sidebar')
+<body class="bg-neutral-50">
+    <div class="dashboard-wrapper">
+        {{-- Sidebar --}}
+        @include('layouts.partials.sidebar')
 
-    {{-- Main column --}}
-    <div class="flex flex-col flex-1 min-w-0">
-        {{-- Header --}}
-        @include('settings.partials.header')
+        {{-- Main content --}}
+        <div class="main-content">
+            {{-- Header --}}
+            @include('layouts.partials.header')
 
-        {{-- Content --}}
-        <main class="flex-1 p-6 overflow-y-auto panel-content">
-            <header class="mb-6">
-                <h1 class="text-2xl font-bold text-gray-900">@yield('header')</h1>
-                @hasSection('subheader')
-                    <p class="mt-1 text-gray-600">@yield('subheader')</p>
+            {{-- Page content --}}
+            <div class="page-content">
+                @hasSection('header')
+                    <div class="page-header">
+                        <div class="justify-between d-flex align-center">
+                            <div class="flex-1 min-w-0">
+                                <h1 class="page-title">@yield('header')</h1>
+                                @hasSection('subheader')
+                                    <p class="page-description">@yield('subheader')</p>
+                                @endif
+                            </div>
+                            @hasSection('page-actions')
+                                <div class="gap-3 d-flex align-center">
+                                    @yield('page-actions')
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 @endif
-            </header>
 
-            @yield('content')
-        </main>
+                {{-- Flash alerts --}}
+                @if(session('success'))
+                    <div class="alert alert-success animate-slideDown">
+                        <div class="alert-icon">✅</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Success</div>
+                            <div class="alert-message">{{ session('success') }}</div>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm" onclick="this.parentElement.remove()" aria-label="Close">×</button>
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger animate-slideDown">
+                        <div class="alert-icon">❌</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Error</div>
+                            <div class="alert-message">{{ session('error') }}</div>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm" onclick="this.parentElement.remove()" aria-label="Close">×</button>
+                    </div>
+                @endif
+
+                @if(session('warning'))
+                    <div class="alert alert-warning animate-slideDown">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Warning</div>
+                            <div class="alert-message">{{ session('warning') }}</div>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm" onclick="this.parentElement.remove()" aria-label="Close">×</button>
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger animate-slideDown">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Please fix the following errors:</div>
+                            <div class="alert-message">
+                                <ul class="space-y-1">
+                                    @foreach($errors->all() as $error)
+                                        <li>• {{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm" onclick="this.parentElement.remove()" aria-label="Close">×</button>
+                    </div>
+                @endif
+
+                <div class="space-y-6">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-{{-- Global Flash (SweetAlert2) --}}
-@include('components.flash')
+    {{-- Session → Toast bridge --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.ManuCore) {
+                @if(session('success')) ManuCore.showToast(@json(session('success')), 'success'); @endif
+                @if(session('error'))   ManuCore.showToast(@json(session('error')), 'error');     @endif
+                @if(session('warning')) ManuCore.showToast(@json(session('warning')), 'warning'); @endif
+                @if($errors->any())     ManuCore.showToast('Please review the highlighted errors.', 'error'); @endif
 
-@stack('scripts')
+                @if(config('app.debug'))
+                console.log('🎨 Active Theme:', { accent: '{{ $activeAccent ?? 'blue' }}', hasCustomVars: {{ !empty($activeThemeVars) ? 'true' : 'false' }} });
+                @endif
+            }
+        });
+    </script>
+
+    @stack('scripts')
 </body>
 </html>

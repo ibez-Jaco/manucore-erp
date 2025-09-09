@@ -1,0 +1,756 @@
+/* ================================================================
+   MANUCORE ERP - DARK MODE WITH NEON ACCENTS
+   Version: 3.1 - Professional Dark + Neon System
+   Description: Dark mode with automatic neon accent enhancement
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   DARK MODE VARIABLES
+   ---------------------------------------------------------------- */
+[data-theme="dark"] {
+    /* Inverted Neutral Colors */
+    --neutral-50: #0a0a0a;
+    --neutral-100: #171717;
+    --neutral-200: #262626;
+    --neutral-300: #404040;
+    --neutral-400: #525252;
+    --neutral-500: #737373;
+    --neutral-600: #a3a3a3;
+    --neutral-700: #d4d4d4;
+    --neutral-800: #e5e5e5;
+    --neutral-900: #f5f5f5;
+    --neutral-950: #fafafa;
+
+    /* Adjusted Brand Colors for Dark Mode */
+    --brand-50: #172554;
+    --brand-100: #1e3a8a;
+    --brand-200: #1e40af;
+    --brand-300: #1d4ed8;
+    --brand-400: #2563eb;
+    --brand-500: #3b82f6;
+    --brand-600: #60a5fa;
+    --brand-700: #93c5fd;
+    --brand-800: #bfdbfe;
+    --brand-900: #dbeafe;
+    --brand-950: #eff6ff;
+
+    /* Semantic Colors for Dark Mode */
+    --success-50: #14532d;
+    --success-100: #166534;
+    --success-500: #22c55e;
+    --success-600: #16a34a;
+    --success-700: #86efac;
+
+    --warning-50: #713f12;
+    --warning-100: #92400e;
+    --warning-500: #f59e0b;
+    --warning-600: #d97706;
+    --warning-700: #fde047;
+
+    --danger-50: #7f1d1d;
+    --danger-100: #991b1b;
+    --danger-500: #ef4444;
+    --danger-600: #dc2626;
+    --danger-700: #fca5a5;
+
+    /* Dark Mode Shadows */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4),
+        0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4),
+        0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4),
+        0 8px 10px -6px rgb(0 0 0 / 0.4);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+}
+
+/* ----------------------------------------------------------------
+   NEON ACCENT PALETTES (Auto-Applied in Dark Mode)
+   ---------------------------------------------------------------- */
+
+/* BLUE → NEON BLUE (Dark Mode) */
+[data-theme="dark"][data-accent="blue"] {
+    --brand-50: #e6f7ff;
+    --brand-100: #ccefff;
+    --brand-200: #99e1ff;
+    --brand-300: #66d2ff;
+    --brand-400: #33c3ff;
+    --brand-500: #00b4ff;
+    --brand-600: #0096ff;
+    --brand-700: #0077e6;
+    --brand-800: #005fc2;
+    --brand-900: #004c99;
+    --brand-950: #003366;
+}
+
+/* GREEN → NEON GREEN (Dark Mode) */
+[data-theme="dark"][data-accent="green"] {
+    --brand-50: #eafff5;
+    --brand-100: #caffea;
+    --brand-200: #9fffd8;
+    --brand-300: #6cffc5;
+    --brand-400: #39ffb0;
+    --brand-500: #12f59a;
+    --brand-600: #00d47f;
+    --brand-700: #00b36b;
+    --brand-800: #009158;
+    --brand-900: #006c43;
+    --brand-950: #003f27;
+}
+
+/* PURPLE → NEON PURPLE (Dark Mode) */
+[data-theme="dark"][data-accent="purple"] {
+    --brand-50: #f6e6ff;
+    --brand-100: #efccff;
+    --brand-200: #e3a6ff;
+    --brand-300: #d479ff;
+    --brand-400: #c34dff;
+    --brand-500: #b026ff;
+    --brand-600: #9a00ff;
+    --brand-700: #7d00d6;
+    --brand-800: #6500ad;
+    --brand-900: #4b0082;
+    --brand-950: #2e0050;
+}
+
+/* ORANGE → NEON ORANGE (Dark Mode) */
+[data-theme="dark"][data-accent="orange"] {
+    --brand-50: #fff1e6;
+    --brand-100: #ffe0cc;
+    --brand-200: #ffc299;
+    --brand-300: #ffa366;
+    --brand-400: #ff8533;
+    --brand-500: #ff6a00;
+    --brand-600: #e05700;
+    --brand-700: #c24500;
+    --brand-800: #9e3700;
+    --brand-900: #7a2a00;
+    --brand-950: #401600;
+}
+
+/* ----------------------------------------------------------------
+   NEON ENHANCEMENT EFFECTS (Subtle Professional Glow)
+   ---------------------------------------------------------------- */
+
+/* Primary buttons get subtle neon glow in dark mode */
+[data-theme="dark"] .btn-primary {
+    box-shadow: 0 0 0.5rem rgba(var(--brand-600), 0.3);
+    transition: all var(--transition-base), box-shadow var(--transition-fast);
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 0 1rem rgba(var(--brand-600), 0.4);
+}
+
+/* Active navigation items get neon accent in dark mode */
+[data-theme="dark"] .nav-link.active {
+    box-shadow: 0 0 0.25rem rgba(var(--brand-600), 0.2);
+}
+
+/* Focus states get enhanced neon outline */
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+    box-shadow: 0 0 0 3px rgba(var(--brand-600), 0.2);
+}
+
+/* ----------------------------------------------------------------
+   DARK MODE COMPONENT OVERRIDES
+   ---------------------------------------------------------------- */
+
+/* Body and Base Elements */
+[data-theme="dark"] body {
+    background: var(--neutral-50);
+    color: var(--neutral-900);
+}
+
+/* Cards */
+[data-theme="dark"] .card {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .card-header {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .card-footer {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+}
+
+/* Forms */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+    color: var(--neutral-900);
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+    background: var(--neutral-300);
+    border-color: var(--brand-500);
+}
+
+[data-theme="dark"] .form-input::placeholder {
+    color: var(--neutral-500);
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-secondary {
+    background: var(--neutral-200);
+    color: var(--neutral-900);
+    border-color: var(--neutral-400);
+}
+
+[data-theme="dark"] .btn-secondary:hover:not(:disabled) {
+    background: var(--neutral-300);
+    border-color: var(--neutral-500);
+}
+
+[data-theme="dark"] .btn-ghost:hover:not(:disabled) {
+    background: var(--neutral-200);
+}
+
+/* Tables */
+[data-theme="dark"] .table-container {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .table thead {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .table th {
+    color: var(--neutral-800);
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .table td {
+    color: var(--neutral-700);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .table tbody tr:hover {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .table tbody tr.selected {
+    background: var(--brand-950);
+}
+
+/* ----------------------------------------------------------------
+   SIDEBAR DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .sidebar {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .sidebar-header {
+    background: linear-gradient(135deg, var(--brand-700), var(--brand-600));
+}
+
+[data-theme="dark"] .nav-link {
+    color: var(--neutral-700);
+}
+
+[data-theme="dark"] .nav-link:hover {
+    background: var(--neutral-200);
+    color: var(--brand-400);
+}
+
+[data-theme="dark"] .nav-link.active {
+    background: var(--brand-950);
+    color: var(--brand-300);
+    border-color: var(--brand-700);
+}
+
+[data-theme="dark"] .nav-section-title {
+    color: var(--neutral-500);
+}
+
+[data-theme="dark"] .nav-submenu {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .sidebar-footer {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .sidebar-user:hover {
+    background: var(--neutral-100);
+}
+
+/* ----------------------------------------------------------------
+   HEADER BAR DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .header-bar {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .header-toggle:hover {
+    background: var(--neutral-200);
+    color: var(--neutral-900);
+}
+
+[data-theme="dark"] .search-input {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+    color: var(--neutral-900);
+}
+
+[data-theme="dark"] .search-input:focus {
+    background: var(--neutral-300);
+    border-color: var(--brand-500);
+}
+
+[data-theme="dark"] .header-action-btn {
+    color: var(--neutral-700);
+}
+
+[data-theme="dark"] .header-action-btn:hover {
+    background: var(--neutral-200);
+    color: var(--neutral-900);
+}
+
+[data-theme="dark"] .header-user {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .header-user:hover {
+    background: var(--neutral-300);
+}
+
+/* ----------------------------------------------------------------
+   MODALS DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .modal {
+    background: var(--neutral-100);
+}
+
+[data-theme="dark"] .modal-header {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .modal-footer {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .modal-backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* ----------------------------------------------------------------
+   WIDGETS DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .widget-stat {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .widget-stat-icon {
+    background: var(--brand-950);
+    color: var(--brand-400);
+}
+
+[data-theme="dark"] .widget-chart {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .widget-chart-header {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .widget-chart-body {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .widget-activity {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .activity-item:hover {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .activity-icon {
+    background: var(--brand-950);
+    color: var(--brand-400);
+}
+
+/* ----------------------------------------------------------------
+   DATA TABLES DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .data-table-container {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .data-table-header {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .filter-chip {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+    color: var(--neutral-800);
+}
+
+[data-theme="dark"] .filter-chip:hover {
+    background: var(--neutral-300);
+    border-color: var(--neutral-500);
+}
+
+[data-theme="dark"] .filter-chip.active {
+    background: var(--brand-950);
+    border-color: var(--brand-700);
+    color: var(--brand-300);
+}
+
+[data-theme="dark"] .table-action-btn {
+    border-color: var(--neutral-400);
+    color: var(--neutral-700);
+}
+
+[data-theme="dark"] .table-action-btn:hover {
+    background: var(--neutral-200);
+    color: var(--neutral-900);
+    border-color: var(--neutral-500);
+}
+
+/* ----------------------------------------------------------------
+   NOTIFICATIONS DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .notifications-panel {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .notifications-header {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .notifications-clear:hover {
+    background: var(--brand-950);
+}
+
+[data-theme="dark"] .notification-item {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .notification-item:hover {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .notification-item.unread {
+    background: var(--brand-950);
+    border-left-color: var(--brand-600);
+}
+
+[data-theme="dark"] .notification-icon {
+    background: var(--brand-950);
+    color: var(--brand-400);
+}
+
+/* Toast notifications */
+[data-theme="dark"] .toast {
+    background: var(--neutral-100);
+}
+
+[data-theme="dark"] .toast-close:hover {
+    background: var(--neutral-200);
+    color: var(--neutral-900);
+}
+
+/* ----------------------------------------------------------------
+   FORM LAYOUTS DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .form-section {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .form-section-title {
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .form-actions {
+    border-color: var(--neutral-300);
+}
+
+/* ----------------------------------------------------------------
+   BADGES & ALERTS DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .badge-primary {
+    background: var(--brand-950);
+    color: var(--brand-300);
+}
+
+[data-theme="dark"] .badge-success {
+    background: var(--success-100);
+    color: var(--success-700);
+}
+
+[data-theme="dark"] .badge-warning {
+    background: var(--warning-100);
+    color: var(--warning-700);
+}
+
+[data-theme="dark"] .badge-danger {
+    background: var(--danger-100);
+    color: var(--danger-700);
+}
+
+[data-theme="dark"] .badge-neutral {
+    background: var(--neutral-300);
+    color: var(--neutral-800);
+}
+
+[data-theme="dark"] .alert-primary {
+    background: var(--brand-950);
+    border-color: var(--brand-700);
+    color: var(--brand-300);
+}
+
+[data-theme="dark"] .alert-success {
+    background: var(--success-100);
+    border-color: var(--success-600);
+    color: var(--success-700);
+}
+
+[data-theme="dark"] .alert-warning {
+    background: var(--warning-100);
+    border-color: var(--warning-600);
+    color: var(--warning-700);
+}
+
+[data-theme="dark"] .alert-danger {
+    background: var(--danger-100);
+    border-color: var(--danger-600);
+    color: var(--danger-700);
+}
+
+/* ----------------------------------------------------------------
+   DROPDOWN DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .dropdown-menu {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background: var(--neutral-200);
+    color: var(--brand-400);
+}
+
+[data-theme="dark"] .dropdown-divider {
+    background: var(--neutral-300);
+}
+
+/* ----------------------------------------------------------------
+   SWEETALERT2 DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .swal2-popup {
+    background: var(--neutral-100) !important;
+    color: var(--neutral-900) !important;
+}
+
+[data-theme="dark"] .swal2-title {
+    color: var(--neutral-900) !important;
+}
+
+[data-theme="dark"] .swal2-content {
+    color: var(--neutral-700) !important;
+}
+
+[data-theme="dark"] .swal2-cancel {
+    background-color: var(--neutral-300) !important;
+    color: var(--neutral-800) !important;
+}
+
+[data-theme="dark"] .swal2-cancel:hover {
+    background-color: var(--neutral-400) !important;
+}
+
+/* ----------------------------------------------------------------
+   DARK MODE TOGGLE COMPONENT
+   ---------------------------------------------------------------- */
+.dark-mode-toggle {
+    position: relative;
+    width: 60px;
+    height: 28px;
+    background: var(--neutral-200);
+    border-radius: var(--radius-full);
+    padding: 2px;
+    cursor: pointer;
+    transition: background var(--transition-base);
+    border: none;
+    outline: none;
+}
+
+.dark-mode-toggle.active {
+    background: var(--brand-600);
+}
+
+.dark-mode-toggle-slider {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: var(--radius-full);
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.dark-mode-toggle.active .dark-mode-toggle-slider {
+    transform: translateX(32px);
+}
+
+.dark-mode-toggle-icon {
+    font-size: 14px;
+    transition: opacity var(--transition-fast);
+}
+
+.dark-mode-toggle .sun-icon {
+    opacity: 1;
+}
+
+.dark-mode-toggle .moon-icon {
+    opacity: 0;
+    position: absolute;
+}
+
+.dark-mode-toggle.active .sun-icon {
+    opacity: 0;
+}
+
+.dark-mode-toggle.active .moon-icon {
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------------
+   SMOOTH TRANSITION EFFECTS
+   ---------------------------------------------------------------- */
+* {
+    transition: background-color var(--transition-base),
+        border-color var(--transition-base), color var(--transition-base);
+}
+
+/* Disable transitions during theme switching for performance */
+html.transitioning,
+html.transitioning *,
+html.transitioning *:before,
+html.transitioning *:after {
+    transition: all 0.1s !important;
+    transition-delay: 0 !important;
+}
+
+/* ----------------------------------------------------------------
+   SCROLLBAR DARK MODE
+   ---------------------------------------------------------------- */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--neutral-400);
+    border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral-500);
+}
+
+/* Firefox scrollbar */
+[data-theme="dark"] * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neutral-400) var(--neutral-200);
+}
+
+/* ----------------------------------------------------------------
+   DARK MODE UTILITIES
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .bg-white {
+    background: var(--neutral-100) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+    background: var(--neutral-200) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+    background: var(--neutral-300) !important;
+}
+
+[data-theme="dark"] .text-black {
+    color: var(--neutral-900) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+    color: var(--neutral-700) !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+    color: var(--neutral-600) !important;
+}
+
+[data-theme="dark"] .border-gray-200 {
+    border-color: var(--neutral-300) !important;
+}
+
+[data-theme="dark"] .border-gray-300 {
+    border-color: var(--neutral-400) !important;
+}
+
+/* ----------------------------------------------------------------
+   PRINT STYLES (Force Light Mode)
+   ---------------------------------------------------------------- */
+@media print {
+    [data-theme="dark"] {
+        --neutral-50: #ffffff;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #737373;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+        --neutral-950: #0a0a0a;
+    }
+
+    [data-theme="dark"] body {
+        background: white !important;
+        color: black !important;
+    }
+
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .sidebar,
+    [data-theme="dark"] .header-bar {
+        background: white !important;
+        color: black !important;
+    }
+}
