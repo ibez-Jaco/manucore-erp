@@ -13,6 +13,7 @@
         'admin.roles'              => 'shield-check',
         'admin.health'             => 'activity',
         'admin.logs'               => 'file-text',
+        'admin.templates'          => 'file-text',   // <-- added mapping
         default                    => 'settings'
     };
 
@@ -101,7 +102,6 @@
     </div>
 </div>
 
-{{-- Header tiny script: “coming soon” notices --}}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const brand = getComputedStyle(document.documentElement).getPropertyValue('--brand-600').trim() || '#2171B5';
@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         soon('Search', 'Global search (⌘K) will ship in this module.');
     });
 
-    // Optional: capture Enter on the search input when not implemented
     document.getElementById('global-search-input')?.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();

@@ -66,6 +66,7 @@ return [
     */
 
     'timezone' => 'UTC',
+    'schedule_timezone' => 'Africa/Johannesburg', // for cron alignment in ZA
 
     /*
     |--------------------------------------------------------------------------

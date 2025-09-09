@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\HealthController;
 use App\Http\Controllers\Admin\LogsController;
 use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\CacheController;
+use App\Http\Controllers\Admin\TemplatesController;
 
 // Apply middleware to all admin routes
 Route::middleware(['auth', 'verified', 'role:Admin'])
@@ -25,4 +26,8 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         // Quick action routes
         Route::post('/backup', [BackupController::class, 'run'])->name('backup');
         Route::post('/cache/clear', [CacheController::class, 'clear'])->name('cache.clear');
+
+        // Templates (Admin)
+        Route::get('/templates', [TemplatesController::class, 'index'])->name('templates');
+
     });

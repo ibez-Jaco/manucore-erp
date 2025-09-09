@@ -10,10 +10,11 @@
     if (Route::has('admin.users'))             $settingsItems[] = ['label'=>'User Management','icon'=>'users','route'=>'admin.users','active'=>request()->routeIs('admin.users*')];
 
     $adminItems = [];
-    if (Route::has('admin.index'))  $adminItems[] = ['label'=>'Admin Dashboard','icon'=>'gauge','route'=>'admin.index','active'=>request()->routeIs('admin.index')];
-    if (Route::has('admin.roles'))  $adminItems[] = ['label'=>'Role Management','icon'=>'shield-check','route'=>'admin.roles','active'=>request()->routeIs('admin.roles*')];
-    if (Route::has('admin.health')) $adminItems[] = ['label'=>'System Health','icon'=>'activity','route'=>'admin.health','active'=>request()->routeIs('admin.health*')];
-    if (Route::has('admin.logs'))   $adminItems[] = ['label'=>'System Logs','icon'=>'file-text','route'=>'admin.logs','active'=>request()->routeIs('admin.logs*')];
+    if (Route::has('admin.index'))      $adminItems[] = ['label'=>'Admin Dashboard','icon'=>'gauge','route'=>'admin.index','active'=>request()->routeIs('admin.index')];
+    if (Route::has('admin.roles'))      $adminItems[] = ['label'=>'Role Management','icon'=>'shield-check','route'=>'admin.roles','active'=>request()->routeIs('admin.roles*')];
+    if (Route::has('admin.health'))     $adminItems[] = ['label'=>'System Health','icon'=>'activity','route'=>'admin.health','active'=>request()->routeIs('admin.health*')];
+    if (Route::has('admin.logs'))       $adminItems[] = ['label'=>'System Logs','icon'=>'file-text','route'=>'admin.logs','active'=>request()->routeIs('admin.logs*')];
+    if (Route::has('admin.templates'))  $adminItems[] = ['label'=>'System Templates','icon'=>'file-text','route'=>'admin.templates','active'=>request()->routeIs('admin.templates*')];
 
     $homeHref      = Route::has('settings.index') ? route('settings.index') : url('/system/settings');
     $dashboardHref = Route::has('dashboard') ? route('dashboard') : url('/dashboard');
@@ -167,7 +168,6 @@
     </div>
 </div>
 
-{{-- Bespoke mini-styles (additive; no duplication) --}}
 <style>
 /* When collapsed, only show the collapse button while hovering sidebar */
 .sidebar.collapsed .sidebar-collapse-btn { opacity: 0; pointer-events: none; transform: translateY(-50%) scale(0.95); }
@@ -177,7 +177,6 @@
 .sidebar.collapsed .sidebar-collapse-btn { right: 8px; }
 </style>
 
-{{-- Toast bridge for sidebar view switches --}}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('manucore-toast', (e) => {

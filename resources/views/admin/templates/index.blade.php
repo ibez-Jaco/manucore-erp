@@ -106,10 +106,10 @@
                     </div>
 
                     {{-- Bulk Actions (Hidden by default) --}}
-                    <div id="bulk-actions" style="display: none;" class="p-4 bg-brand-50 border-bottom">
-                        <div class="d-flex align-center justify-between">
-                            <span class="selection-count font-medium">0 selected</span>
-                            <div class="d-flex gap-2">
+                    <div id="bulk-actions" class="bulk-actions-bar">
+                        <div class="justify-between d-flex align-center">
+                            <span class="selection-count">0 selected</span>
+                            <div class="gap-2 d-flex">
                                 <button class="btn btn-secondary btn-sm" onclick="bulkEdit()">✏️ Edit</button>
                                 <button class="btn btn-secondary btn-sm" onclick="bulkDisable()">❌ Disable</button>
                                 <button class="btn btn-danger btn-sm" onclick="bulkDelete()">🗑️ Delete</button>
@@ -121,31 +121,37 @@
                     <table class="data-table" id="email-templates-table" data-selectable="true">
                         <thead>
                             <tr>
+                                <th class="table-select-column">
+                                    <input type="checkbox" class="select-all" aria-label="Select all">
+                                </th>
                                 <th class="sortable">Template Name</th>
                                 <th class="sortable">Subject</th>
                                 <th class="sortable">Category</th>
                                 <th class="sortable">Status</th>
                                 <th class="sortable">Last Modified</th>
                                 <th class="sortable">Usage Count</th>
-                                <th style="width: 140px;">Actions</th>
+                                <th class="table-actions-column">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-id="1">
+                                <td class="table-select-cell">
+                                    <input type="checkbox" class="select-row" value="1" aria-label="Select row">
+                                </td>
                                 <td>
-                                    <div class="d-flex align-center gap-2">
-                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--brand-100); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--brand-700);">📧</div>
-                                        <div>
-                                            <div class="font-medium">Welcome Email</div>
-                                            <div class="text-small text-muted">welcome-new-user</div>
+                                    <div class="template-info">
+                                        <div class="template-icon brand">📧</div>
+                                        <div class="template-details">
+                                            <div class="template-name">Welcome Email</div>
+                                            <div class="template-key">welcome-new-user</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Welcome to ManuCore ERP!</td>
+                                <td class="template-subject">Welcome to ManuCore ERP!</td>
                                 <td><span class="badge badge-primary">User Onboarding</span></td>
                                 <td><span class="badge badge-success">Active</span></td>
-                                <td>2024-09-05</td>
-                                <td class="font-semibold">127</td>
+                                <td class="template-date">2024-09-05</td>
+                                <td class="template-usage">127</td>
                                 <td>
                                     <div class="table-actions">
                                         <button class="table-action-btn" data-tooltip="Preview" onclick="previewTemplate(1)">👁️</button>
@@ -156,20 +162,23 @@
                                 </td>
                             </tr>
                             <tr data-id="2">
+                                <td class="table-select-cell">
+                                    <input type="checkbox" class="select-row" value="2" aria-label="Select row">
+                                </td>
                                 <td>
-                                    <div class="d-flex align-center gap-2">
-                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--success-100); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--success-700);">💰</div>
-                                        <div>
-                                            <div class="font-medium">Invoice Notification</div>
-                                            <div class="text-small text-muted">invoice-sent</div>
+                                    <div class="template-info">
+                                        <div class="template-icon success">💰</div>
+                                        <div class="template-details">
+                                            <div class="template-name">Invoice Notification</div>
+                                            <div class="template-key">invoice-sent</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Your invoice #{{invoice_number}} is ready</td>
+                                <td class="template-subject">Your invoice #@{{invoice_number}} is ready</td>
                                 <td><span class="badge badge-success">Billing</span></td>
                                 <td><span class="badge badge-success">Active</span></td>
-                                <td>2024-09-03</td>
-                                <td class="font-semibold">89</td>
+                                <td class="template-date">2024-09-03</td>
+                                <td class="template-usage">89</td>
                                 <td>
                                     <div class="table-actions">
                                         <button class="table-action-btn" data-tooltip="Preview" onclick="previewTemplate(2)">👁️</button>
@@ -180,20 +189,23 @@
                                 </td>
                             </tr>
                             <tr data-id="3">
+                                <td class="table-select-cell">
+                                    <input type="checkbox" class="select-row" value="3" aria-label="Select row">
+                                </td>
                                 <td>
-                                    <div class="d-flex align-center gap-2">
-                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--warning-100); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--warning-700);">🔔</div>
-                                        <div>
-                                            <div class="font-medium">Password Reset</div>
-                                            <div class="text-small text-muted">password-reset</div>
+                                    <div class="template-info">
+                                        <div class="template-icon warning">🔔</div>
+                                        <div class="template-details">
+                                            <div class="template-name">Password Reset</div>
+                                            <div class="template-key">password-reset</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Reset your ManuCore password</td>
+                                <td class="template-subject">Reset your ManuCore password</td>
                                 <td><span class="badge badge-warning">Security</span></td>
                                 <td><span class="badge badge-warning">Needs Review</span></td>
-                                <td>2024-08-28</td>
-                                <td class="font-semibold">45</td>
+                                <td class="template-date">2024-08-28</td>
+                                <td class="template-usage">45</td>
                                 <td>
                                     <div class="table-actions">
                                         <button class="table-action-btn" data-tooltip="Preview" onclick="previewTemplate(3)">👁️</button>
@@ -204,20 +216,23 @@
                                 </td>
                             </tr>
                             <tr data-id="4">
+                                <td class="table-select-cell">
+                                    <input type="checkbox" class="select-row" value="4" aria-label="Select row">
+                                </td>
                                 <td>
-                                    <div class="d-flex align-center gap-2">
-                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--danger-100); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--danger-700);">❌</div>
-                                        <div>
-                                            <div class="font-medium">Account Suspension</div>
-                                            <div class="text-small text-muted">account-suspended</div>
+                                    <div class="template-info">
+                                        <div class="template-icon danger">❌</div>
+                                        <div class="template-details">
+                                            <div class="template-name">Account Suspension</div>
+                                            <div class="template-key">account-suspended</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Your account has been suspended</td>
+                                <td class="template-subject">Your account has been suspended</td>
                                 <td><span class="badge badge-danger">Security</span></td>
                                 <td><span class="badge badge-neutral">Disabled</span></td>
-                                <td>2024-08-15</td>
-                                <td class="font-semibold">2</td>
+                                <td class="template-date">2024-08-15</td>
+                                <td class="template-usage">2</td>
                                 <td>
                                     <div class="table-actions">
                                         <button class="table-action-btn" data-tooltip="Preview" onclick="previewTemplate(4)">👁️</button>
@@ -250,15 +265,13 @@
 
             {{-- Document Templates Tab --}}
             <div id="tab-documents" class="tab-panel" style="display: none;">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📄</div>
-                            <div class="empty-state-title">Document Templates</div>
-                            <div class="empty-state-description">Manage PDF and document templates for invoices, quotes, and reports.</div>
-                            <div class="empty-state-action">
-                                <button class="btn btn-primary">Add Document Template</button>
-                            </div>
+                <div class="empty-state-container">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📄</div>
+                        <div class="empty-state-title">Document Templates</div>
+                        <div class="empty-state-description">Manage PDF and document templates for invoices, quotes, and reports.</div>
+                        <div class="empty-state-action">
+                            <button class="btn btn-primary">Add Document Template</button>
                         </div>
                     </div>
                 </div>
@@ -266,15 +279,13 @@
 
             {{-- System Templates Tab --}}
             <div id="tab-system" class="tab-panel" style="display: none;">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">⚙️</div>
-                            <div class="empty-state-title">System Templates</div>
-                            <div class="empty-state-description">Core system notification templates and layouts.</div>
-                            <div class="empty-state-action">
-                                <button class="btn btn-primary">Manage System Templates</button>
-                            </div>
+                <div class="empty-state-container">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚙️</div>
+                        <div class="empty-state-title">System Templates</div>
+                        <div class="empty-state-description">Core system notification templates and layouts.</div>
+                        <div class="empty-state-action">
+                            <button class="btn btn-primary">Manage System Templates</button>
                         </div>
                     </div>
                 </div>
@@ -294,7 +305,7 @@
             </div>
         </div>
         <div class="widget-chart-body">
-            <div style="width: 100%; height: 100%; background: linear-gradient(45deg, var(--brand-100), var(--brand-200)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--brand-700); font-weight: 600;">
+            <div class="chart-placeholder">
                 📈 Template Usage Chart Placeholder
             </div>
         </div>
@@ -347,7 +358,7 @@
                 <div class="form-group">
                     <label class="form-label">Email Subject *</label>
                     <input type="text" class="form-input" name="subject" required placeholder="Enter email subject">
-                    <div class="form-help">You can use variables like {{user_name}} and {{company_name}}</div>
+                    <div class="form-help">You can use variables like @{{user_name}} and @{{company_name}}</div>
                 </div>
                 
                 <div class="form-group">
@@ -377,7 +388,7 @@
             <button class="btn btn-ghost btn-sm" data-modal-close>×</button>
         </div>
         <div class="modal-body">
-            <div id="template-preview-content">
+            <div id="template-preview-content" class="template-preview">
                 <!-- Preview content will be loaded here -->
             </div>
         </div>
@@ -390,7 +401,264 @@
 
 @endsection
 
+@push('head')
+<style>
+/* Template Management Specific Styles */
+.template-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.template-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.template-icon.brand {
+    background: var(--brand-100);
+    color: var(--brand-700);
+}
+
+.template-icon.success {
+    background: var(--success-100);
+    color: var(--success-700);
+}
+
+.template-icon.warning {
+    background: var(--warning-100);
+    color: var(--warning-700);
+}
+
+.template-icon.danger {
+    background: var(--danger-100);
+    color: var(--danger-700);
+}
+
+.template-details {
+    min-width: 0;
+    flex: 1;
+}
+
+.template-name {
+    font-weight: 500;
+    color: var(--neutral-900);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+}
+
+.template-key {
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+}
+
+.template-subject {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.template-date {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+}
+
+.template-usage {
+    font-weight: 600;
+    color: var(--neutral-900);
+}
+
+/* Table Selection */
+.table-select-column {
+    width: 40px;
+    padding: var(--space-3) var(--space-2);
+}
+
+.table-select-cell {
+    padding: var(--space-3) var(--space-2);
+}
+
+.table-actions-column {
+    width: 140px;
+    text-align: center;
+}
+
+/* Bulk Actions Bar */
+.bulk-actions-bar {
+    padding: var(--space-4);
+    background: var(--brand-50);
+    border-bottom: 1px solid var(--neutral-200);
+    display: none;
+}
+
+.selection-count {
+    font-weight: 500;
+    color: var(--neutral-700);
+}
+
+/* Empty State */
+.empty-state-container {
+    padding: var(--space-8);
+    text-align: center;
+}
+
+.empty-state {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.empty-state-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+    opacity: 0.6;
+}
+
+.empty-state-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: var(--space-2);
+}
+
+.empty-state-description {
+    color: var(--neutral-600);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+}
+
+.empty-state-action {
+    margin-top: var(--space-4);
+}
+
+/* Chart Placeholder */
+.chart-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--brand-100), var(--brand-200));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-700);
+    font-weight: 600;
+    font-size: var(--text-lg);
+}
+
+/* Template Preview */
+.template-preview {
+    background: var(--neutral-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    min-height: 300px;
+}
+
+.template-preview h4 {
+    color: var(--neutral-900);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-lg);
+}
+
+/* Tab Panels */
+.tab-panel {
+    margin-top: var(--space-6);
+}
+
+/* Filter Chips */
+.filter-chip-remove {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-full);
+    background: var(--neutral-400);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.filter-chip-remove:hover {
+    background: var(--neutral-600);
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+/* Dark Mode Enhancements */
+[data-theme="dark"] .template-icon.brand {
+    background: var(--brand-950);
+    color: var(--brand-300);
+}
+
+[data-theme="dark"] .template-icon.success {
+    background: var(--success-100);
+    color: var(--success-700);
+}
+
+[data-theme="dark"] .template-icon.warning {
+    background: var(--warning-100);
+    color: var(--warning-700);
+}
+
+[data-theme="dark"] .template-icon.danger {
+    background: var(--danger-100);
+    color: var(--danger-700);
+}
+
+[data-theme="dark"] .bulk-actions-bar {
+    background: var(--brand-950);
+}
+
+[data-theme="dark"] .template-preview {
+    background: var(--neutral-200);
+}
+
+[data-theme="dark"] .chart-placeholder {
+    background: linear-gradient(45deg, var(--brand-950), var(--brand-800));
+    color: var(--brand-300);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .template-subject {
+        max-width: 200px;
+    }
+    
+    .template-info {
+        gap: var(--space-2);
+    }
+    
+    .template-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+@endpush
+
 @push('scripts')
+@verbatim
 <script>
 // Template Management Functions
 let currentTemplateId = null;
@@ -401,18 +669,18 @@ function previewTemplate(id) {
         1: {
             subject: 'Welcome to ManuCore ERP!',
             content: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h1 style="color: #2563eb;">Welcome to ManuCore ERP!</h1>
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <h1 style="color: var(--brand-600);">Welcome to ManuCore ERP!</h1>
                     <p>Dear {{user_name}},</p>
                     <p>Welcome to your new ManuCore ERP account. We're excited to have you on board!</p>
                     <p>Your account details:</p>
-                    <ul>
+                    <ul style="margin: 20px 0;">
                         <li>Company: {{company_name}}</li>
                         <li>Email: {{user_email}}</li>
                         <li>Role: {{user_role}}</li>
                     </ul>
                     <p>Get started by logging into your dashboard.</p>
-                    <a href="{{dashboard_url}}" style="background: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px;">Go to Dashboard</a>
+                    <a href="{{dashboard_url}}" style="background: var(--brand-600); color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; margin-top: 20px;">Go to Dashboard</a>
                 </div>
             `
         }
@@ -420,58 +688,35 @@ function previewTemplate(id) {
     
     const template = templates[id] || templates[1];
     document.getElementById('template-preview-content').innerHTML = `
-        <div class="mb-4">
-            <h4>Subject: ${template.subject}</h4>
-        </div>
-        <div class="border rounded p-4" style="background: #f9fafb;">
+        <h4>Subject: ${template.subject}</h4>
+        <div style="border: 1px solid var(--neutral-300); border-radius: var(--radius-lg); padding: var(--space-4); background: white;">
             ${template.content}
         </div>
     `;
     
     currentTemplateId = id;
-    // Open modal using your existing modal system
-    document.getElementById('preview-template-modal').classList.add('show');
-    document.getElementById('preview-template-modal').style.display = 'flex';
+    ManuCore.openModal('preview-template-modal');
 }
 
 function editTemplate(id) {
-    Swal.fire({
-        title: 'Edit Template',
-        text: `Edit template ${id}`,
-        icon: 'info'
-    });
+    ManuCore.showToast(`Edit template ${id}`, 'info');
 }
 
 function duplicateTemplate(id) {
-    Swal.fire({
-        title: 'Duplicate Template?',
-        text: `Create a copy of template ${id}?`,
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#2563eb',
-        cancelButtonColor: '#6b7280',
-        confirmButtonText: 'Yes, duplicate it!'
-    }).then((result) => {
+    ManuCore.confirmDelete('Duplicate Template?', `Create a copy of template ${id}?`).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Duplicated!', 'Template has been duplicated.', 'success');
+            ManuCore.showToast('Template duplicated successfully', 'success');
         }
     });
 }
 
 function deleteTemplate(id) {
-    Swal.fire({
-        title: 'Delete Template?',
-        text: "This template will be permanently deleted!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dc2626',
-        cancelButtonColor: '#6b7280',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+    ManuCore.confirmDelete('Delete Template?', 'This template will be permanently deleted!').then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Deleted!', 'Template has been deleted.', 'success');
+            ManuCore.showToast('Template deleted successfully', 'success');
             // Remove row from table
             document.querySelector(`tr[data-id="${id}"]`)?.remove();
+            updateBulkActionsVisibility();
         }
     });
 }
@@ -482,28 +727,22 @@ function createTemplate() {
     
     // Basic validation
     if (!formData.get('name') || !formData.get('key') || !formData.get('subject')) {
-        Swal.fire('Error!', 'Please fill in all required fields.', 'error');
+        ManuCore.showToast('Please fill in all required fields', 'error');
         return;
     }
     
-    Swal.fire({
-        title: 'Creating Template...',
-        text: 'Please wait while we create the template',
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    });
+    ManuCore.showLoading('Creating Template...', 'Please wait while we create the template');
     
     setTimeout(() => {
-        Swal.fire('Success!', 'Template created successfully.', 'success');
-        document.getElementById('create-template-modal').classList.remove('show');
-        document.getElementById('create-template-modal').style.display = 'none';
+        Swal.close();
+        ManuCore.showToast('Template created successfully', 'success');
+        ManuCore.closeModal('create-template-modal');
         form.reset();
     }, 2000);
 }
 
 function sendTestEmail() {
+    const brand = getComputedStyle(document.documentElement).getPropertyValue('--brand-600').trim() || '#2171B5';
     Swal.fire({
         title: 'Send Test Email',
         input: 'email',
@@ -511,56 +750,51 @@ function sendTestEmail() {
         inputPlaceholder: 'Enter email address',
         showCancelButton: true,
         confirmButtonText: 'Send Test',
+        confirmButtonColor: brand,
         inputValidator: (value) => {
             if (!value) {
-                return 'You need to enter an email address!'
+                return 'You need to enter an email address!';
             }
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Test Sent!', `Test email sent to ${result.value}`, 'success');
+            ManuCore.showToast(`Test email sent to ${result.value}`, 'success');
         }
     });
 }
 
 function exportTemplates() {
-    Swal.fire('Export Started', 'Templates are being exported...', 'info');
+    ManuCore.showToast('Templates export started', 'info');
 }
 
 function bulkExport() {
     const selected = document.querySelectorAll('#email-templates-table .select-row:checked');
     if (selected.length === 0) {
-        Swal.fire('No Selection', 'Please select templates to export.', 'warning');
+        ManuCore.showToast('Please select templates to export', 'warning');
         return;
     }
-    Swal.fire('Export Started', `Exporting ${selected.length} templates...`, 'info');
+    ManuCore.showToast(`Exporting ${selected.length} templates`, 'info');
 }
 
 function bulkEdit() {
     const selected = document.querySelectorAll('#email-templates-table .select-row:checked');
     if (selected.length === 0) {
-        Swal.fire('No Selection', 'Please select templates to edit.', 'warning');
+        ManuCore.showToast('Please select templates to edit', 'warning');
         return;
     }
-    Swal.fire('Bulk Edit', `Edit ${selected.length} templates...`, 'info');
+    ManuCore.showToast(`Bulk edit for ${selected.length} templates`, 'info');
 }
 
 function bulkDisable() {
     const selected = document.querySelectorAll('#email-templates-table .select-row:checked');
     if (selected.length === 0) {
-        Swal.fire('No Selection', 'Please select templates to disable.', 'warning');
+        ManuCore.showToast('Please select templates to disable', 'warning');
         return;
     }
     
-    Swal.fire({
-        title: `Disable ${selected.length} templates?`,
-        text: "These templates will be disabled",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, disable them!'
-    }).then((result) => {
+    ManuCore.confirmDelete(`Disable ${selected.length} templates?`, 'These templates will be disabled').then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Disabled!', `${selected.length} templates disabled.`, 'success');
+            ManuCore.showToast(`${selected.length} templates disabled`, 'success');
         }
     });
 }
@@ -568,24 +802,18 @@ function bulkDisable() {
 function bulkDelete() {
     const selected = document.querySelectorAll('#email-templates-table .select-row:checked');
     if (selected.length === 0) {
-        Swal.fire('No Selection', 'Please select templates to delete.', 'warning');
+        ManuCore.showToast('Please select templates to delete', 'warning');
         return;
     }
     
-    Swal.fire({
-        title: `Delete ${selected.length} templates?`,
-        text: "These templates will be permanently deleted!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dc2626',
-        confirmButtonText: 'Yes, delete them!'
-    }).then((result) => {
+    ManuCore.confirmDelete(`Delete ${selected.length} templates?`, 'These templates will be permanently deleted!').then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Deleted!', `${selected.length} templates deleted.`, 'success');
+            ManuCore.showToast(`${selected.length} templates deleted`, 'success');
             // Remove selected rows
             selected.forEach(checkbox => {
                 checkbox.closest('tr').remove();
             });
+            updateBulkActionsVisibility();
         }
     });
 }
@@ -594,6 +822,29 @@ function bulkDelete() {
 document.addEventListener('change', (e) => {
     if (e.target.matches('#email-templates-table .select-row, #email-templates-table .select-all')) {
         updateBulkActionsVisibility();
+        
+        // Handle select all
+        if (e.target.matches('.select-all')) {
+            const checked = e.target.checked;
+            document.querySelectorAll('#email-templates-table .select-row').forEach(checkbox => {
+                checkbox.checked = checked;
+                checkbox.closest('tr').classList.toggle('selected', checked);
+            });
+        } else {
+            // Handle individual row selection
+            const row = e.target.closest('tr');
+            row.classList.toggle('selected', e.target.checked);
+            
+            // Update select all state
+            const allRows = document.querySelectorAll('#email-templates-table .select-row');
+            const checkedRows = document.querySelectorAll('#email-templates-table .select-row:checked');
+            const selectAll = document.querySelector('#email-templates-table .select-all');
+            
+            if (selectAll) {
+                selectAll.checked = allRows.length === checkedRows.length;
+                selectAll.indeterminate = checkedRows.length > 0 && checkedRows.length < allRows.length;
+            }
+        }
     }
 });
 
@@ -611,10 +862,16 @@ function updateBulkActionsVisibility() {
     }
 }
 
-// Initialize tooltips and table functionality when page loads
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Your existing table and tooltip initialization code here
-    console.log('Templates page loaded');
+    if (window.ManuCore) {
+        ManuCore.initTabs();
+        ManuCore.initDataTables();
+        ManuCore.initTooltips();
+    }
+    
+    console.log('Templates page loaded with ManuCore theme system');
 });
 </script>
+@endverbatim
 @endpush
