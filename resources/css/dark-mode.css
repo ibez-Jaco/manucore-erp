@@ -753,4 +753,252 @@ html.transitioning *:after {
         background: white !important;
         color: black !important;
     }
+
+    /* ----------------------------------------------------------------
+   ENHANCED TABLE DARK MODE FIXES
+   ---------------------------------------------------------------- */
+
+    /* Data Tables Dark Mode */
+    [data-theme="dark"] .data-table-container {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .data-table-header {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .data-table-title {
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .table-container {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .table {
+        background: var(--neutral-100);
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .table thead {
+        background: var(--neutral-200);
+    }
+
+    [data-theme="dark"] .table th {
+        color: var(--neutral-800);
+        background: var(--neutral-200);
+        border-bottom-color: var(--neutral-400);
+    }
+
+    [data-theme="dark"] .table td {
+        color: var(--neutral-700);
+        border-bottom-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .table tbody tr:hover {
+        background: var(--neutral-200);
+    }
+
+    [data-theme="dark"] .table tbody tr.selected {
+        background: var(--brand-950);
+    }
+
+    /* Action Buttons Dark Mode */
+    [data-theme="dark"] .table-action-btn {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-700);
+    }
+
+    [data-theme="dark"] .table-action-btn:hover {
+        background: var(--brand-950);
+        border-color: var(--brand-700);
+        color: var(--brand-300);
+    }
+
+    /* Selection Bar Dark Mode */
+    [data-theme="dark"] .selection-bar {
+        background: var(--brand-950);
+        border-color: var(--brand-700);
+        color: var(--brand-300);
+    }
+
+    /* Sortable Headers Dark Mode */
+    [data-theme="dark"] .sortable:hover {
+        background: var(--neutral-300);
+    }
+
+    /* Form Inputs in Tables Dark Mode */
+    [data-theme="dark"] .data-table-search input {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .data-table-search input:focus {
+        background: var(--neutral-300);
+        border-color: var(--brand-500);
+    }
+
+    /* Pagination Dark Mode */
+    [data-theme="dark"] .table-pagination {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+        color: var(--neutral-700);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-700);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn:hover {
+        background: var(--neutral-300);
+        border-color: var(--neutral-500);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn.active {
+        background: var(--brand-600);
+        border-color: var(--brand-600);
+        color: white;
+    }
+    /* ----------------------------------------------------------------
+   COMPLETE TABLE DARK MODE FIXES - FINAL VERSION
+   ---------------------------------------------------------------- */
+
+    /* Data Table Container */
+    [data-theme="dark"] .data-table-container {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    /* Data Table Header */
+    [data-theme="dark"] .data-table-header {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .data-table-title {
+        color: var(--neutral-900) !important;
+    }
+
+    /* All Table Containers */
+    [data-theme="dark"] .table-container {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    /* Table Elements */
+    [data-theme="dark"] .table {
+        background: var(--neutral-100);
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .table thead {
+        background: var(--neutral-200);
+    }
+
+    [data-theme="dark"] .table th {
+        color: var(--neutral-900) !important;
+        background: var(--neutral-200) !important;
+        border-bottom-color: var(--neutral-400);
+    }
+
+    [data-theme="dark"] .table td {
+        color: var(--neutral-800) !important;
+        border-bottom-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .table tbody tr:hover {
+        background: var(--neutral-200);
+    }
+
+    [data-theme="dark"] .table tbody tr.selected {
+        background: var(--brand-950);
+    }
+
+    /* Action Buttons */
+    [data-theme="dark"] .table-action-btn {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-700);
+    }
+
+    [data-theme="dark"] .table-action-btn:hover {
+        background: var(--brand-950);
+        border-color: var(--brand-700);
+        color: var(--brand-300);
+    }
+
+    /* Selection Bar */
+    [data-theme="dark"] .selection-bar {
+        background: var(--brand-950);
+        border-color: var(--brand-700);
+        color: var(--brand-300);
+    }
+
+    /* Sortable Headers */
+    [data-theme="dark"] .sortable:hover {
+        background: var(--neutral-300);
+    }
+
+    /* Nested Table */
+    [data-theme="dark"] .nested-table .child-row {
+        background: var(--neutral-200);
+    }
+
+    [data-theme="dark"] .nested-table .child-row td {
+        color: var(--neutral-800) !important;
+    }
+
+    /* Dropdown Menus */
+    [data-theme="dark"] .dropdown-menu {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+    }
+
+    [data-theme="dark"] .dropdown-item {
+        color: var(--neutral-700);
+    }
+
+    [data-theme="dark"] .dropdown-item:hover {
+        background: var(--neutral-200);
+        color: var(--brand-600);
+    }
+
+    /* Pagination */
+    [data-theme="dark"] .table-pagination {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+        color: var(--neutral-800);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-800);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn:hover {
+        background: var(--neutral-300);
+        border-color: var(--neutral-500);
+        color: var(--neutral-900);
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn.active {
+        background: var(--brand-600);
+        border-color: var(--brand-600);
+        color: white;
+    }
+
+    [data-theme="dark"] .table-pagination-controls .btn:disabled {
+        background: var(--neutral-200);
+        border-color: var(--neutral-400);
+        color: var(--neutral-500);
+    }
 }
