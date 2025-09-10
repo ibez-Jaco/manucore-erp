@@ -35,9 +35,12 @@
                     <x-lucide-users class="w-4 h-4" />
                 </div>
             </div>
-            <div class="widget-stat-value">24</div>
+            <div class="widget-stat-value">{{ number_format($stats['users'] ?? 0) }}</div>
             <div class="widget-stat-label">Total Users</div>
-            <div class="widget-stat-change positive">+2 this week</div>
+            <div class="widget-stat-change positive">
+                {{-- You can replace this with a real weekly delta later --}}
+                &nbsp;
+            </div>
         </div>
 
         <div class="widget-stat">
@@ -46,9 +49,11 @@
                     <x-lucide-activity class="w-4 h-4" />
                 </div>
             </div>
-            <div class="widget-stat-value">8</div>
+            <div class="widget-stat-value">{{ number_format($stats['sessions'] ?? 0) }}</div>
             <div class="widget-stat-label">Active Sessions</div>
-            <div class="widget-stat-change positive">Healthy</div>
+            <div class="widget-stat-change {{ ($stats['sessions'] ?? 0) > 0 ? 'positive' : 'neutral' }}">
+                {{ ($stats['sessions'] ?? 0) > 0 ? 'Active' : 'Idle' }}
+            </div>
         </div>
 
         <div class="widget-stat">
@@ -57,9 +62,11 @@
                     <x-lucide-shield-check class="w-4 h-4" />
                 </div>
             </div>
-            <div class="widget-stat-value">100%</div>
+            <div class="widget-stat-value">{{ ($stats['health_ok'] ?? false) ? '100%' : '—' }}</div>
             <div class="widget-stat-label">System Health</div>
-            <div class="widget-stat-change positive">All checks passing</div>
+            <div class="widget-stat-change {{ ($stats['health_ok'] ?? false) ? 'positive' : 'neutral' }}">
+                {{ ($stats['health_ok'] ?? false) ? 'All checks passing' : 'Review' }}
+            </div>
         </div>
 
         <div class="widget-stat">
@@ -68,9 +75,11 @@
                     <x-lucide-gauge class="w-4 h-4" />
                 </div>
             </div>
-            <div class="widget-stat-value">0</div>
+            <div class="widget-stat-value">{{ number_format($stats['jobs'] ?? 0) }}</div>
             <div class="widget-stat-label">Queued Jobs</div>
-            <div class="widget-stat-change neutral">Queue idle</div>
+            <div class="widget-stat-change {{ ($stats['jobs'] ?? 0) > 0 ? 'warning' : 'neutral' }}">
+                {{ ($stats['jobs'] ?? 0) > 0 ? 'Processing' : 'Queue idle' }}
+            </div>
         </div>
     </div>
 
@@ -110,7 +119,7 @@
                                 <span class="status-dot neutral"></span>
                                 <span class="status-name">Queue Worker</span>
                             </div>
-                            <span class="badge badge-neutral">Idle</span>
+                            <span class="badge badge-neutral">{{ ($stats['jobs'] ?? 0) > 0 ? 'Busy' : 'Idle' }}</span>
                         </li>
                         <li class="status-row">
                             <div class="status-left">
