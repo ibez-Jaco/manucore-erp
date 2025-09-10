@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class TemplatesController extends Controller
 {
@@ -13,67 +12,67 @@ class TemplatesController extends Controller
         $templates = [
             'pages' => [
                 [
-                    'name' => 'Page Template',
+                    'name'        => 'Page Template',
                     'description' => 'Basic page layout with header, content, and actions',
-                    'icon' => '📄',
-                    'category' => 'Layout',
-                    'route' => 'templates.page-template'
+                    'icon'        => '📄',
+                    'category'    => 'Layout',
+                    'route'       => 'admin.templates.page-template',
                 ],
                 [
-                    'name' => 'Simple Page',
+                    'name'        => 'Simple Page',
                     'description' => 'Minimal page template for quick development',
-                    'icon' => '📝',
-                    'category' => 'Layout',
-                    'route' => 'templates.simple-page'
+                    'icon'        => '📝',
+                    'category'    => 'Layout',
+                    'route'       => 'admin.templates.simple-page',
                 ],
                 [
-                    'name' => 'Form Page',
+                    'name'        => 'Form Page',
                     'description' => 'Complete form layout with validation styling',
-                    'icon' => '📋',
-                    'category' => 'Forms',
-                    'route' => 'templates.form-page'
+                    'icon'        => '📋',
+                    'category'    => 'Forms',
+                    'route'       => 'admin.templates.form-page',
                 ],
                 [
-                    'name' => 'Table Page',
+                    'name'        => 'Table Page',
                     'description' => 'Data table with sorting, filtering, and actions',
-                    'icon' => '📊',
-                    'category' => 'Data',
-                    'route' => 'templates.table-page'
+                    'icon'        => '📊',
+                    'category'    => 'Data',
+                    'route'       => 'admin.templates.table-page',
                 ],
                 [
-                    'name' => 'Dashboard Page',
+                    'name'        => 'Dashboard Page',
                     'description' => 'Executive dashboard with widgets and charts',
-                    'icon' => '📈',
-                    'category' => 'Dashboard',
-                    'route' => 'templates.dashboard-page'
-                ]
+                    'icon'        => '📈',
+                    'category'    => 'Dashboard',
+                    'route'       => 'admin.templates.dashboard-page',
+                ],
             ],
             'components' => [
                 [
-                    'name' => 'Cards',
+                    'name'        => 'Cards',
                     'description' => 'Various card layouts and styles',
-                    'icon' => '🃏',
-                    'route' => 'templates.components.cards'
+                    'icon'        => '🃏',
+                    'route'       => 'admin.templates.components.cards',
                 ],
                 [
-                    'name' => 'Forms',
+                    'name'        => 'Forms',
                     'description' => 'Form controls and layouts',
-                    'icon' => '📝',
-                    'route' => 'templates.components.forms'
+                    'icon'        => '📝',
+                    'route'       => 'admin.templates.components.forms',
                 ],
                 [
-                    'name' => 'Buttons',
+                    'name'        => 'Buttons',
                     'description' => 'Button styles and states',
-                    'icon' => '🔘',
-                    'route' => 'templates.components.buttons'
+                    'icon'        => '🔘',
+                    'route'       => 'admin.templates.components.buttons',
                 ],
                 [
-                    'name' => 'Tables',
+                    'name'        => 'Tables',
                     'description' => 'Table components and features',
-                    'icon' => '📋',
-                    'route' => 'templates.components.tables'
-                ]
-            ]
+                    'icon'        => '📋',
+                    'route'       => 'admin.templates.components.tables',
+                ],
+            ],
         ];
 
         return view('admin.templates.index', compact('templates'));

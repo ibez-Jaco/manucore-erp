@@ -2,1459 +2,3018 @@
 
 @section('title', 'Table Components - ManuCore ERP')
 
-@section('header', 'Professional Table Components')
-@section('subheader', 'Complete collection of enterprise table patterns with search, filtering, and responsive design')
+@section('header', 'ERP/CRM Table Component Library')
+@section('subheader', 'Comprehensive data table patterns for manufacturing and business management')
 
 @section('page-actions')
     <a href="{{ route('admin.templates') }}" class="btn btn-secondary">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
         Back to Templates
     </a>
-    <button class="btn btn-secondary" onclick="copyTableCode()">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+    <button class="btn btn-primary" onclick="exportTableLibrary()">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
         </svg>
-        Copy Code
+        Export Library
     </button>
 @endsection
 
 @section('content')
 <div class="space-y-8">
 
-    {{-- Template Info --}}
-    <div class="alert alert-primary">
-        <div class="alert-icon">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-        </div>
-        <div class="alert-content">
-            <div class="alert-title">Complete Table Component Library</div>
-            <div class="alert-message">8 professional table patterns ready for customers, products, orders, quotes, and more.</div>
+    {{-- Hero Section --}}
+    <div class="library-hero">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <h2 class="hero-title">ERP/CRM Table Components</h2>
+            <p class="hero-description">Professional data table patterns for customer management, quotes, orders, and business operations with advanced search, filtering, and nested data display.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Table Types</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Components</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Color Themes</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    {{-- 1. Basic Data Table --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">1. Basic Data Table</h3>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="font-semibold text-neutral-900">Simple Product Listing</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>SKU</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-lg bg-brand-100">
-                                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">Premium Widget Assembly</div>
-                                            <div class="text-sm text-neutral-500">High-quality manufacturing component</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="font-mono text-sm text-neutral-700">PWA-001</span></td>
-                                <td>Electronics</td>
-                                <td class="font-semibold text-neutral-900">R 1,250.00</td>
-                                <td>234 units</td>
-                                <td><span class="badge badge-success">In Stock</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg">
-                                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">Industrial Connector Set</div>
-                                            <div class="text-sm text-neutral-500">Professional grade connectors</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="font-mono text-sm text-neutral-700">ICS-024</span></td>
-                                <td>Mechanical</td>
-                                <td class="font-semibold text-neutral-900">R 890.00</td>
-                                <td>12 units</td>
-                                <td><span class="badge badge-warning">Low Stock</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg">
-                                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">Precision Alignment Tool</div>
-                                            <div class="text-sm text-neutral-500">High-accuracy measurement device</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="font-mono text-sm text-neutral-700">PAT-156</span></td>
-                                <td>Tools</td>
-                                <td class="font-semibold text-neutral-900">R 3,450.00</td>
-                                <td>0 units</td>
-                                <td><span class="badge badge-danger">Out of Stock</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- 2. Advanced Table with Actions --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">2. Advanced Table with Actions</h3>
-        <div class="data-table-container">
-            <div class="data-table-header">
-                <div class="flex items-center space-x-3">
-                    <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+    {{-- Customer Management Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon customers">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
-                    <h3 class="data-table-title">Customer Orders</h3>
                 </div>
-                <div class="data-table-actions">
-                    {{-- Advanced Search --}}
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Customer Management</h3>
+                    <p class="showcase-subtitle">CRM customer database with contact details and activity</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('customers')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            {{-- Advanced Search Bar --}}
+            <div class="advanced-search-bar">
+                <div class="search-main">
+                    <div class="search-input-group">
+                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input type="text" class="form-input search-input" placeholder="Search customers by name, email, or company...">
+                        <button class="search-clear-btn" title="Clear search">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
-                        </div>
-                        <input type="text" 
-                               class="pl-10 pr-4 form-input form-input-sm" 
-                               placeholder="Search orders..." 
-                               id="orders-search">
-                    </div>
-                    
-                    {{-- Filter Dropdown --}}
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" onclick="toggleDropdown('filter-dropdown')">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"/>
-                            </svg>
-                            Filter
                         </button>
-                        <div id="filter-dropdown" class="dropdown-menu">
-                            <div class="px-3 py-2 border-b border-neutral-200">
-                                <div class="font-medium text-neutral-700">Filter by Status</div>
-                            </div>
-                            <a href="#" class="dropdown-item" data-filter="all">All Orders</a>
-                            <a href="#" class="dropdown-item" data-filter="pending">Pending</a>
-                            <a href="#" class="dropdown-item" data-filter="processing">Processing</a>
-                            <a href="#" class="dropdown-item" data-filter="completed">Completed</a>
+                    </div>
+                    <button class="btn btn-secondary btn-sm filter-toggle" onclick="toggleAdvancedFilters()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"/>
+                        </svg>
+                        Filters
+                    </button>
+                </div>
+                <div class="advanced-filters" id="advanced-filters" style="display: none;">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Customer Type</label>
+                            <select class="form-select form-input-sm">
+                                <option value="">All Types</option>
+                                <option value="company">Company</option>
+                                <option value="individual">Individual</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="form-select form-input-sm">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="prospect">Prospect</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="form-select form-input-sm">
+                                <option value="">All Locations</option>
+                                <option value="gauteng">Gauteng</option>
+                                <option value="western-cape">Western Cape</option>
+                                <option value="kwazulu-natal">KwaZulu-Natal</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <input type="date" class="form-input form-input-sm" placeholder="From">
                         </div>
                     </div>
-                    
-                    <button class="btn btn-primary btn-sm" onclick="createOrder()">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                        New Order
-                    </button>
-                </div>
-            </div>
-
-            <table class="data-table" id="orders-table">
-                <thead>
-                    <tr>
-                        <th>Order</th>
-                        <th>Customer</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th class="table-actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-status="processing">
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-brand-100">
-                                    <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#ORD-2024-001</div>
-                                    <div class="text-sm text-neutral-500">15 items</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-semibold text-white rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
-                                    AM
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">Acme Manufacturing</div>
-                                    <div class="text-sm text-neutral-500">john@acme.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="font-semibold text-neutral-900">R 45,670.00</div>
-                            <div class="text-sm text-neutral-500">VAT inclusive</div>
-                        </td>
-                        <td>
-                            <div class="text-sm font-medium text-neutral-900">2024-09-05</div>
-                            <div class="text-xs text-neutral-500">10:30 AM</div>
-                        </td>
-                        <td><span class="badge badge-warning">Processing</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Order" onclick="viewOrder(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Edit Order" onclick="editOrder(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Print Invoice" onclick="printInvoice(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="completed">
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-success-100">
-                                    <svg class="w-4 h-4 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#ORD-2024-002</div>
-                                    <div class="text-sm text-neutral-500">8 items</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-semibold text-white rounded-full bg-gradient-to-br from-green-500 to-green-600">
-                                    TC
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">TechCorp Solutions</div>
-                                    <div class="text-sm text-neutral-500">sarah@techcorp.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="font-semibold text-neutral-900">R 78,950.00</div>
-                            <div class="text-sm text-neutral-500">VAT inclusive</div>
-                        </td>
-                        <td>
-                            <div class="text-sm font-medium text-neutral-900">2024-09-04</div>
-                            <div class="text-xs text-neutral-500">2:15 PM</div>
-                        </td>
-                        <td><span class="badge badge-success">Completed</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Order" onclick="viewOrder(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Print Invoice" onclick="printInvoice(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Reorder" onclick="reorder(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    {{-- 3. Sortable Table --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">3. Sortable Table</h3>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="font-semibold text-neutral-900">Customer Management</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-container">
-                    <table class="table" id="sortable-table">
-                        <thead>
-                            <tr>
-                                <th class="sortable" data-sort="customer">
-                                    <div class="flex items-center space-x-1 cursor-pointer">
-                                        <span>Customer</span>
-                                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="sortable" data-sort="email">
-                                    <div class="flex items-center space-x-1 cursor-pointer">
-                                        <span>Email</span>
-                                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="sortable" data-sort="orders">
-                                    <div class="flex items-center space-x-1 cursor-pointer">
-                                        <span>Total Orders</span>
-                                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="sortable" data-sort="value">
-                                    <div class="flex items-center space-x-1 cursor-pointer">
-                                        <span>Lifetime Value</span>
-                                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="sortable" data-sort="status">
-                                    <div class="flex items-center space-x-1 cursor-pointer">
-                                        <span>Status</span>
-                                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
-                                        </svg>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-semibold text-white rounded-full bg-gradient-to-br from-purple-500 to-purple-600">
-                                            JS
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">John Smith</div>
-                                            <div class="text-sm text-neutral-500">Acme Manufacturing</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>john.smith@acme.com</td>
-                                <td class="font-semibold">127</td>
-                                <td class="font-semibold text-success-600">R 2,450,000</td>
-                                <td><span class="badge badge-success">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-semibold text-white rounded-full bg-gradient-to-br from-pink-500 to-pink-600">
-                                            SJ
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">Sarah Johnson</div>
-                                            <div class="text-sm text-neutral-500">TechCorp Solutions</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>sarah.johnson@techcorp.com</td>
-                                <td class="font-semibold">89</td>
-                                <td class="font-semibold text-success-600">R 1,890,000</td>
-                                <td><span class="badge badge-success">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-sm font-semibold text-white rounded-full bg-gradient-to-br from-orange-500 to-orange-600">
-                                            MW
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-neutral-900">Mike Wilson</div>
-                                            <div class="text-sm text-neutral-500">Global Enterprises</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>mike.wilson@global.com</td>
-                                <td class="font-semibold">156</td>
-                                <td class="font-semibold text-success-600">R 3,120,000</td>
-                                <td><span class="badge badge-warning">Pending</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- 4. Table with Selection & Bulk Actions --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">4. Table with Selection & Bulk Actions</h3>
-        <div class="data-table-container">
-            <div class="data-table-header">
-                <h3 class="data-table-title">Quote Management</h3>
-                <div class="data-table-actions">
-                    <button class="btn btn-secondary btn-sm" onclick="exportQuotes()">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        Export
-                    </button>
-                    <button class="btn btn-primary btn-sm" onclick="createQuote()">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                        New Quote
-                    </button>
-                </div>
-            </div>
-
-            {{-- Selection Bar --}}
-            <div id="quote-selection-bar" class="selection-bar" style="display: none;">
-                <div class="flex items-center justify-between">
-                    <span class="font-medium selection-count">0 selected</span>
-                    <div class="flex items-center space-x-2">
-                        <button class="btn btn-secondary btn-sm" onclick="bulkExportQuotes()">Export Selected</button>
-                        <button class="btn btn-secondary btn-sm" onclick="bulkConvertQuotes()">Convert to Orders</button>
-                        <button class="btn btn-danger btn-sm" onclick="bulkDeleteQuotes()">Delete</button>
+                    <div class="filter-actions">
+                        <button class="btn btn-primary btn-sm">Apply Filters</button>
+                        <button class="btn btn-secondary btn-sm">Clear All</button>
                     </div>
                 </div>
             </div>
 
-            <table class="data-table" id="quotes-table" data-selectable="true">
-                <thead>
-                    <tr>
-                        <th class="table-select-column">
-                            <input type="checkbox" class="select-all" aria-label="Select all quotes">
-                        </th>
-                        <th>Quote</th>
-                        <th>Customer</th>
-                        <th>Amount</th>
-                        <th>Valid Until</th>
-                        <th>Status</th>
-                        <th class="table-actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-id="1">
-                        <td class="table-select-cell">
-                            <input type="checkbox" class="select-row" value="1" aria-label="Select quote">
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg">
-                                    <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                    </svg>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" class="select-all">
+                            </th>
+                            <th class="sortable">Customer</th>
+                            <th class="sortable">Contact</th>
+                            <th class="sortable">Location</th>
+                            <th class="sortable">Orders</th>
+                            <th class="sortable">Value</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="select-row" value="1"></td>
+                            <td>
+                                <div class="customer-profile">
+                                    <div class="avatar avatar-company">AM</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Acme Manufacturing Ltd.</div>
+                                        <div class="customer-type">Large Enterprise</div>
+                                        <div class="customer-tags">
+                                            <span class="tag tag-vip">VIP</span>
+                                            <span class="tag tag-industrial">Industrial</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#QUO-2024-001</div>
-                                    <div class="text-sm text-neutral-500">Manufacturing setup</div>
+                            </td>
+                            <td>
+                                <div class="contact-info">
+                                    <div class="contact-name">John Mitchell</div>
+                                    <div class="contact-title">Procurement Manager</div>
+                                    <div class="contact-methods">
+                                        <a href="mailto:john@acme.com" class="contact-link">john@acme.com</a>
+                                        <a href="tel:+27118881234" class="contact-link">+27 11 888 1234</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 text-xs font-semibold text-white rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
-                                    AM
+                            </td>
+                            <td>
+                                <div class="location-info">
+                                    <div class="location-city">Johannesburg</div>
+                                    <div class="location-region">Gauteng</div>
                                 </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">Acme Manufacturing</div>
+                            </td>
+                            <td class="orders-count">47 orders</td>
+                            <td class="customer-value">R 2,450,000</td>
+                            <td><span class="status status-active">Active</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleAction('view', 1)" title="View Customer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleAction('edit', 1)" title="Edit Customer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn message" onclick="handleAction('message', 1)" title="Send Message">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                        </svg>
+                                    </button>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="font-semibold text-neutral-900">R 125,670.00</td>
-                        <td>
-                            <div class="text-sm font-medium text-neutral-900">2024-09-20</div>
-                            <div class="text-xs text-warning-600">11 days left</div>
-                        </td>
-                        <td><span class="badge badge-warning">Pending</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Quote" onclick="viewQuote(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Edit Quote" onclick="editQuote(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Convert to Order" onclick="convertQuote(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-id="2">
-                        <td class="table-select-cell">
-                            <input type="checkbox" class="select-row" value="2" aria-label="Select quote">
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg">
-                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="select-row" value="2"></td>
+                            <td>
+                                <div class="customer-profile">
+                                    <div class="avatar avatar-individual">SM</div>
+                                    <div class="customer-details">
+                                        <div class="customer-name">Sarah Martinez</div>
+                                        <div class="customer-type">Individual</div>
+                                        <div class="customer-tags">
+                                            <span class="tag tag-repeat">Repeat Customer</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#QUO-2024-002</div>
-                                    <div class="text-sm text-neutral-500">Equipment upgrade</div>
+                            </td>
+                            <td>
+                                <div class="contact-info">
+                                    <div class="contact-name">Sarah Martinez</div>
+                                    <div class="contact-title">Owner</div>
+                                    <div class="contact-methods">
+                                        <a href="mailto:sarah@email.com" class="contact-link">sarah@email.com</a>
+                                        <a href="tel:+27845551234" class="contact-link">+27 84 555 1234</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 text-xs font-semibold text-white rounded-full bg-gradient-to-br from-green-500 to-green-600">
-                                    TC
+                            </td>
+                            <td>
+                                <div class="location-info">
+                                    <div class="location-city">Cape Town</div>
+                                    <div class="location-region">Western Cape</div>
                                 </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">TechCorp Solutions</div>
+                            </td>
+                            <td class="orders-count">12 orders</td>
+                            <td class="customer-value">R 125,000</td>
+                            <td><span class="status status-active">Active</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleAction('view', 2)" title="View Customer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleAction('edit', 2)" title="Edit Customer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn message" onclick="handleAction('message', 2)" title="Send Message">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                        </svg>
+                                    </button>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="font-semibold text-neutral-900">R 89,320.00</td>
-                        <td>
-                            <div class="text-sm font-medium text-success-700">2024-10-15</div>
-                            <div class="text-xs text-success-600">36 days left</div>
-                        </td>
-                        <td><span class="badge badge-success">Approved</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Quote" onclick="viewQuote(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Convert to Order" onclick="convertQuote(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Duplicate Quote" onclick="duplicateQuote(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </section>
+    </div>
 
-    {{-- 5. Table with Search & Advanced Filtering --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">5. Table with Advanced Search & Filtering</h3>
-        <div class="data-table-container">
-            <div class="data-table-header">
-                <h3 class="data-table-title">Invoice Management</h3>
-                <div class="data-table-actions">
-                    {{-- Advanced Search --}}
-                    <div class="relative flex-1 max-w-md">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                        </div>
-                        <input type="text" 
-                               class="w-full pl-10 pr-4 form-input form-input-sm" 
-                               placeholder="Search invoices, customers, amounts..." 
-                               id="invoice-search">
+    {{-- Quotes Management Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon quotes">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Quotes & Proposals</h3>
+                    <p class="showcase-subtitle">Sales quotations with approval workflow and conversion tracking</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('quotes')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Quote</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Value</th>
+                            <th>Valid Until</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="quote-info">
+                                    <div class="quote-number">#QUO-2024-015</div>
+                                    <div class="quote-title">Industrial Equipment Package</div>
+                                    <div class="quote-meta">
+                                        <span class="quote-date">Created: 2024-09-05</span>
+                                        <span class="quote-rep">by: John Sales</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="customer-summary">
+                                    <div class="customer-name">Acme Manufacturing</div>
+                                    <div class="customer-contact">john@acme.com</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="items-summary">
+                                    <div class="items-count">8 items</div>
+                                    <div class="items-preview">Pumps, Valves, Sensors...</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quote-value">
+                                    <div class="value-amount">R 156,750.00</div>
+                                    <div class="value-margin">Margin: 35%</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="validity-info">
+                                    <div class="valid-date">2024-10-05</div>
+                                    <div class="days-remaining">12 days left</div>
+                                </div>
+                            </td>
+                            <td><span class="status status-pending">Pending Review</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleAction('view', 1)" title="View Quote">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleAction('edit', 1)" title="Edit Quote">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn convert" onclick="handleAction('convert', 1)" title="Convert to Order">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn send" onclick="handleAction('send', 1)" title="Send Quote">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="quote-info">
+                                    <div class="quote-number">#QUO-2024-016</div>
+                                    <div class="quote-title">Maintenance Contract Renewal</div>
+                                    <div class="quote-meta">
+                                        <span class="quote-date">Created: 2024-09-08</span>
+                                        <span class="quote-rep">by: Sarah Sales</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="customer-summary">
+                                    <div class="customer-name">TechCorp Solutions</div>
+                                    <div class="customer-contact">contact@techcorp.com</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="items-summary">
+                                    <div class="items-count">3 services</div>
+                                    <div class="items-preview">Annual maintenance, Support...</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quote-value">
+                                    <div class="value-amount">R 89,500.00</div>
+                                    <div class="value-margin">Margin: 45%</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="validity-info">
+                                    <div class="valid-date">2024-10-08</div>
+                                    <div class="days-remaining">15 days left</div>
+                                </div>
+                            </td>
+                            <td><span class="status status-approved">Approved</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleAction('view', 2)" title="View Quote">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn convert" onclick="handleAction('convert', 2)" title="Convert to Order">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn send" onclick="handleAction('send', 2)" title="Send Quote">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Nested Hierarchical Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon nested">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2v10z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Product Categories</h3>
+                    <p class="showcase-subtitle">Hierarchical product catalog with expandable categories</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('nested')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            <div class="table-container">
+                <table class="data-table nested-table">
+                    <thead>
+                        <tr>
+                            <th>Category / Product</th>
+                            <th>SKU</th>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row" data-level="0">
+                            <td>
+                                <div class="category-item">
+                                    <button class="expand-btn" onclick="toggleCategory(this)">
+                                        <svg class="w-4 h-4 expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+                                    <div class="category-icon">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                        </svg>
+                                    </div>
+                                    <div class="category-details">
+                                        <div class="category-name">Industrial Equipment</div>
+                                        <div class="category-desc">Manufacturing and industrial machinery</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>-</td>
+                            <td class="category-summary">245 items</td>
+                            <td>-</td>
+                            <td><span class="status status-active">Active</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn edit" onclick="handleAction('edit-category', 1)" title="Edit Category">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn add" onclick="handleAction('add-product', 1)" title="Add Product">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="product-row" data-level="1" style="display: none;">
+                            <td>
+                                <div class="product-item">
+                                    <div class="product-icon">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                        </svg>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-name">Centrifugal Pump CP-150</div>
+                                        <div class="product-desc">High-efficiency industrial pump</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><code class="sku">CP-150-A</code></td>
+                            <td class="stock-info">
+                                <div class="stock-count">23 units</div>
+                                <div class="stock-location">Warehouse A</div>
+                            </td>
+                            <td class="price">R 15,750.00</td>
+                            <td><span class="status status-success">In Stock</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleAction('view-product', 1)" title="View Product">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleAction('edit-product', 1)" title="Edit Product">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Basic Simple Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon basic">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Basic Table</h3>
+                    <p class="showcase-subtitle">Simple clean table layout for basic data display</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('basic')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Premium Widget Assembly</td>
+                            <td>Electronics</td>
+                            <td>R 1,250.00</td>
+                            <td>234 units</td>
+                            <td><span class="status status-success">In Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Industrial Connector Set</td>
+                            <td>Mechanical</td>
+                            <td>R 890.00</td>
+                            <td>156 units</td>
+                            <td><span class="status status-success">In Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Safety Control Module</td>
+                            <td>Safety</td>
+                            <td>R 2,340.00</td>
+                            <td>12 units</td>
+                            <td><span class="status status-warning">Low Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hydraulic Valve Unit</td>
+                            <td>Hydraulics</td>
+                            <td>R 3,750.00</td>
+                            <td>0 units</td>
+                            <td><span class="status status-danger">Out of Stock</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Sortable Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon sortable">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Sortable Table</h3>
+                    <p class="showcase-subtitle">Interactive table with column sorting and visual indicators</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('sortable')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            <div class="table-container">
+                <table class="data-table sortable-table" id="sortable-demo-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" onclick="sortTable('sortable-demo-table', 0)">
+                                Order #
+                                <span class="sort-indicator">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class="sortable" onclick="sortTable('sortable-demo-table', 1)">
+                                Customer
+                                <span class="sort-indicator">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class="sortable" onclick="sortTable('sortable-demo-table', 2)">
+                                Date
+                                <span class="sort-indicator">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class="sortable" onclick="sortTable('sortable-demo-table', 3)">
+                                Amount
+                                <span class="sort-indicator">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class="sortable" onclick="sortTable('sortable-demo-table', 4)">
+                                Status
+                                <span class="sort-indicator">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                                    </svg>
+                                </span>
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-2024-001</td>
+                            <td>Acme Manufacturing</td>
+                            <td data-sort="2024-09-10">2024-09-10</td>
+                            <td data-sort="45670">R 45,670.00</td>
+                            <td data-sort="2">Processing</td>
+                            <td>
+                                <button class="action-btn view" onclick="handleActionWithAlert('view', 1)" title="View">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2024-002</td>
+                            <td>TechCorp Solutions</td>
+                            <td data-sort="2024-09-08">2024-09-08</td>
+                            <td data-sort="78950">R 78,950.00</td>
+                            <td data-sort="3">Completed</td>
+                            <td>
+                                <button class="action-btn view" onclick="handleActionWithAlert('view', 2)" title="View">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2024-003</td>
+                            <td>Global Industries</td>
+                            <td data-sort="2024-09-05">2024-09-05</td>
+                            <td data-sort="123450">R 123,450.00</td>
+                            <td data-sort="1">Pending</td>
+                            <td>
+                                <button class="action-btn view" onclick="handleActionWithAlert('view', 3)" title="View">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2024-004</td>
+                            <td>BuildCorp Ltd</td>
+                            <td data-sort="2024-09-01">2024-09-01</td>
+                            <td data-sort="89750">R 89,750.00</td>
+                            <td data-sort="4">Cancelled</td>
+                            <td>
+                                <button class="action-btn view" onclick="handleActionWithAlert('view', 4)" title="View">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Paginated Table --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon paginated">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Paginated Table</h3>
+                    <p class="showcase-subtitle">Large dataset table with advanced pagination controls</p>
+                </div>
+            </div>
+            <button class="copy-btn" onclick="copyTableCode('paginated')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice #</th>
+                            <th>Customer</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#INV-2024-101</td>
+                            <td>Acme Manufacturing</td>
+                            <td>2024-09-01</td>
+                            <td>2024-09-31</td>
+                            <td>R 45,670.00</td>
+                            <td><span class="status status-success">Paid</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleActionWithAlert('view-invoice', 101)" title="View">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleActionWithAlert('edit-invoice', 101)" title="Edit">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn delete" onclick="handleDeleteWithAlert('invoice', 101)" title="Delete">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2024-102</td>
+                            <td>TechCorp Solutions</td>
+                            <td>2024-09-03</td>
+                            <td>2024-10-03</td>
+                            <td>R 78,950.00</td>
+                            <td><span class="status status-warning">Pending</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleActionWithAlert('view-invoice', 102)" title="View">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleActionWithAlert('edit-invoice', 102)" title="Edit">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn delete" onclick="handleDeleteWithAlert('invoice', 102)" title="Delete">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2024-103</td>
+                            <td>Global Industries</td>
+                            <td>2024-09-05</td>
+                            <td>2024-10-05</td>
+                            <td>R 123,450.00</td>
+                            <td><span class="status status-danger">Overdue</span></td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn view" onclick="handleActionWithAlert('view-invoice', 103)" title="View">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn edit" onclick="handleActionWithAlert('edit-invoice', 103)" title="Edit">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn delete" onclick="handleDeleteWithAlert('invoice', 103)" title="Delete">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {{-- Advanced Pagination --}}
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    <div class="pagination-text">
+                        Showing <strong>1-10</strong> of <strong>247</strong> invoices
                     </div>
-                    
-                    {{-- Date Range Filter --}}
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" onclick="toggleDropdown('date-filter')">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    <div class="pagination-options">
+                        <select class="form-select form-input-sm" onchange="changePageSize(this.value)">
+                            <option value="10">10 per page</option>
+                            <option value="25">25 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="pagination-controls">
+                    <div class="pagination-buttons">
+                        <button class="pagination-btn pagination-btn-prev" onclick="changePage('first')" title="First page">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
                             </svg>
-                            Date Range
                         </button>
-                        <div id="date-filter" class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-range="today">Today</a>
-                            <a href="#" class="dropdown-item" data-range="week">This Week</a>
-                            <a href="#" class="dropdown-item" data-range="month">This Month</a>
-                            <a href="#" class="dropdown-item" data-range="quarter">This Quarter</a>
-                            <a href="#" class="dropdown-item" data-range="year">This Year</a>
-                        </div>
-                    </div>
-                    
-                    {{-- Status Filter --}}
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" onclick="toggleDropdown('status-filter')">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"/>
-                            </svg>
-                            Status
-                        </button>
-                        <div id="status-filter" class="dropdown-menu">
-                            <a href="#" class="dropdown-item" data-status="all">All Invoices</a>
-                            <a href="#" class="dropdown-item" data-status="draft">Draft</a>
-                            <a href="#" class="dropdown-item" data-status="sent">Sent</a>
-                            <a href="#" class="dropdown-item" data-status="paid">Paid</a>
-                            <a href="#" class="dropdown-item" data-status="overdue">Overdue</a>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-sm" onclick="createInvoice()">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                        New Invoice
-                    </button>
-                </div>
-            </div>
-
-            <table class="data-table" id="invoice-table">
-                <thead>
-                    <tr>
-                        <th>Invoice</th>
-                        <th>Customer</th>
-                        <th>Amount</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th class="table-actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-status="paid">
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg">
-                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#INV-2024-001</div>
-                                    <div class="text-sm text-neutral-500">Paid on 2024-09-05</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 text-xs font-semibold text-white rounded-full bg-gradient-to-br from-blue-500 to-blue-600">
-                                    AM
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">Acme Manufacturing</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="font-semibold text-neutral-900">R 45,670.00</td>
-                        <td>
-                            <div class="text-sm font-medium text-neutral-900">2024-09-05</div>
-                            <div class="text-xs text-success-600">Paid on time</div>
-                        </td>
-                        <td><span class="badge badge-success">Paid</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Invoice" onclick="viewInvoice(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Download PDF" onclick="downloadInvoice(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Email Invoice" onclick="emailInvoice(1)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="overdue">
-                        <td>
-                            <div class="flex items-center space-x-2">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-100 rounded-lg">
-                                    <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-mono font-semibold text-brand-600">#INV-2024-002</div>
-                                    <div class="text-sm text-red-600">5 days overdue</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 text-xs font-semibold text-white rounded-full bg-gradient-to-br from-red-500 to-red-600">
-                                    GE
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-neutral-900">Global Enterprises</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="font-semibold text-neutral-900">R 78,950.00</td>
-                        <td>
-                            <div class="text-sm font-medium text-red-700">2024-09-01</div>
-                            <div class="text-xs text-red-600">5 days overdue</div>
-                        </td>
-                        <td><span class="badge badge-danger">Overdue</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="table-action-btn" data-tooltip="View Invoice" onclick="viewInvoice(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Send Reminder" onclick="sendReminder(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5-5-5h5v-4a7.97 7.97 0 01-5.417-2.083A8 8 0 002 8c0-.36.032-.713.093-1.058A8.001 8.001 0 0110 16.917V17z"/>
-                                    </svg>
-                                </button>
-                                <button class="table-action-btn" data-tooltip="Mark as Paid" onclick="markPaid(2)">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    {{-- 6. Compact Summary Tables --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">6. Compact Summary Tables</h3>
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            
-            {{-- Sales Summary --}}
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="font-semibold text-neutral-900">Sales Summary</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-compact">
-                        <tbody>
-                            <tr>
-                                <td class="font-medium text-neutral-700">Today's Sales</td>
-                                <td class="font-semibold text-right text-success-600">R 45,670</td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">This Week</td>
-                                <td class="font-semibold text-right text-brand-600">R 289,450</td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">This Month</td>
-                                <td class="font-semibold text-right text-brand-600">R 1,234,890</td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">This Year</td>
-                                <td class="font-semibold text-right text-brand-700">R 8,567,234</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {{-- System Status --}}
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="font-semibold text-neutral-900">System Status</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-compact">
-                        <tbody>
-                            <tr>
-                                <td class="font-medium text-neutral-700">Database</td>
-                                <td class="text-right">
-                                    <span class="badge badge-success">Online</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">API Service</td>
-                                <td class="text-right">
-                                    <span class="badge badge-success">Healthy</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">File Storage</td>
-                                <td class="text-right">
-                                    <span class="badge badge-warning">85% Full</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-medium text-neutral-700">Queue Workers</td>
-                                <td class="text-right">
-                                    <span class="badge badge-success">2 Active</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- 7. Table with Pagination --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">7. Table with Pagination</h3>
-        <div class="data-table-container">
-            <div class="data-table-header">
-                <h3 class="data-table-title">Product Catalog</h3>
-                <div class="flex items-center space-x-2 text-sm text-neutral-600">
-                    <span>Show</span>
-                    <select class="form-select form-select-sm" onchange="changePerPage(this.value)">
-                        <option value="10">10</option>
-                        <option value="25" selected>25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                    <span>per page</span>
-                </div>
-            </div>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for($i = 1; $i <= 10; $i++)
-                    <tr>
-                        <td class="font-mono text-sm">{{ str_pad($i, 3, '0', STR_PAD_LEFT) }}</td>
-                        <td class="font-medium">Product {{ $i }}</td>
-                        <td>{{ ['Electronics', 'Mechanical', 'Tools', 'Safety', 'Hardware'][$i % 5] }}</td>
-                        <td class="font-semibold">R {{ number_format(rand(50, 5000), 2) }}</td>
-                        <td>{{ rand(0, 500) }} units</td>
-                    </tr>
-                    @endfor
-                </tbody>
-            </table>
-
-            {{-- Enhanced Pagination --}}
-            <div class="table-pagination">
-                <div class="flex items-center justify-between">
-                    <div class="text-sm text-neutral-600">
-                        Showing <strong>1-10</strong> of <strong>247</strong> products
-                    </div>
-                    <div class="table-pagination-controls">
-                        <button class="btn btn-secondary btn-sm" disabled>
+                        <button class="pagination-btn pagination-btn-prev" onclick="changePage('prev')" disabled title="Previous page">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                             </svg>
                         </button>
-                        <button class="btn btn-secondary btn-sm active">1</button>
-                        <button class="btn btn-secondary btn-sm">2</button>
-                        <button class="btn btn-secondary btn-sm">3</button>
-                        <span class="px-2 text-neutral-400">...</span>
-                        <button class="btn btn-secondary btn-sm">25</button>
-                        <button class="btn btn-secondary btn-sm">
+                        
+                        <div class="pagination-numbers">
+                            <button class="pagination-number active" onclick="changePage(1)">1</button>
+                            <button class="pagination-number" onclick="changePage(2)">2</button>
+                            <button class="pagination-number" onclick="changePage(3)">3</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-number" onclick="changePage(23)">23</button>
+                            <button class="pagination-number" onclick="changePage(24)">24</button>
+                            <button class="pagination-number" onclick="changePage(25)">25</button>
+                        </div>
+                        
+                        <button class="pagination-btn pagination-btn-next" onclick="changePage('next')" title="Next page">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </button>
+                        <button class="pagination-btn pagination-btn-next" onclick="changePage('last')" title="Last page">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="pagination-jump">
+                        <span class="pagination-jump-label">Go to page:</span>
+                        <input type="number" class="pagination-jump-input" min="1" max="25" value="1" onchange="jumpToPage(this.value)">
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    {{-- 8. Nested/Hierarchical Table --}}
-    <section>
-        <h3 class="mb-4 text-xl font-bold text-neutral-900">8. Nested/Hierarchical Table</h3>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="font-semibold text-neutral-900">Order Details with Line Items</h4>
+    {{-- Summary Dashboard Cards --}}
+    <div class="table-showcase">
+        <div class="showcase-header">
+            <div class="showcase-info">
+                <div class="showcase-icon summary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <div class="showcase-text">
+                    <h3 class="showcase-title">Summary Dashboard Cards</h3>
+                    <p class="showcase-subtitle">KPI cards and summary tables for dashboard widgets</p>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="table-container">
-                    <table class="table nested-table">
+            <button class="copy-btn" onclick="copyTableCode('summary')" title="Copy HTML Code">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="showcase-body">
+            {{-- KPI Cards Grid --}}
+            <div class="kpi-grid">
+                <div class="kpi-card revenue">
+                    <div class="kpi-header">
+                        <div class="kpi-icon">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-trend positive">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">R 2,450,000</div>
+                    <div class="kpi-label">Total Revenue</div>
+                    <div class="kpi-change">+12.5% from last month</div>
+                </div>
+
+                <div class="kpi-card orders">
+                    <div class="kpi-header">
+                        <div class="kpi-icon">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-trend positive">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">1,247</div>
+                    <div class="kpi-label">Orders This Month</div>
+                    <div class="kpi-change">+8.2% from last month</div>
+                </div>
+
+                <div class="kpi-card customers">
+                    <div class="kpi-header">
+                        <div class="kpi-icon">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-trend positive">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">847</div>
+                    <div class="kpi-label">Active Customers</div>
+                    <div class="kpi-change">+15.3% from last month</div>
+                </div>
+
+                <div class="kpi-card inventory">
+                    <div class="kpi-header">
+                        <div class="kpi-icon">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-trend negative">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-8-8 8-8m8 16l-8-8 8-8"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">12,453</div>
+                    <div class="kpi-label">Items in Stock</div>
+                    <div class="kpi-change">-2.1% from last month</div>
+                </div>
+            </div>
+
+            {{-- Summary Tables --}}
+            <div class="summary-tables-grid">
+                <div class="summary-table-card">
+                    <div class="summary-table-header">
+                        <h4 class="summary-table-title">Top Products</h4>
+                        <button class="btn btn-secondary btn-sm" onclick="handleActionWithAlert('view-report', 'products')">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            View Report
+                        </button>
+                    </div>
+                    <table class="summary-table">
                         <thead>
                             <tr>
-                                <th>Order/Item</th>
-                                <th>Customer/Product</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th>Actions</th>
+                                <th>Product</th>
+                                <th>Sales</th>
+                                <th>Revenue</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- Parent Row --}}
-                            <tr class="parent-row" data-order="1">
+                            <tr>
                                 <td>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="expand-btn" onclick="toggleExpand(1)">
-                                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                            </svg>
-                                        </button>
-                                        <div class="font-mono font-semibold text-brand-600">#ORD-2024-001</div>
+                                    <div class="summary-product">
+                                        <div class="product-name">Premium Widget</div>
+                                        <div class="product-sku">PWA-001</div>
                                     </div>
                                 </td>
+                                <td>234 units</td>
+                                <td>R 292,500</td>
+                            </tr>
+                            <tr>
                                 <td>
-                                    <div class="font-semibold text-neutral-900">Acme Manufacturing</div>
-                                </td>
-                                <td class="font-semibold">3</td>
-                                <td>-</td>
-                                <td class="font-semibold text-neutral-900">R 45,670.00</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <button class="table-action-btn" data-tooltip="View Order">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                            </svg>
-                                        </button>
+                                    <div class="summary-product">
+                                        <div class="product-name">Industrial Connector</div>
+                                        <div class="product-sku">ICS-024</div>
                                     </div>
                                 </td>
+                                <td>156 units</td>
+                                <td>R 138,840</td>
                             </tr>
-                            {{-- Child Rows --}}
-                            <tr class="child-row" data-parent="1" style="display: none;">
-                                <td class="pl-8">
-                                    <div class="text-sm text-neutral-600">PWA-001</div>
-                                </td>
+                            <tr>
                                 <td>
-                                    <div class="text-sm text-neutral-700">Premium Widget Assembly</div>
+                                    <div class="summary-product">
+                                        <div class="product-name">Safety Module</div>
+                                        <div class="product-sku">SCM-089</div>
+                                    </div>
                                 </td>
-                                <td>2</td>
-                                <td>R 1,250.00</td>
-                                <td>R 2,500.00</td>
-                                <td>-</td>
-                            </tr>
-                            <tr class="child-row" data-parent="1" style="display: none;">
-                                <td class="pl-8">
-                                    <div class="text-sm text-neutral-600">ICS-024</div>
-                                </td>
-                                <td>
-                                    <div class="text-sm text-neutral-700">Industrial Connector Set</div>
-                                </td>
-                                <td>5</td>
-                                <td>R 890.00</td>
-                                <td>R 4,450.00</td>
-                                <td>-</td>
-                            </tr>
-                            <tr class="child-row" data-parent="1" style="display: none;">
-                                <td class="pl-8">
-                                    <div class="text-sm text-neutral-600">SAF-089</div>
-                                </td>
-                                <td>
-                                    <div class="text-sm text-neutral-700">Safety Control Module</div>
-                                </td>
-                                <td>1</td>
-                                <td>R 2,340.00</td>
-                                <td>R 2,340.00</td>
-                                <td>-</td>
+                                <td>89 units</td>
+                                <td>R 208,260</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="summary-table-card">
+                    <div class="summary-table-header">
+                        <h4 class="summary-table-title">Recent Activity</h4>
+                        <button class="btn btn-secondary btn-sm" onclick="handleActionWithAlert('view-activity', 'all')">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            View All
+                        </button>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon activity-sale">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New order from Acme Manufacturing</div>
+                                <div class="activity-time">2 minutes ago</div>
+                            </div>
+                            <div class="activity-value">R 45,670</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon activity-customer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New customer registration</div>
+                                <div class="activity-time">15 minutes ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon activity-inventory">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Low stock alert: Safety Module</div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
 </div>
 @endsection
 
 @push('head')
 <style>
-/* Enhanced Table Styles */
-.table-actions {
-    display: flex;
-    gap: var(--space-1);
-    justify-content: center;
+/* Hero Section */
+.library-hero {
+    background: linear-gradient(135deg, var(--brand-50) 0%, var(--brand-100) 100%);
+    border-radius: var(--radius-3xl);
+    padding: var(--space-12) var(--space-8);
+    margin-bottom: var(--space-8);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.table-action-btn {
-    width: 32px;
-    height: 32px;
+.library-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(59, 130, 246, 0.03) 10px,
+        rgba(59, 130, 246, 0.03) 20px
+    );
+    opacity: 0.7;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--brand-600), var(--brand-700));
+    border-radius: var(--radius-3xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0 auto var(--space-6);
+    box-shadow: var(--shadow-xl);
+}
+
+.hero-title {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--neutral-900);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.025em;
+}
+
+.hero-description {
+    font-size: var(--text-lg);
+    color: var(--neutral-700);
+    max-width: 700px;
+    margin: 0 auto var(--space-8);
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--brand-700);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+    font-weight: 500;
+}
+
+/* Table Showcases */
+.table-showcase {
+    background: white;
+    border-radius: var(--radius-3xl);
+    border: 1px solid var(--neutral-200);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-slow);
+    margin-bottom: var(--space-8);
+}
+
+.table-showcase:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+    border-color: var(--brand-200);
+}
+
+.showcase-header {
+    padding: var(--space-8) var(--space-8) var(--space-6);
+    background: var(--neutral-50);
+    border-bottom: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.showcase-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex: 1;
+}
+
+.showcase-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-lg);
+}
+
+.showcase-icon.customers {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+}
+
+.showcase-icon.quotes {
+    background: linear-gradient(135deg, var(--success-500), var(--success-700));
+}
+
+.showcase-icon.nested {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-700));
+}
+
+.showcase-icon.basic {
+    background: linear-gradient(135deg, var(--neutral-500), var(--neutral-700));
+}
+
+.showcase-icon.sortable {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+}
+
+.showcase-icon.paginated {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-700));
+}
+
+.showcase-icon.summary {
+    background: linear-gradient(135deg, var(--success-500), var(--success-700));
+}
+
+.showcase-text {
+    flex: 1;
+}
+
+.showcase-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin: 0 0 var(--space-2) 0;
+    line-height: 1.2;
+}
+
+.showcase-subtitle {
+    font-size: var(--text-base);
+    color: var(--neutral-600);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.copy-btn {
+    width: 48px;
+    height: 48px;
+    background: var(--brand-600);
+    color: white;
+    border: none;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background: var(--brand-700);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.showcase-body {
+    padding: var(--space-8);
+}
+
+/* Advanced Search Bar */
+.advanced-search-bar {
+    background: var(--neutral-50);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--neutral-200);
+}
+
+.search-main {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.search-input-group {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-icon {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--neutral-400);
+}
+
+.search-input {
+    padding-left: var(--space-12);
+    padding-right: var(--space-10);
+    height: 48px;
+    border-radius: var(--radius-2xl);
     border: 1px solid var(--neutral-300);
     background: white;
+    transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: white;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--neutral-200);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all var(--transition-fast);
+}
+
+.search-input:not(:placeholder-shown) + .search-clear-btn {
+    opacity: 1;
+}
+
+.search-clear-btn:hover {
+    background: var(--neutral-300);
+}
+
+.filter-toggle {
+    height: 48px;
+    border-radius: var(--radius-2xl);
+}
+
+.advanced-filters {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--neutral-200);
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.filter-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--neutral-700);
+}
+
+.filter-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+}
+
+/* Table Components */
+.table-container {
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--neutral-200);
+    overflow: hidden;
+    background: white;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+}
+
+.data-table thead {
+    background: var(--neutral-100);
+}
+
+.data-table th {
+    padding: var(--space-5) var(--space-6);
+    text-align: left;
+    font-weight: 600;
+    color: var(--neutral-800);
+    border-bottom: 2px solid var(--neutral-200);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+    position: relative;
+}
+
+.data-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.data-table th.sortable:hover {
+    background: var(--neutral-200);
+}
+
+.data-table td {
+    padding: var(--space-5) var(--space-6);
+    color: var(--neutral-700);
+    border-bottom: 1px solid var(--neutral-100);
+    vertical-align: middle;
+}
+
+.data-table tbody tr {
+    transition: all var(--transition-fast);
+}
+
+.data-table tbody tr:hover {
+    background: var(--neutral-50);
+    transform: translateX(2px);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Sort Indicators */
+.sort-indicator {
+    position: absolute;
+    right: var(--space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+}
+
+.sortable:hover .sort-indicator {
+    opacity: 1;
+}
+
+.sortable.sort-asc .sort-indicator svg {
+    transform: rotate(180deg);
+}
+
+.sortable.sort-desc .sort-indicator svg {
+    transform: rotate(0deg);
+}
+
+/* Customer Profile Components */
+.customer-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-width: 280px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: white;
+    flex-shrink: 0;
+    border: 3px solid white;
+    box-shadow: var(--shadow-md);
+}
+
+.avatar.avatar-company {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+}
+
+.avatar.avatar-individual {
+    background: linear-gradient(135deg, var(--success-500), var(--success-700));
+}
+
+.customer-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.customer-name {
+    font-weight: 600;
+    color: var(--neutral-900);
+    font-size: var(--text-base);
+    line-height: 1.3;
+    margin-bottom: var(--space-1);
+}
+
+.customer-type {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+    margin-bottom: var(--space-2);
+}
+
+.customer-tags {
+    display: flex;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.tag.tag-vip {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.tag.tag-industrial {
+    background: var(--neutral-200);
+    color: var(--neutral-700);
+}
+
+.tag.tag-repeat {
+    background: var(--success-100);
+    color: var(--success-700);
+}
+
+/* Contact & Location Info */
+.contact-info,
+.location-info {
+    min-width: 180px;
+}
+
+.contact-name,
+.location-city {
+    font-weight: 500;
+    color: var(--neutral-900);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+}
+
+.contact-title,
+.location-region {
+    font-size: var(--text-xs);
+    color: var(--neutral-600);
+    margin-bottom: var(--space-2);
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.contact-link {
+    font-size: var(--text-xs);
+    color: var(--brand-600);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Quote Components */
+.quote-info {
+    min-width: 250px;
+}
+
+.quote-number {
+    font-weight: 600;
+    color: var(--brand-600);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+}
+
+.quote-title {
+    font-weight: 500;
+    color: var(--neutral-900);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+}
+
+.quote-meta {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+}
+
+.quote-value {
+    text-align: right;
+    min-width: 120px;
+}
+
+.value-amount {
+    font-weight: 600;
+    color: var(--neutral-900);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+}
+
+.value-margin {
+    font-size: var(--text-xs);
+    color: var(--success-600);
+}
+
+.validity-info {
+    min-width: 120px;
+}
+
+.valid-date {
+    font-size: var(--text-sm);
+    color: var(--neutral-900);
+    margin-bottom: var(--space-1);
+}
+
+.days-remaining {
+    font-size: var(--text-xs);
+    color: var(--warning-600);
+}
+
+/* Nested Table Styles */
+.nested-table .category-row,
+.nested-table .product-row {
+    transition: all var(--transition-fast);
+}
+
+.nested-table .category-row[data-level="0"] td:first-child {
+    padding-left: var(--space-6);
+}
+
+.nested-table .product-row[data-level="1"] td:first-child {
+    padding-left: var(--space-12);
+}
+
+.category-item,
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.expand-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--neutral-200);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all var(--transition-fast);
-    color: var(--neutral-600);
-    text-decoration: none;
-}
-
-.table-action-btn:hover {
-    background: var(--brand-50);
-    border-color: var(--brand-300);
-    color: var(--brand-700);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
-}
-
-.selection-bar {
-    padding: var(--space-4) var(--space-6);
-    background: var(--brand-50);
-    border-bottom: 1px solid var(--brand-200);
-}
-
-.table-select-column {
-    width: 40px;
-    padding: var(--space-3) var(--space-2);
-}
-
-.table-select-cell {
-    padding: var(--space-3) var(--space-2);
-}
-
-.table-actions-column {
-    width: 120px;
-    text-align: center;
-}
-
-.table-compact td,
-.table-compact th {
-    padding: var(--space-2) var(--space-3);
-    font-size: var(--text-sm);
-}
-
-/* Nested Table Styles */
-.nested-table .parent-row {
-    font-weight: 500;
-}
-
-.nested-table .child-row {
-    background: var(--neutral-50);
-}
-
-.nested-table .child-row td {
-    border-bottom: 1px solid var(--neutral-200);
-    font-size: var(--text-sm);
-}
-
-.expand-btn {
-    background: none;
-    border: none;
-    padding: var(--space-1);
-    cursor: pointer;
-    border-radius: var(--radius-sm);
-    color: var(--neutral-600);
-    transition: all var(--transition-fast);
 }
 
 .expand-btn:hover {
-    background: var(--neutral-100);
+    background: var(--neutral-300);
+}
+
+.expand-btn.expanded .expand-icon {
+    transform: rotate(90deg);
+}
+
+.category-icon,
+.product-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--brand-100);
     color: var(--brand-600);
-}
-
-.expand-btn.expanded svg {
-    transform: rotate(180deg);
-}
-
-/* Sortable Headers */
-.sortable {
-    cursor: pointer;
-    user-select: none;
-    transition: background var(--transition-fast);
-}
-
-.sortable:hover {
-    background: var(--neutral-100);
-}
-
-.sortable.sort-asc svg,
-.sortable.sort-desc svg {
-    color: var(--brand-600);
-}
-
-/* Dropdown Fix */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    background: white;
-    border: 1px solid var(--neutral-200);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    z-index: var(--z-dropdown);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.category-details,
+.product-details {
+    flex: 1;
 }
 
-.dropdown-item {
-    display: block;
-    padding: var(--space-2) var(--space-4);
-    color: var(--neutral-700);
-    text-decoration: none;
+.category-name,
+.product-name {
+    font-weight: 500;
+    color: var(--neutral-900);
     font-size: var(--text-sm);
-    transition: background var(--transition-fast);
+    margin-bottom: var(--space-1);
 }
 
-.dropdown-item:hover {
+.category-desc,
+.product-desc {
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+}
+
+/* Status & Badges */
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.status.status-active { background: var(--success-100); color: var(--success-700); }
+.status.status-pending { background: var(--warning-100); color: var(--warning-700); }
+.status.status-approved { background: var(--success-100); color: var(--success-700); }
+.status.status-success { background: var(--success-100); color: var(--success-700); }
+.status.status-warning { background: var(--warning-100); color: var(--warning-700); }
+.status.status-danger { background: var(--danger-100); color: var(--danger-700); }
+
+/* Action Buttons */
+.action-group {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--neutral-300);
+    background: white;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--neutral-600);
+}
+
+.action-btn:hover {
     background: var(--neutral-50);
+    border-color: var(--brand-400);
+    color: var(--brand-600);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-btn.delete:hover {
+    background: var(--danger-50);
+    border-color: var(--danger-400);
+    color: var(--danger-600);
+}
+
+.action-btn.convert:hover {
+    background: var(--success-50);
+    border-color: var(--success-400);
+    color: var(--success-600);
+}
+
+.action-btn.send:hover {
+    background: var(--brand-50);
+    border-color: var(--brand-400);
     color: var(--brand-600);
 }
 
-/* Dark Mode Fixes */
+/* SKU and Pricing */
+.sku {
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    font-size: var(--text-xs);
+    font-weight: 500;
+}
+
+.price,
+.customer-value {
+    font-weight: 600;
+    color: var(--neutral-900);
+    font-size: var(--text-sm);
+}
+
+.orders-count {
+    color: var(--neutral-700);
+    font-size: var(--text-sm);
+}
+
+.stock-info {
+    min-width: 120px;
+}
+
+.stock-count {
+    font-size: var(--text-sm);
+    color: var(--neutral-900);
+    margin-bottom: var(--space-1);
+}
+
+.stock-location {
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+}
+
+/* Pagination Container */
+.pagination-container {
+    background: var(--neutral-50);
+    border-top: 1px solid var(--neutral-200);
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.pagination-text {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+}
+
+.pagination-options {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--neutral-300);
+    background: white;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--neutral-600);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--brand-50);
+    border-color: var(--brand-400);
+    color: var(--brand-600);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin: 0 var(--space-2);
+}
+
+.pagination-number {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--neutral-300);
+    background: white;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--neutral-600);
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
+.pagination-number:hover {
+    background: var(--brand-50);
+    border-color: var(--brand-400);
+    color: var(--brand-600);
+}
+
+.pagination-number.active {
+    background: var(--brand-600);
+    border-color: var(--brand-600);
+    color: white;
+}
+
+.pagination-ellipsis {
+    padding: 0 var(--space-2);
+    color: var(--neutral-400);
+    font-size: var(--text-sm);
+}
+
+.pagination-jump {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.pagination-jump-label {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+    white-space: nowrap;
+}
+
+.pagination-jump-input {
+    width: 60px;
+    padding: var(--space-2);
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+.pagination-jump-input:focus {
+    border-color: var(--brand-500);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* KPI Grid */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.kpi-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    border: 1px solid var(--neutral-200);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.kpi-card.revenue::before {
+    background: linear-gradient(90deg, var(--brand-400), var(--brand-600));
+}
+
+.kpi-card.orders::before {
+    background: linear-gradient(90deg, var(--success-400), var(--success-600));
+}
+
+.kpi-card.customers::before {
+    background: linear-gradient(90deg, var(--warning-400), var(--warning-600));
+}
+
+.kpi-card.inventory::before {
+    background: linear-gradient(90deg, var(--neutral-400), var(--neutral-600));
+}
+
+.kpi-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.kpi-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.kpi-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.kpi-card.revenue .kpi-icon {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+}
+
+.kpi-card.orders .kpi-icon {
+    background: linear-gradient(135deg, var(--success-500), var(--success-700));
+}
+
+.kpi-card.customers .kpi-icon {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-700));
+}
+
+.kpi-card.inventory .kpi-icon {
+    background: linear-gradient(135deg, var(--neutral-500), var(--neutral-700));
+}
+
+.kpi-trend {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.kpi-trend.positive {
+    background: var(--success-500);
+}
+
+.kpi-trend.negative {
+    background: var(--danger-500);
+}
+
+.kpi-value {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: var(--space-2);
+    line-height: 1.1;
+}
+
+.kpi-label {
+    font-size: var(--text-sm);
+    color: var(--neutral-600);
+    margin-bottom: var(--space-3);
+    font-weight: 500;
+}
+
+.kpi-change {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--success-600);
+}
+
+/* Summary Tables Grid */
+.summary-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-6);
+}
+
+.summary-table-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--neutral-200);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.summary-table-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.summary-table-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--neutral-50);
+}
+
+.summary-table-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin: 0;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table thead {
+    background: var(--neutral-100);
+}
+
+.summary-table th {
+    padding: var(--space-4) var(--space-6);
+    text-align: left;
+    font-weight: 600;
+    color: var(--neutral-700);
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.summary-table td {
+    padding: var(--space-4) var(--space-6);
+    color: var(--neutral-600);
+    border-bottom: 1px solid var(--neutral-100);
+    font-size: var(--text-sm);
+}
+
+.summary-table tbody tr:hover {
+    background: var(--neutral-50);
+}
+
+.summary-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.summary-product {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.product-name {
+    font-weight: 500;
+    color: var(--neutral-900);
+}
+
+.product-sku {
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+    font-family: var(--font-mono);
+}
+
+/* Activity List */
+.activity-list {
+    padding: var(--space-6);
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--neutral-100);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.activity-icon.activity-sale {
+    background: linear-gradient(135deg, var(--success-500), var(--success-700));
+}
+
+.activity-icon.activity-customer {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+}
+
+.activity-icon.activity-inventory {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-700));
+}
+
+.activity-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--neutral-900);
+    margin-bottom: var(--space-1);
+}
+
+.activity-time {
+    font-size: var(--text-xs);
+    color: var(--neutral-500);
+}
+
+.activity-value {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--success-600);
+    flex-shrink: 0;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .library-hero {
+    background: linear-gradient(135deg, var(--neutral-200) 0%, var(--neutral-300) 100%);
+}
+
+[data-theme="dark"] .table-showcase {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .showcase-header {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+}
+
+[data-theme="dark"] .advanced-search-bar {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
+}
+
+[data-theme="dark"] .search-input {
+    background: var(--neutral-100);
+    border-color: var(--neutral-400);
+}
+
 [data-theme="dark"] .table-container {
     background: var(--neutral-100);
     border-color: var(--neutral-300);
 }
 
-[data-theme="dark"] .data-table-container {
-    background: var(--neutral-100);
-    border-color: var(--neutral-300);
-}
-
-[data-theme="dark"] .data-table-header {
-    background: var(--neutral-100);
-    border-color: var(--neutral-300);
-    color: var(--neutral-900);
-}
-
-[data-theme="dark"] .table {
-    background: var(--neutral-100);
-    color: var(--neutral-900);
-}
-
-[data-theme="dark"] .table thead {
+[data-theme="dark"] .data-table th {
     background: var(--neutral-200);
-}
-
-[data-theme="dark"] .table th {
     color: var(--neutral-800);
-    background: var(--neutral-200);
-    border-bottom-color: var(--neutral-400);
+    border-color: var(--neutral-400);
 }
 
-[data-theme="dark"] .table td {
+[data-theme="dark"] .data-table td {
     color: var(--neutral-700);
-    border-bottom-color: var(--neutral-300);
+    border-color: var(--neutral-300);
 }
 
-[data-theme="dark"] .table tbody tr:hover {
+[data-theme="dark"] .data-table tbody tr:hover {
     background: var(--neutral-200);
 }
 
-[data-theme="dark"] .table tbody tr.selected {
-    background: var(--brand-950);
+[data-theme="dark"] .pagination-container {
+    background: var(--neutral-200);
+    border-color: var(--neutral-400);
 }
 
-[data-theme="dark"] .table-action-btn {
-    background: var(--neutral-200);
+[data-theme="dark"] .pagination-btn,
+[data-theme="dark"] .pagination-number {
+    background: var(--neutral-100);
     border-color: var(--neutral-400);
     color: var(--neutral-700);
 }
 
-[data-theme="dark"] .table-action-btn:hover {
+[data-theme="dark"] .pagination-btn:hover:not(:disabled),
+[data-theme="dark"] .pagination-number:hover {
     background: var(--brand-950);
     border-color: var(--brand-700);
     color: var(--brand-300);
 }
 
-[data-theme="dark"] .selection-bar {
-    background: var(--brand-950);
-    border-color: var(--brand-700);
-    color: var(--brand-300);
+[data-theme="dark"] .pagination-number.active {
+    background: var(--brand-600);
+    border-color: var(--brand-600);
 }
 
-[data-theme="dark"] .sortable:hover {
-    background: var(--neutral-300);
-}
-
-[data-theme="dark"] .nested-table .child-row {
-    background: var(--neutral-200);
-}
-
-[data-theme="dark"] .dropdown-menu {
+[data-theme="dark"] .kpi-card,
+[data-theme="dark"] .summary-table-card {
     background: var(--neutral-100);
     border-color: var(--neutral-300);
 }
 
-[data-theme="dark"] .dropdown-item {
-    color: var(--neutral-700);
-}
-
-[data-theme="dark"] .dropdown-item:hover {
+[data-theme="dark"] .summary-table-header {
     background: var(--neutral-200);
-    color: var(--brand-600);
+    border-color: var(--neutral-400);
 }
 
-/* Mobile Responsive */
+[data-theme="dark"] .summary-table th {
+    background: var(--neutral-200);
+    color: var(--neutral-800);
+    border-color: var(--neutral-400);
+}
+
+[data-theme="dark"] .summary-table td {
+    color: var(--neutral-700);
+    border-color: var(--neutral-300);
+}
+
+[data-theme="dark"] .summary-table tbody tr:hover,
+[data-theme="dark"] .activity-item:hover {
+    background: var(--neutral-200);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .data-table-header {
+    .library-hero {
+        padding: var(--space-8) var(--space-4);
+    }
+    
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+    
+    .showcase-header {
         flex-direction: column;
-        gap: var(--space-3);
+        align-items: stretch;
+        gap: var(--space-4);
+    }
+    
+    .showcase-info {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .copy-btn {
+        align-self: center;
+    }
+    
+    .customer-profile {
+        min-width: 200px;
+    }
+    
+    .search-main {
+        flex-direction: column;
         align-items: stretch;
     }
     
-    .data-table-actions {
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pagination-container {
         flex-direction: column;
-        gap: var(--space-2);
+        align-items: stretch;
+        gap: var(--space-4);
     }
     
-    .table-actions {
-        gap: var(--space-1);
+    .pagination-info {
+        justify-content: space-between;
     }
     
-    .table-action-btn {
-        width: 28px;
-        height: 28px;
+    .pagination-controls {
+        justify-content: center;
+    }
+    
+    .pagination-numbers {
+        margin: 0;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-tables-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pagination-jump {
+        display: none;
     }
 }
 </style>
 @endpush
 
-@push('scripts')
+@pushOnce('scripts')
+@verbatim
 <script>
-// Dropdown functionality
-function toggleDropdown(dropdownId) {
-    // Close all other dropdowns
-    document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-        if (menu.id !== dropdownId) {
-            menu.classList.remove('show');
+// Complete ERP/CRM table component functions
+function copyTableCode(tableType) {
+    const tableExamples = {
+        customers: `<div class="advanced-search-bar">
+    <div class="search-main">
+        <div class="search-input-group">
+            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" class="form-input search-input" placeholder="Search customers...">
+        </div>
+        <button class="btn btn-secondary btn-sm filter-toggle">Filters</button>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="select-all"></th>
+                <th>Customer</th>
+                <th>Contact</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>
+                    <div class="customer-profile">
+                        <div class="avatar avatar-company">AM</div>
+                        <div class="customer-details">
+                            <div class="customer-name">Acme Manufacturing</div>
+                            <div class="customer-type">Large Enterprise</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="contact-info">
+                        <div class="contact-name">John Mitchell</div>
+                        <div class="contact-title">Manager</div>
+                    </div>
+                </td>
+                <td><span class="status status-active">Active</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view">View</button>
+                        <button class="action-btn edit">Edit</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>`,
+
+        quotes: `<div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Quote</th>
+                <th>Customer</th>
+                <th>Value</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="quote-info">
+                        <div class="quote-number">#QUO-2024-015</div>
+                        <div class="quote-title">Industrial Equipment</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="customer-summary">
+                        <div class="customer-name">Acme Manufacturing</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="quote-value">
+                        <div class="value-amount">R 156,750.00</div>
+                    </div>
+                </td>
+                <td><span class="status status-pending">Pending</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view">View</button>
+                        <button class="action-btn convert">Convert</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>`,
+
+        nested: `<div class="table-container">
+    <table class="data-table nested-table">
+        <thead>
+            <tr>
+                <th>Category / Product</th>
+                <th>SKU</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="category-row" data-level="0">
+                <td>
+                    <div class="category-item">
+                        <button class="expand-btn" onclick="toggleCategory(this)">▶</button>
+                        <div class="category-details">
+                            <div class="category-name">Industrial Equipment</div>
+                        </div>
+                    </div>
+                </td>
+                <td>-</td>
+                <td>245 items</td>
+                <td>-</td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn edit">Edit</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>`,
+
+        basic: `<div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Premium Widget Assembly</td>
+                <td>Electronics</td>
+                <td>R 1,250.00</td>
+                <td><span class="status status-success">In Stock</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>`,
+
+        sortable: `<div class="table-container">
+    <table class="data-table sortable-table" id="my-sortable-table">
+        <thead>
+            <tr>
+                <th class="sortable" onclick="sortTable('my-sortable-table', 0)">
+                    Order #
+                    <span class="sort-indicator">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th class="sortable" onclick="sortTable('my-sortable-table', 1)">Customer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#ORD-2024-001</td>
+                <td>Acme Manufacturing</td>
+                <td><button class="action-btn view">View</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>`,
+
+        paginated: `<div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Invoice #</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#INV-2024-101</td>
+                <td>Acme Manufacturing</td>
+                <td>R 45,670.00</td>
+                <td><span class="status status-success">Paid</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination-container">
+    <div class="pagination-info">
+        <div class="pagination-text">Showing <strong>1-10</strong> of <strong>247</strong> items</div>
+    </div>
+    <div class="pagination-controls">
+        <div class="pagination-buttons">
+            <button class="pagination-btn" onclick="changePage('prev')">‹</button>
+            <button class="pagination-number active" onclick="changePage(1)">1</button>
+            <button class="pagination-number" onclick="changePage(2)">2</button>
+            <button class="pagination-btn" onclick="changePage('next')">›</button>
+        </div>
+    </div>
+</div>`,
+
+        summary: `<div class="kpi-grid">
+    <div class="kpi-card revenue">
+        <div class="kpi-header">
+            <div class="kpi-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2"/>
+                </svg>
+            </div>
+            <div class="kpi-trend positive">↗</div>
+        </div>
+        <div class="kpi-value">R 2,450,000</div>
+        <div class="kpi-label">Total Revenue</div>
+        <div class="kpi-change">+12.5% from last month</div>
+    </div>
+</div>
+
+<div class="summary-tables-grid">
+    <div class="summary-table-card">
+        <div class="summary-table-header">
+            <h4 class="summary-table-title">Top Products</h4>
+        </div>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Sales</th>
+                    <th>Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Premium Widget</td>
+                    <td>234 units</td>
+                    <td>R 292,500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>`
+    };
+
+    const code = tableExamples[tableType];
+    if (!code) {
+        console.error('Table type not found:', tableType);
+        return;
+    }
+
+    navigator.clipboard.writeText(code).then(() => {
+        if (window.ManuCore) {
+            ManuCore.showToast(`${tableType.charAt(0).toUpperCase() + tableType.slice(1)} table code copied!`, 'success');
+        }
+    }).catch(() => {
+        console.log('Table code:', code);
+        if (window.ManuCore) {
+            ManuCore.showToast('Code logged to console', 'info');
         }
     });
-    
-    // Toggle target dropdown
-    const dropdown = document.getElementById(dropdownId);
-    if (dropdown) {
-        dropdown.classList.toggle('show');
+}
+
+function exportTableLibrary() {
+    const completeLibrary = `/* MANUCORE ERP - TABLE LIBRARY */
+Complete ERP/CRM table patterns with advanced features:
+- Customer Management with search & filters
+- Quotes with conversion tracking  
+- Nested hierarchical categories
+- Sortable columns with indicators
+- Advanced pagination controls
+- KPI dashboard cards
+- Responsive design & dark mode support`;
+
+    navigator.clipboard.writeText(completeLibrary).then(() => {
+        if (window.ManuCore) {
+            ManuCore.showToast('Complete library exported!', 'success');
+        }
+    });
+}
+
+function handleAction(action, id) {
+    const message = `Action: ${action} for ID: ${id}`;
+    if (window.ManuCore) {
+        ManuCore.showToast(message, 'info');
     }
 }
 
-// Close dropdowns when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-            menu.classList.remove('show');
-        });
-    }
-});
+function toggleAdvancedFilters() {
+    const filters = document.getElementById('advanced-filters');
+    const isVisible = filters.style.display !== 'none';
+    filters.style.display = isVisible ? 'none' : 'block';
+}
 
-// Table expansion functionality
-function toggleExpand(orderId) {
-    const button = document.querySelector(`[data-order="${orderId}"] .expand-btn`);
-    const childRows = document.querySelectorAll(`[data-parent="${orderId}"]`);
+function toggleCategory(button) {
+    const row = button.closest('tr');
+    const level = parseInt(row.dataset.level);
+    const isExpanded = button.classList.contains('expanded');
     
     button.classList.toggle('expanded');
     
-    childRows.forEach(row => {
-        if (row.style.display === 'none') {
-            row.style.display = 'table-row';
-        } else {
-            row.style.display = 'none';
+    let nextRow = row.nextElementSibling;
+    while (nextRow && parseInt(nextRow.dataset.level) > level) {
+        if (parseInt(nextRow.dataset.level) === level + 1) {
+            nextRow.style.display = isExpanded ? 'none' : '';
         }
+        nextRow = nextRow.nextElementSibling;
+    }
+}
+
+// Enhanced table sorting function
+function sortTable(tableId, columnIndex) {
+    const table = document.getElementById(tableId);
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const header = table.querySelectorAll('th')[columnIndex];
+    
+    // Determine sort direction
+    const isAscending = header.classList.contains('sort-asc');
+    
+    // Clear all sort classes
+    table.querySelectorAll('th').forEach(th => {
+        th.classList.remove('sort-asc', 'sort-desc');
+    });
+    
+    // Set new sort class
+    header.classList.add(isAscending ? 'sort-desc' : 'sort-asc');
+    
+    // Sort rows
+    rows.sort((a, b) => {
+        const aCell = a.cells[columnIndex];
+        const bCell = b.cells[columnIndex];
+        
+        // Get sort value (use data-sort if available, otherwise text content)
+        let aValue = aCell.dataset.sort || aCell.textContent.trim();
+        let bValue = bCell.dataset.sort || bCell.textContent.trim();
+        
+        // Handle numeric values
+        const aNum = parseFloat(aValue.replace(/[^\d.-]/g, ''));
+        const bNum = parseFloat(bValue.replace(/[^\d.-]/g, ''));
+        
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+            return isAscending ? bNum - aNum : aNum - bNum;
+        }
+        
+        // Handle date values
+        const aDate = new Date(aValue);
+        const bDate = new Date(bValue);
+        if (!isNaN(aDate.getTime()) && !isNaN(bDate.getTime())) {
+            return isAscending ? bDate - aDate : aDate - bDate;
+        }
+        
+        // Handle string values
+        return isAscending ? 
+            bValue.localeCompare(aValue) : 
+            aValue.localeCompare(bValue);
+    });
+    
+    // Re-append sorted rows
+    rows.forEach(row => tbody.appendChild(row));
+    
+    // Show feedback
+    if (window.ManuCore) {
+        const direction = isAscending ? 'descending' : 'ascending';
+        ManuCore.showToast(`Table sorted ${direction}`, 'info');
+    }
+}
+
+// Pagination functions
+function changePage(page) {
+    const currentPage = document.querySelector('.pagination-number.active');
+    const allPages = document.querySelectorAll('.pagination-number');
+    const totalPages = 25; // This would come from your backend
+    
+    let newPage = 1;
+    
+    if (page === 'first') {
+        newPage = 1;
+    } else if (page === 'last') {
+        newPage = totalPages;
+    } else if (page === 'prev') {
+        newPage = Math.max(1, parseInt(currentPage.textContent) - 1);
+    } else if (page === 'next') {
+        newPage = Math.min(totalPages, parseInt(currentPage.textContent) + 1);
+    } else {
+        newPage = parseInt(page);
+    }
+    
+    // Update active page
+    allPages.forEach(p => p.classList.remove('active'));
+    const targetPage = document.querySelector(`[onclick="changePage(${newPage})"]`);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    }
+    
+    // Update pagination buttons state
+    updatePaginationButtons(newPage, totalPages);
+    
+    // Show feedback
+    if (window.ManuCore) {
+        ManuCore.showToast(`Navigated to page ${newPage}`, 'info');
+    }
+    
+    // In real implementation, you would load new data here
+    console.log(`Loading page ${newPage}`);
+}
+
+function updatePaginationButtons(currentPage, totalPages) {
+    const prevBtns = document.querySelectorAll('.pagination-btn-prev');
+    const nextBtns = document.querySelectorAll('.pagination-btn-next');
+    
+    // Update previous buttons
+    prevBtns.forEach(btn => {
+        btn.disabled = currentPage <= 1;
+    });
+    
+    // Update next buttons
+    nextBtns.forEach(btn => {
+        btn.disabled = currentPage >= totalPages;
     });
 }
 
-// Search functionality
-function setupSearch(inputId, tableId) {
-    const searchInput = document.getElementById(inputId);
-    if (!searchInput) return;
+function changePageSize(size) {
+    if (window.ManuCore) {
+        ManuCore.showToast(`Page size changed to ${size} items`, 'info');
+    }
     
-    searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-        
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(searchTerm) ? '' : 'none';
+    // In real implementation, you would reload the table with new page size
+    console.log(`Changing page size to ${size}`);
+}
+
+function jumpToPage(page) {
+    const pageNum = parseInt(page);
+    if (pageNum >= 1 && pageNum <= 25) {
+        changePage(pageNum);
+    } else {
+        if (window.ManuCore) {
+            ManuCore.showToast('Invalid page number', 'warning');
+        }
+    }
+}
+
+// Enhanced action handlers with SweetAlert2
+function handleActionWithAlert(action, id) {
+    const actionMessages = {
+        'view': 'View Details',
+        'edit': 'Edit Item', 
+        'view-invoice': 'View Invoice',
+        'edit-invoice': 'Edit Invoice',
+        'view-product': 'View Product',
+        'edit-product': 'Edit Product',
+        'view-report': 'View Report',
+        'view-activity': 'View Activity'
+    };
+    
+    const message = actionMessages[action] || 'Perform Action';
+    
+    if (window.Swal) {
+        Swal.fire({
+            title: message,
+            text: `Action: ${action} for ID: ${id}`,
+            icon: 'info',
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'OK'
         });
-    });
-}
-
-// Filter functionality
-function setupFilters() {
-    document.addEventListener('click', (e) => {
-        if (e.target.matches('[data-filter]')) {
-            const filter = e.target.dataset.filter;
-            const rows = document.querySelectorAll('#orders-table tbody tr');
-            
-            rows.forEach(row => {
-                if (filter === 'all' || row.dataset.status === filter) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-        
-        if (e.target.matches('[data-status]')) {
-            const status = e.target.dataset.status;
-            const rows = document.querySelectorAll('#invoice-table tbody tr');
-            
-            rows.forEach(row => {
-                if (status === 'all' || row.dataset.status === status) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-    });
-}
-
-// Selection functionality
-function updateSelectionBar(tableId, barId) {
-    const selectedCount = document.querySelectorAll(`#${tableId} .select-row:checked`).length;
-    const selectionBar = document.getElementById(barId);
-    const countElement = selectionBar?.querySelector('.selection-count');
-    
-    if (selectionBar) {
-        selectionBar.style.display = selectedCount > 0 ? 'block' : 'none';
-    }
-    
-    if (countElement) {
-        countElement.textContent = `${selectedCount} selected`;
+    } else if (window.ManuCore) {
+        ManuCore.showToast(`${message} - ID: ${id}`, 'info');
     }
 }
 
-// Column sorting
-function setupSorting() {
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('.sortable')) {
-            const header = e.target.closest('.sortable');
-            
-            // Remove sort classes from other columns
-            header.parentElement.querySelectorAll('.sortable').forEach(th => {
-                if (th !== header) {
-                    th.classList.remove('sort-asc', 'sort-desc');
-                }
-            });
-            
-            // Toggle sort direction
-            if (header.classList.contains('sort-asc')) {
-                header.classList.remove('sort-asc');
-                header.classList.add('sort-desc');
-            } else {
-                header.classList.remove('sort-desc');
-                header.classList.add('sort-asc');
-            }
-            
-            if (window.ManuCore) {
-                const column = header.dataset.sort;
-                const direction = header.classList.contains('sort-asc') ? 'ascending' : 'descending';
-                ManuCore.showToast(`Sorting by ${column} (${direction})`, 'info');
-            }
-        }
-    });
-}
-
-// Initialize everything
-document.addEventListener('DOMContentLoaded', function() {
-    // Setup search for different tables
-    setupSearch('orders-search', 'orders-table');
-    setupSearch('invoice-search', 'invoice-table');
+function handleDeleteWithAlert(type, id) {
+    const typeNames = {
+        'invoice': 'invoice',
+        'product': 'product',
+        'customer': 'customer',
+        'order': 'order'
+    };
     
-    // Setup filters
-    setupFilters();
+    const itemName = typeNames[type] || 'item';
     
-    // Setup sorting
-    setupSorting();
-    
-    // Selection handling for quotes table
-    document.addEventListener('change', (e) => {
-        if (e.target.matches('#quotes-table .select-row, #quotes-table .select-all')) {
-            updateSelectionBar('quotes-table', 'quote-selection-bar');
-            
-            if (e.target.matches('.select-all')) {
-                const checked = e.target.checked;
-                document.querySelectorAll('#quotes-table .select-row').forEach(checkbox => {
-                    checkbox.checked = checked;
-                    checkbox.closest('tr').classList.toggle('selected', checked);
+    if (window.Swal) {
+        Swal.fire({
+            title: `Delete ${itemName}?`,
+            text: `Are you sure you want to delete this ${itemName}? This action cannot be undone.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Simulate deletion
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: `${itemName.charAt(0).toUpperCase() + itemName.slice(1)} has been deleted.`,
+                    icon: 'success',
+                    confirmButtonColor: '#2563eb'
                 });
-            } else {
-                const row = e.target.closest('tr');
-                row.classList.toggle('selected', e.target.checked);
             }
+        });
+    } else if (window.ManuCore) {
+        if (confirm(`Are you sure you want to delete this ${itemName}?`)) {
+            ManuCore.showToast(`${itemName.charAt(0).toUpperCase() + itemName.slice(1)} deleted`, 'success');
         }
-    });
+    }
+}
+
+// KPI interaction functions
+function handleKpiClick(kpiType) {
+    const kpiMessages = {
+        'revenue': 'Revenue Analytics',
+        'orders': 'Order Management',
+        'customers': 'Customer Analytics', 
+        'inventory': 'Inventory Management'
+    };
+    
+    const message = kpiMessages[kpiType] || 'KPI Details';
     
     if (window.ManuCore) {
+        ManuCore.showToast(`Opening ${message}`, 'info');
+    }
+}
+
+// Initialize pagination on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial pagination state
+    updatePaginationButtons(1, 25);
+    
+    // Add click handlers to KPI cards
+    document.querySelectorAll('.kpi-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const kpiType = Array.from(this.classList).find(cls => 
+                ['revenue', 'orders', 'customers', 'inventory'].includes(cls)
+            );
+            if (kpiType) {
+                handleKpiClick(kpiType);
+            }
+        });
+        
+        // Add hover effect
+        card.style.cursor = 'pointer';
+    });
+    
+    console.log('📊 Enhanced table functions loaded');
+    
+    if (window.ManuCore && ManuCore.initTooltips) {
         ManuCore.initTooltips();
     }
-    
-    console.log('Enhanced Table Components loaded with 8 table types');
 });
-
-// Action functions (stubs for demo)
-function viewOrder(id) { if (window.ManuCore) ManuCore.showToast(`Viewing order ${id}`, 'info'); }
-function editOrder(id) { if (window.ManuCore) ManuCore.showToast(`Editing order ${id}`, 'info'); }
-function printInvoice(id) { if (window.ManuCore) ManuCore.showToast(`Printing invoice ${id}`, 'info'); }
-function createOrder() { if (window.ManuCore) ManuCore.showToast('Creating new order', 'info'); }
-function viewQuote(id) { if (window.ManuCore) ManuCore.showToast(`Viewing quote ${id}`, 'info'); }
-function editQuote(id) { if (window.ManuCore) ManuCore.showToast(`Editing quote ${id}`, 'info'); }
-function convertQuote(id) { if (window.ManuCore) ManuCore.showToast(`Converting quote ${id} to order`, 'info'); }
-function createQuote() { if (window.ManuCore) ManuCore.showToast('Creating new quote', 'info'); }
-function exportQuotes() { if (window.ManuCore) ManuCore.showToast('Exporting quotes', 'info'); }
-function viewInvoice(id) { if (window.ManuCore) ManuCore.showToast(`Viewing invoice ${id}`, 'info'); }
-function downloadInvoice(id) { if (window.ManuCore) ManuCore.showToast(`Downloading invoice ${id}`, 'info'); }
-function emailInvoice(id) { if (window.ManuCore) ManuCore.showToast(`Emailing invoice ${id}`, 'info'); }
-function sendReminder(id) { if (window.ManuCore) ManuCore.showToast(`Sending reminder for invoice ${id}`, 'info'); }
-function markPaid(id) { if (window.ManuCore) ManuCore.showToast(`Marking invoice ${id} as paid`, 'success'); }
-function createInvoice() { if (window.ManuCore) ManuCore.showToast('Creating new invoice', 'info'); }
-function changePerPage(value) { if (window.ManuCore) ManuCore.showToast(`Showing ${value} items per page`, 'info'); }
-function copyTableCode() { if (window.ManuCore) ManuCore.showToast('Table code examples copied!', 'success'); }
-function reorder(id) { if (window.ManuCore) ManuCore.showToast(`Creating reorder from ${id}`, 'info'); }
-function duplicateQuote(id) { if (window.ManuCore) ManuCore.showToast(`Duplicating quote ${id}`, 'info'); }
-function bulkExportQuotes() { if (window.ManuCore) ManuCore.showToast('Bulk exporting selected quotes', 'info'); }
-function bulkConvertQuotes() { if (window.ManuCore) ManuCore.showToast('Converting selected quotes to orders', 'info'); }
-function bulkDeleteQuotes() { if (window.ManuCore) ManuCore.showToast('Deleting selected quotes', 'warning'); }
 </script>
-@endpush
+@endverbatim
+@endpushOnce

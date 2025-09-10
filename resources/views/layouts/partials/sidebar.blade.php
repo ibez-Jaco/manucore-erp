@@ -1,25 +1,30 @@
 @php
     use Illuminate\Support\Facades\Route;
 
+    // Build Settings-side items
     $settingsItems = [];
-    if (Route::has('settings.index'))          $settingsItems[] = ['label'=>'Settings Dashboard','icon'=>'settings','route'=>'settings.index','active'=>request()->routeIs('settings.index')];
-    if (Route::has('settings.company'))        $settingsItems[] = ['label'=>'Company Profile','icon'=>'building-2','route'=>'settings.company','active'=>request()->routeIs('settings.company*')];
-    if (Route::has('settings.branding.edit'))  $settingsItems[] = ['label'=>'Branding & Theme','icon'=>'palette','route'=>'settings.branding.edit','active'=>request()->routeIs('settings.branding.*')];
-    if (Route::has('settings.branches.index')) $settingsItems[] = ['label'=>'Branches & Locations','icon'=>'map-pin','route'=>'settings.branches.index','active'=>request()->routeIs('settings.branches.*')];
-    if (Route::has('settings.templates.edit')) $settingsItems[] = ['label'=>'Email Templates','icon'=>'mail','route'=>'settings.templates.edit','active'=>request()->routeIs('settings.templates.*')];
-    if (Route::has('admin.users'))             $settingsItems[] = ['label'=>'User Management','icon'=>'users','route'=>'admin.users','active'=>request()->routeIs('admin.users*')];
+    if (Route::has('settings.index'))          { $settingsItems[] = ['label'=>'Settings Dashboard','icon'=>'settings','route'=>'settings.index','active'=>request()->routeIs('settings.index')]; }
+    if (Route::has('settings.company'))        { $settingsItems[] = ['label'=>'Company Profile','icon'=>'building-2','route'=>'settings.company','active'=>request()->routeIs('settings.company*')]; }
+    if (Route::has('settings.branding.edit'))  { $settingsItems[] = ['label'=>'Branding & Theme','icon'=>'palette','route'=>'settings.branding.edit','active'=>request()->routeIs('settings.branding.*')]; }
+    if (Route::has('settings.branches.index')) { $settingsItems[] = ['label'=>'Branches & Locations','icon'=>'map-pin','route'=>'settings.branches.index','active'=>request()->routeIs('settings.branches.*')]; }
+    if (Route::has('settings.templates.edit')) { $settingsItems[] = ['label'=>'Email Templates','icon'=>'mail','route'=>'settings.templates.edit','active'=>request()->routeIs('settings.templates.*')]; }
 
+    // Build Admin-side items (User Management lives here)
     $adminItems = [];
-    if (Route::has('admin.index'))      $adminItems[] = ['label'=>'Admin Dashboard','icon'=>'gauge','route'=>'admin.index','active'=>request()->routeIs('admin.index')];
-    if (Route::has('admin.roles'))      $adminItems[] = ['label'=>'Role Management','icon'=>'shield-check','route'=>'admin.roles','active'=>request()->routeIs('admin.roles*')];
-    if (Route::has('admin.health'))     $adminItems[] = ['label'=>'System Health','icon'=>'activity','route'=>'admin.health','active'=>request()->routeIs('admin.health*')];
-    if (Route::has('admin.logs'))       $adminItems[] = ['label'=>'System Logs','icon'=>'file-text','route'=>'admin.logs','active'=>request()->routeIs('admin.logs*')];
-    if (Route::has('admin.templates'))  $adminItems[] = ['label'=>'System Templates','icon'=>'file-text','route'=>'admin.templates','active'=>request()->routeIs('admin.templates*')];
+    if (Route::has('admin.index'))      { $adminItems[] = ['label'=>'Admin Dashboard','icon'=>'gauge','route'=>'admin.index','active'=>request()->routeIs('admin.index')]; }
+    if (Route::has('admin.users'))      { $adminItems[] = ['label'=>'User Management','icon'=>'users','route'=>'admin.users','active'=>request()->routeIs('admin.users*')]; }
+    if (Route::has('admin.roles'))      { $adminItems[] = ['label'=>'Role Management','icon'=>'shield-check','route'=>'admin.roles','active'=>request()->routeIs('admin.roles*')]; }
+    if (Route::has('admin.health'))     { $adminItems[] = ['label'=>'System Health','icon'=>'activity','route'=>'admin.health','active'=>request()->routeIs('admin.health*')]; }
+    if (Route::has('admin.logs'))       { $adminItems[] = ['label'=>'System Logs','icon'=>'file-text','route'=>'admin.logs','active'=>request()->routeIs('admin.logs*')]; }
+    if (Route::has('admin.templates'))  { $adminItems[] = ['label'=>'System Templates','icon'=>'file-text','route'=>'admin.templates','active'=>request()->routeIs('admin.templates*')]; }
 
     $homeHref      = Route::has('settings.index') ? route('settings.index') : url('/system/settings');
     $dashboardHref = Route::has('dashboard') ? route('dashboard') : url('/dashboard');
 
-    $currentView = str_starts_with(request()->route()->getName(), 'admin.') && !request()->routeIs('admin.users*') ? 'admin' : 'settings';
+    // Safer current view detection (no method calls on null)
+    $route       = request()->route();
+    $routeName   = $route ? $route->getName() : '';
+    $currentView = (is_string($routeName) && str_starts_with($routeName, 'admin.')) ? 'admin' : 'settings';
 @endphp
 
 <div class="sidebar"
@@ -40,7 +45,6 @@
             </div>
         </a>
 
-        {{-- Collapse toggle (hover-to-show when collapsed) --}}
         <button type="button" class="sidebar-collapse-btn" aria-label="Toggle sidebar"
                 @click="
                     collapsed = !collapsed;
@@ -49,15 +53,13 @@
                         window.ManuCore.config.sidebarCollapsed = collapsed;
                         window.ManuCore.updateMainContentMargin();
                     }
-                    $nextTick(() => {
-                        document.querySelector('.sidebar').classList.toggle('collapsed', collapsed);
-                    });
+                    $nextTick(() => document.querySelector('.sidebar').classList.toggle('collapsed', collapsed));
                 ">
             <x-lucide-chevrons-left class="sidebar-collapse-icon" />
         </button>
     </div>
 
-    @if(auth()->user()->hasRole('Admin'))
+    @if(auth()->check() && auth()->user()->hasRole('Admin'))
     <div class="sidebar-view-toggle" :class="{ 'collapsed': collapsed }">
         <div class="view-toggle-container">
             <button type="button" class="view-toggle-btn"
@@ -99,7 +101,8 @@
                     <div class="nav-item">
                         <a href="{{ route($item['route']) }}"
                            class="nav-link {{ $item['active'] ? 'active' : '' }}"
-                           @click.stop>
+                           @click.stop
+                           @if($item['active']) aria-current="page" @endif>
                             <div class="nav-icon">
                                 @switch($item['icon'])
                                     @case('palette')     <x-lucide-palette class="nav-icon-svg" /> @break
@@ -122,7 +125,7 @@
         </div>
 
         {{-- Admin --}}
-        @if(auth()->user()->hasRole('Admin'))
+        @if(auth()->check() && auth()->user()->hasRole('Admin'))
         <div x-show="currentView === 'admin'" x-transition:enter="animate-fadeIn" x-cloak>
             <div class="nav-section">
                 <div class="nav-section-title admin" :class="{ 'collapsed': collapsed }">
@@ -133,10 +136,12 @@
                     <div class="nav-item">
                         <a href="{{ route($item['route']) }}"
                            class="nav-link admin {{ $item['active'] ? 'active' : '' }}"
-                           @click.stop>
+                           @click.stop
+                           @if($item['active']) aria-current="page" @endif>
                             <div class="nav-icon">
                                 @switch($item['icon'])
                                     @case('gauge')          <x-lucide-gauge class="nav-icon-svg" /> @break
+                                    @case('users')          <x-lucide-users class="nav-icon-svg" /> @break
                                     @case('shield-check')   <x-lucide-shield-check class="nav-icon-svg" /> @break
                                     @case('activity')       <x-lucide-activity class="nav-icon-svg" /> @break
                                     @case('file-text')      <x-lucide-file-text class="nav-icon-svg" /> @break
@@ -169,11 +174,8 @@
 </div>
 
 <style>
-/* When collapsed, only show the collapse button while hovering sidebar */
 .sidebar.collapsed .sidebar-collapse-btn { opacity: 0; pointer-events: none; transform: translateY(-50%) scale(0.95); }
 .sidebar.collapsed:hover .sidebar-collapse-btn { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
-
-/* Slightly tighter position when collapsed so it “combines” with the logo area */
 .sidebar.collapsed .sidebar-collapse-btn { right: 8px; }
 </style>
 

@@ -1,65 +1,115 @@
 @extends('layouts.panel')
 
 @section('title', 'System Health - ManuCore ERP')
-@section('header', 'System Health Monitor')
-@section('subheader', 'Monitor system performance and health status')
+@section('header', 'System Health')
+@section('subheader', 'Live status of core services and application environment')
 
 @section('content')
+@php
+    // Summaries
+    $counts = ['healthy'=>0,'warning'=>0,'error'=>0,'unknown'=>0];
+    foreach (($healthData ?? []) as $row) {
+        $s = strtolower($row['status'] ?? 'unknown');
+        if (!array_key_exists($s, $counts)) $s = 'unknown';
+        $counts[$s]++;
+    }
+    $overall = $counts['error'] > 0 ? 'error' : ($counts['warning'] > 0 ? 'warning' : 'healthy');
+    $badge = fn($s) => match(strtolower($s)) {
+        'healthy' => 'badge-success',
+        'warning' => 'badge-warning',
+        'error'   => 'badge-danger',
+        default   => 'badge-neutral',
+    };
+@endphp
+
 <div class="space-y-6">
-    {{-- Health Status Grid --}}
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        @foreach($healthData as $service => $data)
-            <div class="erp-card {{ $data['status'] === 'healthy' ? 'border-green-200 bg-green-50' : ($data['status'] === 'warning' ? 'border-yellow-200 bg-yellow-50' : 'border-red-200 bg-red-50') }}">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-semibold text-gray-900 capitalize">{{ str_replace('_', ' ', $service) }}</h3>
-                    <div class="w-3 h-3 rounded-full {{ $data['status'] === 'healthy' ? 'bg-green-500' : ($data['status'] === 'warning' ? 'bg-yellow-500' : 'bg-red-500') }}"></div>
+    {{-- Summary widgets --}}
+    <div class="widget-grid widget-grid-4">
+        <div class="widget-stat">
+            <div class="widget-stat-header">
+                <div class="widget-stat-icon" style="background: var(--brand-100); color: var(--brand-700);">
+                    <x-lucide-activity class="w-4 h-4" />
                 </div>
-                <p class="mb-2 text-sm text-gray-600">{{ $data['message'] }}</p>
-                
-                @if(isset($data['response_time']))
-                    <p class="text-xs text-gray-500">Response: {{ $data['response_time'] }}</p>
-                @endif
-                
-                @if(isset($data['used_percentage']))
-                    <div class="mt-2">
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-blue-600 rounded-full" style="width: {{ $data['used_percentage'] }}%"></div>
-                        </div>
-                    </div>
-                @endif
             </div>
-        @endforeach
+            <div class="widget-stat-value text-capitalize">{{ $overall }}</div>
+            <div class="widget-stat-label">Overall</div>
+            <div class="widget-stat-change {{ $overall === 'healthy' ? 'positive' : ($overall === 'warning' ? 'neutral' : 'negative') }}">Live</div>
+        </div>
+
+        <div class="widget-stat">
+            <div class="widget-stat-header">
+                <div class="widget-stat-icon" style="background: var(--success-100); color: var(--success-700);">
+                    <x-lucide-check-circle class="w-4 h-4" />
+                </div>
+            </div>
+            <div class="widget-stat-value">{{ $counts['healthy'] }}</div>
+            <div class="widget-stat-label">OK</div>
+        </div>
+
+        <div class="widget-stat">
+            <div class="widget-stat-header">
+                <div class="widget-stat-icon" style="background: var(--warning-100); color: var(--warning-700);">
+                    <x-lucide-alert-triangle class="w-4 h-4" />
+                </div>
+            </div>
+            <div class="widget-stat-value">{{ $counts['warning'] }}</div>
+            <div class="widget-stat-label">Warnings</div>
+        </div>
+
+        <div class="widget-stat">
+            <div class="widget-stat-header">
+                <div class="widget-stat-icon" style="background: var(--danger-100); color: var(--danger-700);">
+                    <x-lucide-x-octagon class="w-4 h-4" />
+                </div>
+            </div>
+            <div class="widget-stat-value">{{ $counts['error'] }}</div>
+            <div class="widget-stat-label">Failures</div>
+        </div>
     </div>
 
-    {{-- Health Details --}}
-    <div class="erp-card">
-        <h2 class="mb-4 text-xl font-bold text-gray-900">System Status Details</h2>
-        
-        <div class="overflow-x-auto">
-            <table class="erp-table">
+    {{-- Checks table --}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Checks</h3>
+        </div>
+        <div class="p-0 card-body">
+            <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Service</th>
+                        <th>Check</th>
                         <th>Status</th>
                         <th>Message</th>
-                        <th>Last Checked</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($healthData as $service => $data)
-                        <tr>
-                            <td class="font-medium capitalize">{{ str_replace('_', ' ', $service) }}</td>
-                            <td>
-                                <span class="erp-badge {{ $data['status'] === 'healthy' ? 'success' : ($data['status'] === 'warning' ? 'warning' : 'error') }}">
-                                    {{ ucfirst($data['status']) }}
-                                </span>
-                            </td>
-                            <td class="text-sm text-gray-600">{{ $data['message'] }}</td>
-                            <td class="text-sm text-gray-500">{{ now()->format('H:i:s') }}</td>
-                        </tr>
-                    @endforeach
+                @forelse(($healthData ?? []) as $k => $row)
+                    @php
+                        $s   = strtolower($row['status'] ?? 'unknown');
+                        $msg = $row['message'] ?? '';
+                        $meta = $row['meta'] ?? [];
+                    @endphp
+                    <tr>
+                        <td class="font-medium">{{ $row['label'] ?? ucfirst($k) }}</td>
+                        <td><span class="badge {{ $badge($s) }}">{{ ucfirst($s) }}</span></td>
+                        <td>{{ $msg }}</td>
+                        <td class="text-sm text-neutral-600">
+                            @if(is_array($meta) && count($meta))
+                                <pre class="p-2 overflow-auto text-xs rounded-md bg-neutral-50">{{ json_encode($meta, JSON_PRETTY_PRINT) }}</pre>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="4" class="py-6 text-center text-neutral-600">No checks returned.</td></tr>
+                @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="gap-2 card-footer d-flex">
+            <a href="{{ route('admin.health') }}" class="btn btn-secondary btn-sm">Re-run</a>
+            @if(Route::has('horizon.index'))
+                <a href="{{ route('horizon.index') }}" class="btn btn-secondary btn-sm">Open Horizon</a>
+            @endif
         </div>
     </div>
 </div>
