@@ -9,23 +9,21 @@ return [
     | Horizon Domain
     |--------------------------------------------------------------------------
     */
-
     'domain' => env('HORIZON_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
-    | Horizon Path
+    | Horizon Path (moved under Admin surface)
     |--------------------------------------------------------------------------
+    | We default to /system/horizon. You can override via HORIZON_PATH.
     */
-
-    'path' => env('HORIZON_PATH', 'horizon'),
+    'path' => env('HORIZON_PATH', 'system/horizon'),
 
     /*
     |--------------------------------------------------------------------------
     | Horizon Redis Connection
     |--------------------------------------------------------------------------
     */
-
     'use' => 'default',
 
     /*
@@ -33,7 +31,6 @@ return [
     | Horizon Redis Prefix
     |--------------------------------------------------------------------------
     */
-
     'prefix' => env(
         'HORIZON_PREFIX',
         Str::slug(env('APP_NAME', 'laravel'), '_') . '_horizon:'
@@ -41,18 +38,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Horizon Route Middleware
+    | Horizon Route Middleware (lock to Admin)
     |--------------------------------------------------------------------------
     */
-
-    'middleware' => ['web'],
+    'middleware' => ['web', 'auth', 'verified', 'role:Admin'],
 
     /*
     |--------------------------------------------------------------------------
     | Queue Wait Time Thresholds
     |--------------------------------------------------------------------------
     */
-
     'waits' => [
         'redis:default' => 60,
     ],
@@ -62,7 +57,6 @@ return [
     | Job Trimming Times
     |--------------------------------------------------------------------------
     */
-
     'trim' => [
         'recent'        => 60,
         'pending'       => 60,
@@ -77,7 +71,6 @@ return [
     | Silenced Jobs
     |--------------------------------------------------------------------------
     */
-
     'silenced' => [
         // App\Jobs\ExampleJob::class,
     ],
@@ -87,7 +80,6 @@ return [
     | Metrics
     |--------------------------------------------------------------------------
     */
-
     'metrics' => [
         'trim_snapshots' => [
             'job'   => 24,
@@ -100,7 +92,6 @@ return [
     | Fast Termination
     |--------------------------------------------------------------------------
     */
-
     'fast_termination' => false,
 
     /*
@@ -108,7 +99,6 @@ return [
     | Memory Limit (MB)
     |--------------------------------------------------------------------------
     */
-
     'memory_limit' => 64,
 
     /*
@@ -116,20 +106,19 @@ return [
     | Queue Worker Configuration (defaults for all envs)
     |--------------------------------------------------------------------------
     */
-
     'defaults' => [
         'supervisor-1' => [
-            'connection'         => 'redis',
-            'queue'              => ['default'], // ensure Spatie Health probes are consumed
-            'balance'            => 'auto',
-            'autoScalingStrategy'=> 'time',
-            'maxProcesses'       => 1,
-            'maxTime'            => 0,
-            'maxJobs'            => 0,
-            'memory'             => 128,
-            'tries'              => 1,
-            'timeout'            => 60,
-            'nice'               => 0,
+            'connection'          => 'redis',
+            'queue'               => ['default'], // ensure Spatie Health probes are consumed
+            'balance'             => 'auto',
+            'autoScalingStrategy' => 'time',
+            'maxProcesses'        => 1,
+            'maxTime'             => 0,
+            'maxJobs'             => 0,
+            'memory'              => 128,
+            'tries'               => 1,
+            'timeout'             => 60,
+            'nice'                => 0,
         ],
     ],
 
@@ -138,9 +127,7 @@ return [
     | Environment-specific Overrides
     |--------------------------------------------------------------------------
     */
-
     'environments' => [
-
         'production' => [
             'supervisor-1' => [
                 'maxProcesses'    => 10,
@@ -148,13 +135,11 @@ return [
                 'balanceCooldown' => 3,
             ],
         ],
-
         'local' => [
             'supervisor-1' => [
                 'maxProcesses' => 3,
             ],
         ],
-
     ],
 
 ];
