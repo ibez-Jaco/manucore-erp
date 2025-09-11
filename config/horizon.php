@@ -17,7 +17,7 @@ return [
     |--------------------------------------------------------------------------
     | We default to /system/horizon. You can override via HORIZON_PATH.
     */
-    'path' => env('HORIZON_PATH', 'system/horizon'),
+    'path' => env('HORIZON_PATH', 'admin/horizon'),
 
     /*
     |--------------------------------------------------------------------------
