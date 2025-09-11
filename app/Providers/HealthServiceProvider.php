@@ -10,23 +10,27 @@ use Spatie\Health\Checks\Checks\HorizonCheck;
 use Spatie\Health\Checks\Checks\QueueCheck;
 use Spatie\Health\Checks\Checks\RedisCheck;
 use Spatie\Health\Checks\Checks\ScheduleCheck;
+use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
 
 class HealthServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // No bindings required for basic health checks
+        // Nothing to bind for basic checks
     }
 
     public function boot(): void
     {
         Health::checks([
-            DatabaseCheck::new(),
-            CacheCheck::new(),
-            RedisCheck::new(),
-            QueueCheck::new(),     // uses default queue connection
-            ScheduleCheck::new(),  // goes green once cron runs
-            HorizonCheck::new(),   // shows "Running" if Horizon is up
+            DatabaseCheck::new(),                 // DB up?
+            CacheCheck::new(),                    // cache ok?
+            RedisCheck::new(),                    // Redis ping
+            HorizonCheck::new(),                  // Horizon process running?
+            ScheduleCheck::new(),                 // Will go green once cron runs at least once
+            QueueCheck::new(),                    // Works once we schedule the dispatcher (next step)
+            UsedDiskSpaceCheck::new()             // Storage headroom
+                ->warnWhenUsedSpaceIsAbovePercentage(80)
+                ->failWhenUsedSpaceIsAbovePercentage(90),
         ]);
     }
 }

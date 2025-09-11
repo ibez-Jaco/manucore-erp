@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\HealthController;
-use App\Http\Controllers\Admin\LogsController;
 use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\CacheController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HealthController;
+use App\Http\Controllers\Admin\LogsController;
 use App\Http\Controllers\Admin\TemplatesController;
+use App\Http\Controllers\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,6 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
     ->prefix('system/admin')
     ->as('admin.')
     ->group(function () {
-
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
@@ -30,16 +29,24 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         Route::get('/users', [UsersController::class, 'users'])->name('users');
         Route::get('/roles', [UsersController::class, 'roles'])->name('roles');
 
-        // System Monitoring
+        // System Health
         Route::get('/health', [HealthController::class, 'index'])->name('health');
+
+        // Logs
         Route::get('/logs', [LogsController::class, 'index'])->name('logs');
+        Route::prefix('logs')->as('logs.')->group(function () {
+            Route::get('/tail', [LogsController::class, 'tail'])->name('tail');
+            Route::get('/download', [LogsController::class, 'download'])->name('download');
+            Route::post('/rotate', [LogsController::class, 'rotate'])->name('rotate');
+            Route::post('/purge', [LogsController::class, 'purge'])->name('purge');
+        });
 
         // Quick Actions
         Route::post('/backup', [BackupController::class, 'run'])->name('backup');
         Route::post('/cache/clear', [CacheController::class, 'clear'])->name('cache.clear');
 
         // Developer Templates (GATED)
-        // Index route is named admin.templates  → used by the sidebar
+        // Index route is named admin.templates → used by the sidebar
         Route::get('/templates', [TemplatesController::class, 'index'])->name('templates');
 
         // Child pages are named admin.templates.*

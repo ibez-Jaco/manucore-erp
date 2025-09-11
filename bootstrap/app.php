@@ -5,11 +5,15 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+// (optional) you can "use" these instead of FQCNs in the schedule block
+use Spatie\Health\Commands\DispatchQueueCheckJobsCommand;
+use Spatie\Health\Commands\RunHealthChecksCommand;
+use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
-        // Keep API if you have one; add back here if needed:
-        // api: __DIR__ . '/../routes/api.php',
+        // api: __DIR__ . '/../routes/api.php', // enable if/when needed
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
@@ -27,31 +31,32 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        // Default exception handling; add reportable/renderable if needed
-        // $exceptions->report(function (\Throwable $e) {});
-        // $exceptions->render(function (\Throwable $e, $request) {});
+        // Default exception handlers; customize if needed
     })
-->withSchedule(function (Illuminate\Console\Scheduling\Schedule $schedule): void {
-    // === Queues / Horizon housekeeping ===
-    $schedule->command('horizon:snapshot')->everyFiveMinutes();
-    $schedule->command('queue:prune-batches --hours=48')->daily();
-    $schedule->command('queue:prune-failed --hours=240')->daily();
+    ->withSchedule(function (Schedule $schedule): void {
+        // === Queues / Horizon housekeeping ===
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command('queue:prune-batches --hours=48')->daily();
+        $schedule->command('queue:prune-failed --hours=240')->daily();
 
-    // === Backups (Spatie) ===
-    $schedule->command('backup:run')->dailyAt('02:00');
-    $schedule->command('backup:monitor')->dailyAt('08:00');
+        // === Backups (Spatie) ===
+        $schedule->command('backup:run')->dailyAt('02:00');
+        $schedule->command('backup:monitor')->dailyAt('08:00');
 
-    // === Optional housekeeping ===
-    $schedule->command('model:prune')->daily(); // if you use Prunable models
+        // === Optional housekeeping ===
+        $schedule->command('model:prune')->daily(); // for Prunable models
+        if (class_exists(\Laravel\Telescope\Console\PruneCommand::class)) {
+            $schedule->command('telescope:prune --hours=48')->daily();
+        }
 
-    if (class_exists(\Laravel\Telescope\Console\PruneCommand::class)) {
-        $schedule->command('telescope:prune --hours=48')->daily();
-    }
+        // === Spatie Health: CORRECT commands for v1 ===
+        // 1) Run all health checks and store results / notify if failing
+        $schedule->command(RunHealthChecksCommand::class)->everyMinute(); // == "php artisan health:check"
 
-    // === Spatie Health heartbeats (required for checks to pass) ===
-    // These are the correct commands your version exposes:
-    $schedule->command('health:queue-check-heartbeat')->everyMinute();
-    $schedule->command('health:schedule-check-heartbeat')->everyMinute();
-})
+        // 2) Queue heartbeat: dispatches a tiny job to verify the queue is moving
+        $schedule->command(DispatchQueueCheckJobsCommand::class)->everyMinute();
 
+        // 3) Schedule heartbeat: writes a cache timestamp; ScheduleCheck validates freshness
+        $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
+    })
     ->create();
