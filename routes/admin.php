@@ -25,8 +25,17 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-        // User & Role Management
-        Route::get('/users', [UsersController::class, 'users'])->name('users');
+        // --- Users: keep legacy index name for sidebar (admin.users), plus full CRUD ---
+        Route::get('/users', [UsersController::class, 'index'])->name('users'); // legacy index name
+        Route::resource('users', UsersController::class)
+            ->except(['show','index'])
+            ->names('users');
+
+        // Custom user actions
+        Route::post('/users/{user}/toggle-active', [UsersController::class, 'toggleActive'])->name('users.toggle-active');
+        Route::post('/users/{user}/roles', [UsersController::class, 'assignRoles'])->name('users.roles');
+
+        // Role quick view (existing)
         Route::get('/roles', [UsersController::class, 'roles'])->name('roles');
 
         // System Health
@@ -46,26 +55,19 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         Route::post('/cache/clear', [CacheController::class, 'clear'])->name('cache.clear');
 
         // Developer Templates (GATED)
-        // Index route is named admin.templates → used by the sidebar
         Route::get('/templates', [TemplatesController::class, 'index'])->name('templates');
-
-        // Child pages are named admin.templates.*
         Route::prefix('templates')->as('templates.')->group(function () {
-            // Page templates
             Route::view('/page-template',  'admin.templates.page-template')->name('page-template');
             Route::view('/simple-page',    'admin.templates.simple-page')->name('simple-page');
             Route::view('/form-page',      'admin.templates.form-page')->name('form-page');
             Route::view('/table-page',     'admin.templates.table-page')->name('table-page');
             Route::view('/dashboard-page', 'admin.templates.dashboard-page')->name('dashboard-page');
-
-            // Components
             Route::prefix('components')->as('components.')->group(function () {
                 Route::view('/cards',   'admin.templates.components.card-examples')->name('cards');
                 Route::view('/forms',   'admin.templates.components.form-examples')->name('forms');
                 Route::view('/buttons', 'admin.templates.components.button-examples')->name('buttons');
                 Route::view('/tables',  'admin.templates.components.table-examples')->name('tables');
-                Route::view('/misc',    'admin.templates.components.misc-examples')->name('misc');  // ADD THIS LINE
-
+                Route::view('/misc',    'admin.templates.components.misc-examples')->name('misc');
             });
         });
     });

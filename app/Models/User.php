@@ -19,6 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'company_id','branch_id',
         'employee_code','department','job_title',
         'phone','mobile','can_access_all_branches','joined_date',
+        'is_active',
     ];
 
     protected function casts(): array
@@ -28,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'can_access_all_branches' => 'boolean',
             'joined_date' => 'date',
+            'is_active' => 'boolean',
         ];
     }
 
