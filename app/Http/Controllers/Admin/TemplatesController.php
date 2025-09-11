@@ -72,6 +72,12 @@ class TemplatesController extends Controller
                     'icon'        => '📋',
                     'route'       => 'admin.templates.components.tables',
                 ],
+                [
+                    'name'        => 'Misc Components',  // ADD THIS ENTIRE BLOCK
+                    'description' => 'Modals, alerts, badges, navigation, and interactive elements',
+                    'icon'        => '🎨',
+                    'route'       => 'admin.templates.components.misc',
+                ],
             ],
         ];
 

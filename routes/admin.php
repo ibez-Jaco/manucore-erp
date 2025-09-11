@@ -64,6 +64,8 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
                 Route::view('/forms',   'admin.templates.components.form-examples')->name('forms');
                 Route::view('/buttons', 'admin.templates.components.button-examples')->name('buttons');
                 Route::view('/tables',  'admin.templates.components.table-examples')->name('tables');
+                Route::view('/misc',    'admin.templates.components.misc-examples')->name('misc');  // ADD THIS LINE
+
             });
         });
     });
