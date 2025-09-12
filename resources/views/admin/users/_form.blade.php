@@ -80,7 +80,6 @@
                 </div>
                 <h3 class="card-title">Access & Roles</h3>
             </div>
-            <p class="card-subtitle">Whether the user can sign in and which roles they have</p>
         </div>
         <div class="card-body">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">

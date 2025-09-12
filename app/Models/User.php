@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyEmailQueued;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,6 +23,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_active',
     ];
 
+    // Keep secrets out of arrays/json
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     protected function casts(): array
     {
         return [
@@ -33,20 +40,40 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function company(): BelongsTo { return $this->belongsTo(Company::class); }
-    public function branch(): BelongsTo  { return $this->belongsTo(Branch::class); }
+    /**
+     * Send the built-in email verification using a queued notification.
+     * (Horizon will process the 'mail' queue.)
+     */
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify((new VerifyEmailQueued())->onQueue('mail'));
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
 
     public function accessibleBranches(): BelongsToMany
     {
         return $this->belongsToMany(Branch::class, 'user_branch_access')
-            ->withPivot('is_primary')->withTimestamps();
+            ->withPivot('is_primary')
+            ->withTimestamps();
     }
 
     public function canAccessBranch($branchId): bool
     {
         if ($this->can_access_all_branches) return true;
-        if ((int)$this->branch_id === (int)$branchId) return true;
-        return $this->accessibleBranches()->where('branches.id', $branchId)->exists();
+        if ((int) $this->branch_id === (int) $branchId) return true;
+
+        return $this->accessibleBranches()
+            ->where('branches.id', $branchId)
+            ->exists();
     }
 
     public function getAllAccessibleBranches()
@@ -54,14 +81,23 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->can_access_all_branches && $this->company) {
             return $this->company->branches()->active()->get();
         }
+
         $ids = $this->accessibleBranches->pluck('id')->toArray();
-        if ($this->branch_id && !in_array($this->branch_id, $ids, true)) $ids[] = $this->branch_id;
+        if ($this->branch_id && !in_array($this->branch_id, $ids, true)) {
+            $ids[] = $this->branch_id;
+        }
+
         return Branch::whereIn('id', $ids)->active()->get();
     }
 
-    public function scopeForCompany($q, $companyId) { return $q->where('company_id', $companyId); }
-    public function scopeForBranch($q, $branchId) {
+    public function scopeForCompany($q, $companyId)
+    {
+        return $q->where('company_id', $companyId);
+    }
+
+    public function scopeForBranch($q, $branchId)
+    {
         return $q->where('branch_id', $branchId)
-            ->orWhereHas('accessibleBranches', fn($qq) => $qq->where('branches.id', $branchId));
+            ->orWhereHas('accessibleBranches', fn ($qq) => $qq->where('branches.id', $branchId));
     }
 }

@@ -25,7 +25,7 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-        // --- Users: keep legacy index name for sidebar (admin.users), plus full CRUD ---
+        // --- Users: legacy index name for sidebar (admin.users) + full CRUD ---
         Route::get('/users', [UsersController::class, 'index'])->name('users'); // legacy index name
         Route::resource('users', UsersController::class)
             ->except(['show','index'])
@@ -34,8 +34,9 @@ Route::middleware(['auth', 'verified', 'role:Admin'])
         // Custom user actions
         Route::post('/users/{user}/toggle-active', [UsersController::class, 'toggleActive'])->name('users.toggle-active');
         Route::post('/users/{user}/roles', [UsersController::class, 'assignRoles'])->name('users.roles');
+        Route::post('/users/{user}/resend-verification', [UsersController::class, 'resendVerification'])->name('users.resend-verification');
 
-        // Role quick view (existing)
+        // Role quick view
         Route::get('/roles', [UsersController::class, 'roles'])->name('roles');
 
         // System Health

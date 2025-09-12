@@ -68,9 +68,7 @@
 
     {{-- Role distribution --}}
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Role Distribution</h3>
-        </div>
+        <div class="card-header"><h3 class="card-title">Role Distribution</h3></div>
         <div class="card-body">
             <div class="tool-grid">
                 @forelse($roleCounts as $role)
@@ -91,9 +89,7 @@
 
     {{-- Users table --}}
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Users</h3>
-        </div>
+        <div class="card-header"><h3 class="card-title">Users</h3></div>
         <div class="overflow-x-auto card-body">
             <table class="data-table">
                 <thead>
@@ -136,14 +132,26 @@
                             </td>
                             <td class="whitespace-nowrap">
                                 <div class="gap-2 d-flex">
+                                    @if(!$u->email_verified_at)
+                                        <form method="POST" action="{{ route('admin.users.resend-verification', $u) }}"
+                                              onsubmit="return confirmResend(this, 'Resend verification to {{ $u->email }}?')">
+                                            @csrf
+                                            <button class="btn btn-secondary btn-sm">Resend Verify</button>
+                                        </form>
+                                    @endif
+
                                     <a href="{{ route('admin.users.edit', $u) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                    <form method="POST" action="{{ route('admin.users.toggle-active', $u) }}" onsubmit="return confirmToggle(this, '{{ $u->is_active ? 'Deactivate' : 'Activate' }} {{ $u->name }}?')">
+
+                                    <form method="POST" action="{{ route('admin.users.toggle-active', $u) }}"
+                                          onsubmit="return confirmToggle(this, '{{ $u->is_active ? 'Deactivate' : 'Activate' }} {{ $u->name }}?')">
                                         @csrf
                                         <button class="btn {{ $u->is_active ? 'btn-warning' : 'btn-success' }} btn-sm">
                                             {{ $u->is_active ? 'Deactivate' : 'Activate' }}
                                         </button>
                                     </form>
-                                    <form method="POST" action="{{ route('admin.users.destroy', $u) }}" onsubmit="return confirmDelete(this, 'Delete {{ $u->name }}? This cannot be undone.');">
+
+                                    <form method="POST" action="{{ route('admin.users.destroy', $u) }}"
+                                          onsubmit="return confirmDelete(this, 'Delete {{ $u->name }}? This cannot be undone.');">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm">Delete</button>
@@ -158,22 +166,31 @@
             </table>
         </div>
         @if($users->hasPages())
-        <div class="card-footer">{{ $users->onEachSide(1)->links() }}</div>
+            <div class="card-footer">{{ $users->onEachSide(1)->links() }}</div>
         @endif
     </div>
 </div>
 
 @push('scripts')
 <script>
+function confirmResend(form, message){
+    if (window.Swal) {
+        return Swal.fire({icon:'info', title: message, showCancelButton:true, confirmButtonColor:'#2171B5'})
+            .then(r => { if(r.isConfirmed) form.submit(); return false; }), false;
+    }
+    return confirm(message);
+}
 function confirmToggle(form, message){
     if (window.Swal) {
-        return Swal.fire({icon:'warning', title: message, showCancelButton:true, confirmButtonColor:'#2171B5'}).then(r => { if(r.isConfirmed) form.submit(); return false; }), false;
+        return Swal.fire({icon:'warning', title: message, showCancelButton:true, confirmButtonColor:'#2171B5'})
+            .then(r => { if(r.isConfirmed) form.submit(); return false; }), false;
     }
     return confirm(message);
 }
 function confirmDelete(form, message){
     if (window.Swal) {
-        return Swal.fire({icon:'error', title: message, showCancelButton:true, confirmButtonColor:'#dc2626'}).then(r => { if(r.isConfirmed) form.submit(); return false; }), false;
+        return Swal.fire({icon:'error', title: message, showCancelButton:true, confirmButtonColor:'#dc2626'})
+            .then(r => { if(r.isConfirmed) form.submit(); return false; }), false;
     }
     return confirm(message);
 }

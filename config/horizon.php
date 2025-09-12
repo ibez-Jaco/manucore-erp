@@ -4,59 +4,28 @@ use Illuminate\Support\Str;
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Horizon Domain
-    |--------------------------------------------------------------------------
-    */
     'domain' => env('HORIZON_DOMAIN'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Horizon Path (moved under Admin surface)
-    |--------------------------------------------------------------------------
-    | We default to /system/horizon. You can override via HORIZON_PATH.
-    */
+    // Admin surface
     'path' => env('HORIZON_PATH', 'admin/horizon'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Horizon Redis Connection
-    |--------------------------------------------------------------------------
-    */
     'use' => 'default',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Horizon Redis Prefix
-    |--------------------------------------------------------------------------
-    */
     'prefix' => env(
         'HORIZON_PREFIX',
         Str::slug(env('APP_NAME', 'laravel'), '_') . '_horizon:'
     ),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Horizon Route Middleware (lock to Admin)
-    |--------------------------------------------------------------------------
-    */
+    // Lock Horizon UI to Admins
     'middleware' => ['web', 'auth', 'verified', 'role:Admin'],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Queue Wait Time Thresholds
-    |--------------------------------------------------------------------------
-    */
+    // Alert thresholds
     'waits' => [
         'redis:default' => 60,
+        'redis:mail'    => 60,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Job Trimming Times
-    |--------------------------------------------------------------------------
-    */
+    // Trim windows (minutes)
     'trim' => [
         'recent'        => 60,
         'pending'       => 60,
@@ -66,20 +35,10 @@ return [
         'monitored'     => 10080,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Silenced Jobs
-    |--------------------------------------------------------------------------
-    */
     'silenced' => [
         // App\Jobs\ExampleJob::class,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Metrics
-    |--------------------------------------------------------------------------
-    */
     'metrics' => [
         'trim_snapshots' => [
             'job'   => 24,
@@ -87,29 +46,31 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Fast Termination
-    |--------------------------------------------------------------------------
-    */
     'fast_termination' => false,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Memory Limit (MB)
-    |--------------------------------------------------------------------------
-    */
     'memory_limit' => 64,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Queue Worker Configuration (defaults for all envs)
-    |--------------------------------------------------------------------------
-    */
+    // Defaults for all envs
     'defaults' => [
-        'supervisor-1' => [
+        // Consumes the normal app jobs
+        'supervisor-default' => [
             'connection'          => 'redis',
-            'queue'               => ['default'], // ensure Spatie Health probes are consumed
+            'queue'               => ['default'],
+            'balance'             => 'auto',
+            'autoScalingStrategy' => 'time',
+            'maxProcesses'        => 1,
+            'maxTime'             => 0,
+            'maxJobs'             => 0,
+            'memory'              => 128,
+            'tries'               => 1,
+            'timeout'             => 60,
+            'nice'                => 0,
+        ],
+
+        // Consumes email notifications, etc.
+        'supervisor-mail' => [
+            'connection'          => 'redis',
+            'queue'               => ['mail'],
             'balance'             => 'auto',
             'autoScalingStrategy' => 'time',
             'maxProcesses'        => 1,
@@ -122,24 +83,27 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Environment-specific Overrides
-    |--------------------------------------------------------------------------
-    */
     'environments' => [
         'production' => [
-            'supervisor-1' => [
+            'supervisor-default' => [
                 'maxProcesses'    => 10,
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
             ],
+            'supervisor-mail' => [
+                'maxProcesses'    => 5,
+                'balanceMaxShift' => 1,
+                'balanceCooldown' => 3,
+            ],
         ],
+
         'local' => [
-            'supervisor-1' => [
+            'supervisor-default' => [
                 'maxProcesses' => 3,
+            ],
+            'supervisor-mail' => [
+                'maxProcesses' => 2,
             ],
         ],
     ],
-
 ];
